@@ -5,6 +5,7 @@
     android:id="@+id/holderGroup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     tools:context=".ConfigActivity">
 
     <TextView
@@ -60,7 +61,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameInput"
             style="c"
-            android:layout_width="227dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:foregroundTint="#000000"
             android:hint="Enter name"
@@ -93,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/armadillo" />
+        android:src="@drawable/sprite_two_img" />
 
     <ImageView
         android:id="@+id/spriteThreeImg"
@@ -107,7 +108,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        android:src="@android:drawable/btn_star" />
+        android:src="@drawable/sprite_three_img" />
 
     <ImageView
         android:id="@+id/spriteOneImg"
@@ -121,7 +122,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        android:src="@android:drawable/ic_lock_lock" />
+        android:src="@drawable/sprite_one_img" />
 
     <Button
         android:id="@+id/start_button"

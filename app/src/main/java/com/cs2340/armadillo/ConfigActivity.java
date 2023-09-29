@@ -12,10 +12,15 @@ import android.widget.EditText;
 public class ConfigActivity extends AppCompatActivity {
 
     private Button startButton;
+
+    private float playerX, playerY;
     private static Player player;
     private EditText playerName;
     private RadioGroup difficultyRadioGroup;
     private RadioGroup spriteRadioGroup;
+
+    private int playerSprite;
+    private int playerHP;
 
     TextWatcher textwatcher = new TextWatcher(){
         @Override
@@ -48,7 +53,9 @@ public class ConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_configuration_screen);
-        player = new Player();
+        playerX = 50;
+        playerY = 300;
+        player = new Player(this, playerX, playerY, playerHP, 50, 50);
         playerName = findViewById(R.id.nameInput);
         difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
         spriteRadioGroup = findViewById(R.id.spriteGroup);
@@ -71,16 +78,21 @@ public class ConfigActivity extends AppCompatActivity {
             int spriteRadioId = spriteRadioGroup.getCheckedRadioButtonId();
             if (spriteRadioId == R.id.sprite1) {
                 player.setSprite(1);
-            } else if (spriteRadioId == R.id.sprite1) {
+            } else if (spriteRadioId == R.id.sprite2) {
                 player.setSprite(2);
-            } else {
+            } else if (spriteRadioId == R.id.sprite3){
                 player.setSprite(3);
             }
             Intent gameScreen = new Intent(ConfigActivity.this, GameActivity.class);
+            gameScreen.putExtra("difficulty", player.getDifficulty());
             startActivity(gameScreen);
         });
     }
     public static Player getPlayer() {
         return player;
     }
+
+//    public int setPlayerHP(int difficultyID) {
+//
+//    }
 }
