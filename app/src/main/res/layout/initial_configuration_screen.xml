@@ -62,6 +62,7 @@
             style="c"
             android:layout_width="227dp"
             android:layout_height="match_parent"
+            android:foregroundTint="#000000"
             android:hint="Enter name"
             android:outlineAmbientShadowColor="#BD2A2A"
             android:outlineSpotShadowColor="#615C5C"
@@ -123,7 +124,7 @@
         android:src="@android:drawable/ic_lock_lock" />
 
     <Button
-        android:id="@+id/startButton"
+        android:id="@+id/start_button"
         android:layout_width="187dp"
         android:layout_height="54dp"
         android:layout_marginTop="640dp"

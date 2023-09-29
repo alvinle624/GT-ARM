@@ -2,20 +2,46 @@ package com.cs2340.armadillo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.content.Intent;
 import android.widget.EditText;
-import android.text.TextUtils;
-import android.view.View;
 
 public class ConfigActivity extends AppCompatActivity {
 
+    private Button startButton;
     private static Player player;
     private EditText playerName;
     private RadioGroup difficultyRadioGroup;
     private RadioGroup spriteRadioGroup;
 
+    TextWatcher textwatcher = new TextWatcher(){
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int before, int count) {
+            // change value of player name
+            playerName = findViewById(R.id.nameInput);
+            String playerNameVal = playerName.getText().toString();
+            System.out.println("Player nameInput onChange" + playerName.getText().toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            startButton = findViewById(R.id.start_button);
+            String tempPlayerName = editable.toString();
+            if (tempPlayerName.isEmpty()){
+                startButton.setEnabled(false);
+            } else  {
+                startButton.setEnabled(true);
+            }
+        }
+    };
     public ConfigActivity() {}
 
     @Override
@@ -26,13 +52,9 @@ public class ConfigActivity extends AppCompatActivity {
         playerName = findViewById(R.id.nameInput);
         difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
         spriteRadioGroup = findViewById(R.id.spriteGroup);
-        Button startButton = findViewById(R.id.startButton);
-//        if (TextUtils.isEmpty((playerName.getText().toString().trim()))) {
-//            startButton.setVisibility(View.GONE);
-//        } else {
-//            startButton.setVisibility(View.VISIBLE);
-//        }
-
+        startButton = findViewById(R.id.start_button);
+        startButton.setEnabled(false);
+        playerName.addTextChangedListener(textwatcher);
         startButton.setOnClickListener(v -> {
             player.setName(playerName.getText().toString());
             int difficultyRadioId = difficultyRadioGroup.getCheckedRadioButtonId();
