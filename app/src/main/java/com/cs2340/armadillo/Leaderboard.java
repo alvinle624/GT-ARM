@@ -10,21 +10,27 @@ public class Leaderboard {
     private static Leaderboard leaderboard;
 
     private Leaderboard() {
-        for (String name: names) {
-            name = "---";
-        }
-        for (int score: scores) {
-            score = 0;
+        for (int i = 0; i < 5; i++) {
+            names[i] = "-----";
+            scores[i] = 0;
         }
         lowest = scores[4];
         size = 0;
     }
 
-    private static Leaderboard getLeaderboard() {
+    public static Leaderboard getLeaderboard() {
         if (leaderboard == null) {
             leaderboard = new Leaderboard();
         }
         return leaderboard;
+    }
+
+    public String[] getNames() {
+        return names;
+    }
+
+    public int[] getScores() {
+        return scores;
     }
 
     private void addScore(String playerName, int score) {
