@@ -23,9 +23,7 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         });
         start.setOnClickListener(v -> {
-
             Intent configScreen = new Intent(MainActivity.this, ConfigActivity.class);
-//            game.putExtra("difficulty", difficulty);
             startActivity(configScreen);
             finish();
         });

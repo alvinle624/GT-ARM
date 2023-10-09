@@ -33,7 +33,7 @@ public class Leaderboard {
         return scores;
     }
 
-    private void addScore(String playerName, int score) {
+    public void addScore(String playerName, int score) {
         // Check if name already exists in score board
 
         if (Arrays.asList(names).contains(playerName)) {
