@@ -1,4 +1,4 @@
-package com.cs2340.armadillo;
+package com.cs2340.armadillo.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cs2340.armadillo.Models.Leaderboard;
+import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
-
-import java.io.Serializable;
 
 public class EndActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.cs2340.armadillo;
+package com.cs2340.armadillo.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import java.io.Serializable;
+import com.cs2340.armadillo.R;
 
 public class MainActivity extends AppCompatActivity {
 

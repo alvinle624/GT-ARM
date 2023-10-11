@@ -1,6 +1,5 @@
-package com.cs2340.armadillo;
+package com.cs2340.armadillo.View;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,7 +10,8 @@ import android.os.CountDownTimer;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.Serializable;
+import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.R;
 
 public class GameActivity2 extends AppCompatActivity {
     private Button endBtn;
