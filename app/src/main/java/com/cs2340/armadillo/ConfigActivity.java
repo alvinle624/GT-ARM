@@ -55,8 +55,8 @@ public class ConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_configuration_screen);
-        playerX = 50;
-        playerY = 300;
+        playerX = (float) 100;
+        playerY = (float) 200;
         player = new Player(this, playerX, playerY, playerHP, 50, 50);
         playerName = findViewById(R.id.nameInput);
         difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
