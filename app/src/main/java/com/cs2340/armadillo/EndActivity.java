@@ -41,7 +41,6 @@ public class EndActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String strDate = dateFormat.format(calendar.getTime());
 
-        //TODO Change format to fit changing score and player
         leaderboard.addScore(player.getName(), GameActivity.getCurrentScore(), strDate);
 
         String[] names = leaderboard.getNames();
@@ -64,7 +63,7 @@ public class EndActivity extends AppCompatActivity {
         boardName.setText(nameCol);
         boardScore.setText(scoreCol);
         boardTime.setText(timeCol);
-        currName.setText("PLayer");
-        currScore.setText("0");
+        currName.setText(player.getName());
+        currScore.setText("" + GameActivity.getCurrentScore());
     }
 }
