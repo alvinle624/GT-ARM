@@ -65,6 +65,7 @@ public class EndActivity extends AppCompatActivity {
         boardName.setText(nameCol);
         boardScore.setText(scoreCol);
         boardTime.setText(timeCol);
+
         currName.setText(player.getName());
         currScore.setText("" + GameActivity.getCurrentScore());
     }
