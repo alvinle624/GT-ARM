@@ -14,10 +14,10 @@
         android:theme="@style/Theme.Armadillo"
         tools:targetApi="31">
         <activity
-            android:name=".EndActivity"
+            android:name=".View.EndActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,16 +26,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GameActivity"
+            android:name=".View.GameActivity"
             android:exported="false" />
         <activity
-            android:name=".ConfigActivity"
+            android:name=".View.ConfigActivity"
             android:exported="false" />
         <activity
-            android:name=".GameActivity2"
+            android:name=".View.GameActivity2"
             android:exported="false"/>
         <activity
-            android:name=".GameActivity3"
+            android:name=".View.GameActivity3"
             android:exported="false"/>
     </application>
 

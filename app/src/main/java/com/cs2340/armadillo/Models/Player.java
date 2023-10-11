@@ -1,8 +1,10 @@
-package com.cs2340.armadillo;
+package com.cs2340.armadillo.Models;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.cs2340.armadillo.R;
 
 import java.io.Serializable;
 

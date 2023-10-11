@@ -1,10 +1,4 @@
-package com.cs2340.armadillo;
-
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.text.DateFormat;
+package com.cs2340.armadillo.Models;
 
 public class Leaderboard {
 
