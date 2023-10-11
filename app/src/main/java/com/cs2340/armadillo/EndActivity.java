@@ -20,7 +20,7 @@ public class EndActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
 
-        Player player;
+        Player player = ConfigActivity.getPlayer();
         TextView boardName = (TextView) findViewById(R.id.name_text);
         TextView boardScore = (TextView) findViewById(R.id.score_text);
 
@@ -36,18 +36,16 @@ public class EndActivity extends AppCompatActivity {
         });
 
 
-        Random rand = new Random();
-        int random = rand.nextInt(100);
         Leaderboard leaderboard = Leaderboard.getLeaderboard();
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String strDate = dateFormat.format(calendar.getTime());
 
         //TODO Change format to fit changing score and player
-        leaderboard.addScore("New Player", 0, strDate);
+        leaderboard.addScore(player.getName(), GameActivity.getCurrentScore(), strDate);
 
         String[] names = leaderboard.getNames();
-        int[] scores = leaderboard.getScores();
+        long[] scores = leaderboard.getScores();
         String[] times = leaderboard.getDates();
 
         String nameCol = "";
@@ -56,7 +54,7 @@ public class EndActivity extends AppCompatActivity {
         for (String name: names) {
             nameCol = nameCol + name + "\n\n";
         }
-        for (int score: scores) {
+        for (long score: scores) {
             scoreCol = scoreCol + score + "\n\n";
         }
         for (String time: times) {

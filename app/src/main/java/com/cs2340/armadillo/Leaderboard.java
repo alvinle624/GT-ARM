@@ -8,10 +8,10 @@ import java.text.DateFormat;
 
 public class Leaderboard {
 
-    private int lowest;
+    private long lowest;
     private int size;
     private String[] names = new String[5];
-    private int[] scores = new int[5];
+    private long[] scores = new long[5];
     private String[] dates = new String[5];
     private static Leaderboard leaderboard;
 
@@ -36,7 +36,7 @@ public class Leaderboard {
         return names;
     }
 
-    public int[] getScores() {
+    public long[] getScores() {
         return scores;
     }
 
@@ -44,7 +44,7 @@ public class Leaderboard {
         return dates;
     }
 
-    public void addScore(String playerName, int score, String date) {
+    public void addScore(String playerName, long score, String date) {
         if (size < 5) {
             scores[size] = score;
             names[size] = playerName;
@@ -52,7 +52,7 @@ public class Leaderboard {
 
             for (int i = size; i > 0; i--) {
                 if (scores[i - 1] < score) {
-                    int tempScore = scores[i - 1];
+                    long tempScore = scores[i - 1];
                     String tempName = names[i-1];
                     String tempDate = dates[i - 1];
 
@@ -75,7 +75,7 @@ public class Leaderboard {
                 dates[4] = date;
                 for (int i = 4; i > 0; i--) {
                     if (scores[i - 1] < score) {
-                        int tempScore = scores[i - 1];
+                        long tempScore = scores[i - 1];
                         String tempName = names[i-1];
                         String tempDate = dates[i - 1];
 

@@ -84,4 +84,8 @@ public class GameActivity extends AppCompatActivity {
         text.setText("Score: " + newScore);
     }
 
+    public static long getCurrentScore() {
+        return currentScore;
+    }
+
 }
