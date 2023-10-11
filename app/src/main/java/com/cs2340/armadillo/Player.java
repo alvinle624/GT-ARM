@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.Serializable;
+
 public class Player extends androidx.appcompat.widget.AppCompatImageView {
     private String name;
     private String difficulty;
@@ -23,11 +25,9 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         this.HP = HP;
         this.playerHeight = playerHeight;
         this.playerWidth = playerWidth;
-        this.setImageResource(R.drawable.sprite_one_img);
+        this.setImageResource(R.drawable.sprite_one);
         this.setMaxHeight(40);
         this.setMaxWidth(50);
-        this.setX(x);
-        this.setY(y);
     }
 
     public String getName() {
@@ -54,11 +54,11 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     public void setSprite(int sprite) {
         this.sprite = sprite;
         if (sprite == 1) {
-            spriteID = R.drawable.sprite_one_img;
+            spriteID = R.drawable.sprite_one;
         } else if (sprite == 2) {
-            spriteID = R.drawable.sprite_two_img;
+            spriteID = R.drawable.sprite_two;
         } else {
-            spriteID = R.drawable.sprite_three_img;
+            spriteID = R.drawable.sprite_three;
         }
         this.setImageResource(spriteID);
 //        this.getLayoutParams().height = 30;

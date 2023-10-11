@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import java.io.Serializable;
+
 public class EndActivity extends AppCompatActivity {
 
     @Override
