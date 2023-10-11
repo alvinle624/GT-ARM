@@ -9,6 +9,8 @@ import android.widget.RadioGroup;
 import android.content.Intent;
 import android.widget.EditText;
 
+import java.io.Serializable;
+
 public class ConfigActivity extends AppCompatActivity {
 
     private Button startButton;
@@ -62,9 +64,11 @@ public class ConfigActivity extends AppCompatActivity {
         startButton = findViewById(R.id.start_button);
         startButton.setEnabled(false);
         playerName.addTextChangedListener(textwatcher);
+
         startButton.setOnClickListener(v -> {
             player.setName(playerName.getText().toString());
             int difficultyRadioId = difficultyRadioGroup.getCheckedRadioButtonId();
+
             if (difficultyRadioId == R.id.mediumButton) {
                 player.setDifficulty("Medium");
                 player.setHP(4);
@@ -75,7 +79,9 @@ public class ConfigActivity extends AppCompatActivity {
                 player.setDifficulty("Easy");
                 player.setHP(5);
             }
+
             int spriteRadioId = spriteRadioGroup.getCheckedRadioButtonId();
+
             if (spriteRadioId == R.id.sprite1) {
                 player.setSprite(1);
             } else if (spriteRadioId == R.id.sprite2) {
@@ -83,6 +89,7 @@ public class ConfigActivity extends AppCompatActivity {
             } else if (spriteRadioId == R.id.sprite3){
                 player.setSprite(3);
             }
+
             Intent gameScreen = new Intent(ConfigActivity.this, GameActivity.class);
             gameScreen.putExtra("difficulty", player.getDifficulty());
             startActivity(gameScreen);

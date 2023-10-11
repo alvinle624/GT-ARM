@@ -31,6 +31,12 @@
         <activity
             android:name=".ConfigActivity"
             android:exported="false" />
+        <activity
+            android:name=".GameActivity2"
+            android:exported="false"/>
+        <activity
+            android:name=".GameActivity3"
+            android:exported="false"/>
     </application>
 
 </manifest>

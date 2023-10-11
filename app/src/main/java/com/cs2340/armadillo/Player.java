@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.Serializable;
+
 public class Player extends androidx.appcompat.widget.AppCompatImageView {
     private String name;
     private String difficulty;

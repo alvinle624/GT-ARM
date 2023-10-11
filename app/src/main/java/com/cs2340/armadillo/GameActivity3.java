@@ -12,54 +12,44 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-public class GameActivity extends AppCompatActivity {
-
+public class GameActivity3 extends AppCompatActivity {
     private Button endBtn;
-    private Button nxtBtn;
-    private static final long startScore = 300000;
     private CountDownTimer countDown;
-    private static long currentScore;
+    private long currentScore;
 
     ConstraintLayout gameLayout;
-    @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game3);
         Player player = ConfigActivity.getPlayer();
 
-        TextView playerHp = (TextView) findViewById(R.id.player_hp);
-        TextView playerName = (TextView) findViewById(R.id.player_name);
-        TextView difficulty = (TextView) findViewById(R.id.difficulty);
-        TextView score = (TextView) findViewById(R.id.score);
+        TextView playerHp = (TextView) findViewById(R.id.player_hp3);
+        TextView playerName = (TextView) findViewById(R.id.player_name3);
+        TextView difficulty = (TextView) findViewById(R.id.difficulty3);
+        TextView score = (TextView) findViewById(R.id.score3);
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
         difficulty.setText("Difficulty: " + player.getDifficulty());
 
-        gameLayout = findViewById(R.id.game_screen);
+        gameLayout = findViewById(R.id.game_screen3);
         gameLayout.addView(player);
-        endBtn = (Button) findViewById(R.id.end_button);
-        nxtBtn = (Button) findViewById(R.id.next_button);
+        endBtn = (Button) findViewById(R.id.end_button3);
 
-        currentScore = startScore;
         startScoreTimer(score);
 
-        nxtBtn.setOnClickListener(v -> {
-            gameLayout.removeAllViews();
-            Intent next = new Intent(GameActivity.this, GameActivity2.class);
-            next.putExtra("currentScore", currentScore);
-            startActivity(next);
-            finish();
-        });
-
         endBtn.setOnClickListener(v -> {
-            Intent end = new Intent(GameActivity.this, EndActivity.class);
+            Intent end = new Intent(GameActivity3.this, EndActivity.class);
             startActivity(end);
             finish();
         });
     }
 
-    public void startScoreTimer(TextView tView) {
+    private void startScoreTimer(TextView tView) {
+        currentScore = (long) getIntent().getLongExtra("currentScore", 0);
+
         countDown = new CountDownTimer(currentScore, 1000) {
             @Override
             public void onTick(long untilFinish) {
@@ -75,9 +65,8 @@ public class GameActivity extends AppCompatActivity {
         }.start();
     }
 
-    public void updateScore(TextView text, long num) {
+    private void updateScore(TextView text, long num) {
         int newScore = (int) num;
         text.setText("Score: " + newScore);
     }
-
 }
