@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class EndActivity extends AppCompatActivity {
+    private long currentScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +32,15 @@ public class EndActivity extends AppCompatActivity {
         TextView boardTime = (TextView) findViewById(R.id.time_text);
 
         Button restart = (Button) findViewById(R.id.reset_button);
-        restart.setOnClickListener(v -> {
-            Intent end = new Intent(EndActivity.this, MainActivity.class);
-            startActivity(end);
-            finish();
-        });
 
+        currentScore = (long) getIntent().getLongExtra("currentScore", 0);
 
         Leaderboard leaderboard = Leaderboard.getLeaderboard();
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String strDate = dateFormat.format(calendar.getTime());
 
-        leaderboard.addScore(player.getName(), GameActivity.getCurrentScore(), strDate);
+        leaderboard.addScore(player.getName(), currentScore, strDate);
 
         String[] names = leaderboard.getNames();
         long[] scores = leaderboard.getScores();
@@ -67,6 +64,12 @@ public class EndActivity extends AppCompatActivity {
         boardTime.setText(timeCol);
 
         currName.setText(player.getName());
-        currScore.setText("" + GameActivity.getCurrentScore());
+        currScore.setText("" + currentScore);
+
+        restart.setOnClickListener(v -> {
+            Intent res = new Intent(EndActivity.this, MainActivity.class);
+            startActivity(res);
+            finish();
+        });
     }
 }

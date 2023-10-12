@@ -39,9 +39,9 @@ public class GameActivity2 extends AppCompatActivity {
         gameLayout = findViewById(R.id.game_screen2);
         gameLayout.addView(player);
 
-        endBtn = (Button) findViewById(R.id.end_button2);
         nxtBtn = (Button) findViewById(R.id.next_button2);
 
+        countDown = null;
         startScoreTimer(score);
 
         nxtBtn.setOnClickListener(v -> {
@@ -49,12 +49,6 @@ public class GameActivity2 extends AppCompatActivity {
             Intent next = new Intent(GameActivity2.this, GameActivity3.class);
             next.putExtra("currentScore", currentScore);
             startActivity(next);
-        });
-
-        endBtn.setOnClickListener(v -> {
-            Intent end = new Intent(GameActivity2.this, EndActivity.class);
-            startActivity(end);
-            finish();
         });
     }
 
