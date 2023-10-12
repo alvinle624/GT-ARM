@@ -16,7 +16,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class EndActivity extends AppCompatActivity {
-    private long currentScore;
+    private static long currentScore;
 
 
     @Override
@@ -72,5 +72,9 @@ public class EndActivity extends AppCompatActivity {
             startActivity(res);
             finish();
         });
+    }
+
+    public static long getCurrentScore() {
+        return currentScore;
     }
 }
