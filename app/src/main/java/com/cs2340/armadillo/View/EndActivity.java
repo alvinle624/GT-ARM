@@ -18,6 +18,7 @@ import java.util.Random;
 public class EndActivity extends AppCompatActivity {
     private long currentScore;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

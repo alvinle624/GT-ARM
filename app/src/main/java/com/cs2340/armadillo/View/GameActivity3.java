@@ -20,7 +20,6 @@ public class GameActivity3 extends AppCompatActivity {
 
     ConstraintLayout gameLayout;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game3);

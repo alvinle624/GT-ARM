@@ -20,7 +20,6 @@ public class GameActivity extends AppCompatActivity {
     private static final long startScore = 300000;
     private CountDownTimer countDown;
     private long currentScore;
-
     ConstraintLayout gameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

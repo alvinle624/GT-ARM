@@ -18,7 +18,6 @@ public class GameActivity2 extends AppCompatActivity {
     private Button nxtBtn;
     private CountDownTimer countDown;
     private long currentScore;
-
     ConstraintLayout gameLayout;
 
     @Override
