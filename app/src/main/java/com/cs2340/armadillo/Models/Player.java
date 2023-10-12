@@ -31,7 +31,6 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         this.setMaxHeight(40);
         this.setMaxWidth(50);
     }
-
     public String getName() {
         return name;
     }
@@ -64,5 +63,8 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         }
         this.setImageResource(spriteID);
 //        this.getLayoutParams().height = 30;
+    }
+    public int getSpriteID() {
+        return spriteID;
     }
 }

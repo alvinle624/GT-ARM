@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 
 import com.cs2340.armadillo.Models.Leaderboard;
 import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.View.ConfigActivity;
 import com.cs2340.armadillo.View.EndActivity;
-import com.cs2340.armadillo.View.GameActivity;
 
 
 /**
@@ -30,31 +30,49 @@ public class ExampleUnitTest {
         assertSame(expected, actual);
     }
 
-    @Ignore
-    public void onlyOneInstanceOfPlayer() {
-        //Player expected = Player.getPlayer();
-        //Player actual = Player.getPlayer();
-        //checks if refers to same object
-        //assertSame(expected, actual);
-    }
-
-    @Ignore
+    @Test
     public void spriteIsDifferent() {
-
+        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
+        p.setSprite(1);
+        int expected = R.drawable.sprite_one;
+        int actual = p.getSpriteID();
+        assertEquals(expected, actual);
     }
 
-    @Ignore
-    public void startingLives() {
-
+    @Test
+    public void checkEasy() {
+        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
+        boolean expected = false;
+        if (p.getDifficulty().equals("Easy") && p.getHP() == 5) {
+            expected = true;
+        }
+        boolean actual = true;
+        assertEquals(expected, actual);
     }
 
-    @Ignore
-    public void properNames() {
-        //Player p = Player.getPlayer();
-        //String name = p.getName();
-        //if(name == null || name.equals("") )
+    @Test
+    public void checkMedium() {
+        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
+        boolean expected = false;
+        if (p.getDifficulty().equals("Medium") && p.getHP() == 4) {
+            expected = true;
+        }
+        boolean actual = true;
+        assertEquals(expected, actual);
     }
 
+    @Test
+    public void checkHard() {
+        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
+        boolean expected = false;
+        if (p.getDifficulty().equals("Hard") && p.getHP() == 3) {
+            expected = true;
+        }
+        boolean actual = true;
+        assertEquals(expected, actual);
+    }
+
+    //unit test to check if leaderboard displays scores in descending order
     @Test
     public void leaderboardScoresDescOrder() {
         Leaderboard leaderboard = Leaderboard.getLeaderboard();
