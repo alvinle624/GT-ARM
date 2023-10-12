@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import com.cs2340.armadillo.Models.Leaderboard;
 import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.View.EndActivity;
 import com.cs2340.armadillo.View.GameActivity;
 
 
@@ -118,7 +119,7 @@ public class ExampleUnitTest {
         leaderboard.addScore("Player", 1, "dd-MM-yyyy HH:mm");
         leaderboard.addScore("Player", 2, "dd-MM-yyyy HH:mm");
         int expected = 2;
-        int actual = (int) GameActivity.getCurrentScore();
+        int actual = (int) EndActivity.getCurrentScore();
     }
 
 }

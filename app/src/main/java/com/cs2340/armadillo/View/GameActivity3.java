@@ -20,7 +20,6 @@ public class GameActivity3 extends AppCompatActivity {
 
     ConstraintLayout gameLayout;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game3);
@@ -39,10 +38,13 @@ public class GameActivity3 extends AppCompatActivity {
         gameLayout.addView(player);
         endBtn = (Button) findViewById(R.id.end_button3);
 
+        countDown = null;
         startScoreTimer(score);
 
         endBtn.setOnClickListener(v -> {
+            gameLayout.removeAllViews();
             Intent end = new Intent(GameActivity3.this, EndActivity.class);
+            end.putExtra("currentScore", currentScore);
             startActivity(end);
             finish();
         });

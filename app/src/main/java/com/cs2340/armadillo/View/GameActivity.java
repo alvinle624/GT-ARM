@@ -19,8 +19,7 @@ public class GameActivity extends AppCompatActivity {
     private Button nxtBtn;
     private static final long startScore = 300000;
     private CountDownTimer countDown;
-    private static long currentScore;
-
+    private long currentScore;
     ConstraintLayout gameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +38,10 @@ public class GameActivity extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen);
         gameLayout.addView(player);
-        endBtn = (Button) findViewById(R.id.end_button);
         nxtBtn = (Button) findViewById(R.id.next_button);
 
         currentScore = startScore;
+        countDown = null;
         startScoreTimer(score);
 
         nxtBtn.setOnClickListener(v -> {
@@ -50,12 +49,6 @@ public class GameActivity extends AppCompatActivity {
             Intent next = new Intent(GameActivity.this, GameActivity2.class);
             next.putExtra("currentScore", currentScore);
             startActivity(next);
-            finish();
-        });
-
-        endBtn.setOnClickListener(v -> {
-            Intent end = new Intent(GameActivity.this, EndActivity.class);
-            startActivity(end);
             finish();
         });
     }
@@ -80,9 +73,4 @@ public class GameActivity extends AppCompatActivity {
         int newScore = (int) num;
         text.setText("Score: " + newScore);
     }
-
-    public static long getCurrentScore() {
-        return currentScore;
-    }
-
 }
