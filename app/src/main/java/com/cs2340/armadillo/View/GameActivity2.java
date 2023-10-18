@@ -37,6 +37,7 @@ public class GameActivity2 extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen2);
         gameLayout.addView(player);
+        gameLayout.getViewById(R.id.player_hp2);
 
         nxtBtn = (Button) findViewById(R.id.next_button2);
 

@@ -60,7 +60,7 @@ public class ConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_configuration_screen);
-        playerX = (float) 100;
+        playerX = (float) 200;
         playerY = (float) 200;
         player = new Player(this, playerX, playerY, playerHP, 50, 50);
         playerName = findViewById(R.id.nameInput);
