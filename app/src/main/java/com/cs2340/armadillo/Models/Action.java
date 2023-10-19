@@ -2,6 +2,7 @@ package com.cs2340.armadillo.Models;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ public class Action {
     ImageButton left;
     Player player;
     Direction direction;
-    private Handler mHandler;
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     public Action(ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player) {
         this.up = up;
@@ -29,7 +30,7 @@ public class Action {
         this.left = left;
         this.player = player;
     }
-
+    boolean pressed;
     public void setListeners() {
         up.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
@@ -38,7 +39,10 @@ public class Action {
                 direction = new MoveUp();
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        direction.move(player);
+                        mHandler.postDelayed(moveAction, 10);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        mHandler.removeCallbacks(moveAction);
                         break;
                 }
                 return true;
@@ -50,8 +54,13 @@ public class Action {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveRight();
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    direction.move(player);
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mHandler.postDelayed(moveAction, 10);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        mHandler.removeCallbacks(moveAction);
+                        break;
                 }
                 return true;
             }
@@ -62,8 +71,13 @@ public class Action {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveDown();
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    direction.move(player);
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mHandler.postDelayed(moveAction, 10);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        mHandler.removeCallbacks(moveAction);
+                        break;
                 }
                 return true;
             }
@@ -74,13 +88,25 @@ public class Action {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveLeft();
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    direction.move(player);
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mHandler.postDelayed(moveAction, 10);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        mHandler.removeCallbacks(moveAction);
+                        break;
                 }
                 return true;
             }
         });
     }
 
+    Runnable moveAction = new Runnable() {
+        @Override
+        public void run() {
+            direction.move(player);
+            mHandler.postDelayed(this, 100);
+        }
+    };
 
 }
