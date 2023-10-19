@@ -105,7 +105,7 @@ public class Action {
         @Override
         public void run() {
             direction.move(player);
-            mHandler.postDelayed(this, 100);
+            mHandler.postDelayed(this, 80);
         }
     };
 
