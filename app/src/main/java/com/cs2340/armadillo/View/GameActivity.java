@@ -8,8 +8,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.CountDownTimer;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cs2340.armadillo.Models.Action;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
 
@@ -34,15 +37,24 @@ public class GameActivity extends AppCompatActivity {
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
+
         difficulty.setText("Difficulty: " + player.getDifficulty());
 
         gameLayout = findViewById(R.id.game_screen);
+        ImageView image = player;
         gameLayout.addView(player);
         nxtBtn = (Button) findViewById(R.id.next_button);
 
         currentScore = startScore;
         countDown = null;
         startScoreTimer(score);
+
+        ImageButton up = findViewById(R.id.upButton);
+        ImageButton right = findViewById(R.id.rightButton);
+        ImageButton down = findViewById(R.id.downButton);
+        ImageButton left = findViewById(R.id.leftButton);
+        Action action = new Action(up, right, down, left, player);
+        action.setListeners();
 
         nxtBtn.setOnClickListener(v -> {
             gameLayout.removeAllViews();

@@ -23,6 +23,8 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         super(context);
         this.x = x;
         this.y = y;
+        this.setY(y);
+        this.setX(x);
         this.sprite = 1;
         this.HP = HP;
         this.playerHeight = playerHeight;
@@ -66,5 +68,18 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     }
     public int getSpriteID() {
         return spriteID;
+    }
+
+    public void changePos(float x, float y) {
+        this.x += x;
+        this.y += y;
+        this.setY(this.y);
+        this.setX(this.x);
+    }
+    public void setXCoor(float x) {
+        this.x = x;
+    }
+    public void setYCoor(float y) {
+        this.y = y;
     }
 }

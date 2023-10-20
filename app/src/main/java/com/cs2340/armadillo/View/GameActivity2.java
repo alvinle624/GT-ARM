@@ -8,8 +8,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.CountDownTimer;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.cs2340.armadillo.Models.Action;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
 
@@ -25,11 +27,22 @@ public class GameActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
         Player player = ConfigActivity.getPlayer();
+        player.setXCoor(500);
+        player.setYCoor(500);
+        player.setX(500);
+        player.setY(500);
 
         TextView playerHp = (TextView) findViewById(R.id.player_hp2);
         TextView playerName = (TextView) findViewById(R.id.player_name2);
         TextView difficulty = (TextView) findViewById(R.id.difficulty2);
         TextView score = (TextView) findViewById(R.id.score2);
+
+        ImageButton up = findViewById(R.id.upButton2);
+        ImageButton right = findViewById(R.id.rightButton2);
+        ImageButton down = findViewById(R.id.downButton2);
+        ImageButton left = findViewById(R.id.leftButton2);
+        Action action = new Action(up, right, down, left, player);
+        action.setListeners();
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -37,6 +50,7 @@ public class GameActivity2 extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen2);
         gameLayout.addView(player);
+        gameLayout.getViewById(R.id.player_hp2);
 
         nxtBtn = (Button) findViewById(R.id.next_button2);
 
