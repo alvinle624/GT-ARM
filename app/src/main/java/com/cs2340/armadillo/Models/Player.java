@@ -76,10 +76,10 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         this.setY(this.y);
         this.setX(this.x);
     }
-    public float getX() {
-        return x;
+    public void setXCoor(float x) {
+        this.x = x;
     }
-    public float getY() {
-        return y;
+    public void setYCoor(float y) {
+        this.y = y;
     }
 }
