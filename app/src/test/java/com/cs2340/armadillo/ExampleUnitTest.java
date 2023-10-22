@@ -10,6 +10,7 @@ import android.content.Context;
 import android.graphics.Rect;
 
 import com.cs2340.armadillo.Models.Leaderboard;
+import com.cs2340.armadillo.Models.MapLayout;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.Models.PlayerT;
 import com.cs2340.armadillo.Models.Sprite;
