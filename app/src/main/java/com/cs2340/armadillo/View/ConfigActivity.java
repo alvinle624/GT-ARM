@@ -62,7 +62,7 @@ public class ConfigActivity extends AppCompatActivity {
         setContentView(R.layout.initial_configuration_screen);
         playerX = (float) 500;
         playerY = (float) 500;
-        player = new Player(this, playerX, playerY, playerHP, 50, 50);
+        player = new Player(this, playerX, playerY, playerHP);
         playerName = findViewById(R.id.nameInput);
         difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
         spriteRadioGroup = findViewById(R.id.spriteGroup);

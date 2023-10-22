@@ -13,13 +13,20 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     private String difficulty;
     private int sprite;
     private int HP;
-
-    private int playerWidth, playerHeight;
     private int spriteID;
 
     private float x, y;
 
-    public Player(Context context, float x, float y, int HP, int playerWidth, int playerHeight) {
+    private static final int playerWidth = 32;
+    private static final int playerHeight = 32;
+
+    public enum Direction {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
+    public Player(Context context, float x, float y, int HP) {
         super(context);
         this.x = x;
         this.y = y;
@@ -27,8 +34,6 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         this.setX(x);
         this.sprite = 1;
         this.HP = HP;
-        this.playerHeight = playerHeight;
-        this.playerWidth = playerWidth;
         this.setImageResource(R.drawable.sprite_one);
         this.setMaxHeight(40);
         this.setMaxWidth(50);
@@ -81,5 +86,36 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     }
     public void setYCoor(float y) {
         this.y = y;
+    }
+
+    // Checks if player will move into a wall:
+    // playerCanMove = 1, player can move in @direction
+    // playerCanMove = 0, player cannot move in @direction
+    public boolean playerCanMove(int direction, MapLayout map) {
+        switch(Direction.values()[direction]) {
+            case UP:
+                if (map.getLayout()[(int)x][(int)y-20] > 2) {
+                    return false;
+                }
+                break;
+            case DOWN:
+                if (map.getLayout()[(int)x][(int)y+20] > 2) {
+                    return false;
+                }
+                break;
+            case LEFT:
+                if (map.getLayout()[(int)x-20][(int)y] > 2) {
+                    return false;
+                }
+                break;
+            case RIGHT:
+                if (map.getLayout()[(int)x+20][(int)y] > 2) {
+                    return false;
+                }
+                break;
+            default:
+                return true;
+        }
+        return true;
     }
 }
