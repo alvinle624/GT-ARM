@@ -27,5 +27,49 @@ public class SpriteSheet {
         return bitmap;
     }
 
+    public Sprite getGround1() {
+        return getSprite(0, 4);
+    }
+
+    public Sprite getGround2() {
+        return getSprite(0, 8);
+    }
+
+    public Sprite getGround3() {
+        return getSprite(0, 12);
+    }
+
+    public Sprite getWall1() {
+        return getSprite(4, 4);
+    }
+
+    public Sprite getWall2() {
+        return getSprite(8, 4);
+    }
+
+    public Sprite getWall3() {
+        return getSprite(4, 8);
+    }
+
+    public Sprite getWindow() {
+        return getSprite(12, 4);
+    }
+
+    public Sprite getPlant1() {
+        return getSprite(8, 8);
+    }
+
+    public Sprite getPlant2() {
+        return getSprite(12, 8);
+    }
+
+    private Sprite getSprite(int x, int y) {
+        return new Sprite(this, new Rect(
+                x * spriteWidth,
+                y * spriteHeight,
+                (x + 1) * spriteWidth,
+                (y + 1) * spriteHeight
+        ));
+    }
 
 }
