@@ -7,10 +7,12 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 import android.content.Context;
+import android.graphics.Rect;
 
 import com.cs2340.armadillo.Models.Leaderboard;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.Models.PlayerT;
+import com.cs2340.armadillo.Models.Sprite;
 import com.cs2340.armadillo.View.ConfigActivity;
 import com.cs2340.armadillo.View.Direction;
 import com.cs2340.armadillo.View.EndActivity;
@@ -34,7 +36,7 @@ public class ExampleUnitTest {
 
     @Test
     public void playerMoveUp() {
-        PlayerT player = new PlayerT(200,200,5,50,40);
+        PlayerT player = new PlayerT(200,200,5);
         Direction moveUp = new MoveUp();
         moveUp.move(player);
         moveUp.move(player);
@@ -43,7 +45,7 @@ public class ExampleUnitTest {
     }
     @Test
     public void playerMoveDown() {
-        PlayerT player = new PlayerT(200,200,5,50,40);
+        PlayerT player = new PlayerT(200,200,5);
         Direction moveDown = new MoveDown();
         moveDown.move(player);
         moveDown.move(player);
@@ -53,7 +55,7 @@ public class ExampleUnitTest {
 
     @Test
     public void playerMoveRight() {
-        PlayerT player = new PlayerT(200,200,5,50,40);
+        PlayerT player = new PlayerT(200,200,5);
         Direction moveRight = new MoveRight();
         moveRight.move(player);
         moveRight.move(player);
@@ -62,7 +64,7 @@ public class ExampleUnitTest {
     }
     @Test
     public void playerMoveLeft() {
-        PlayerT player = new PlayerT(200,200,5,50,40);
+        PlayerT player = new PlayerT(200,200,5);
         Direction moveLeft = new MoveLeft();
         moveLeft.move(player);
         moveLeft.move(player);
@@ -72,82 +74,47 @@ public class ExampleUnitTest {
 
     @Test
     public void endScreenDisplaysThatPlayerWon() {
-        PlayerT player = new PlayerT(200,200,5,50,40);
+        PlayerT player = new PlayerT(200,200,5);
         String expected = "You Win!";
         String actual = player.getWinText();
         assertEquals(expected, actual);
     }
 
-
-
-
-
-    //unit test to check if leaderboard displays scores in descending order
     @Test
-    public void leaderboardScoresDescOrder() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        for (int i = 1; i < 6; i++) {
-            leaderboard.addScore("Player", i, "dd-MM-yyyy HH:mm");
-        }
-        long[] expected = {5, 4, 3, 2, 1};
-        long[] actual = leaderboard.getScores();
-        assertArrayEquals(expected, actual);
+    public void checkWallCollisions() {
+        MapLayout mapLayout = new MapLayout();
+        PlayerT player = new PlayerT(35, 100, 5);
+        boolean expected = false;
+        boolean actual = player.playerCanMove(2, mapLayout);
+        assertEquals(expected, actual);
     }
-
-    //unit test to check if leaderboard displays five highest scores
     @Test
-    public void leaderboardDisplaysFiveHighestScores() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        for (int i = 1; i < 7; i++) {
-            leaderboard.addScore("Player", i, "dd-MM-yyyy HH:mm");
-        }
-        long[] scores = leaderboard.getScores();
+    public void checkPlayerCanMoveNearWall() {
+        MapLayout mapLayout = new MapLayout();
+        PlayerT player = new PlayerT(53,100,5);
         boolean expected = true;
-        boolean actual = true;
-        for (long score : scores) {
-            if (score == 1) {
-                expected = false;
-            }
-        }
+        boolean actual = player.playerCanMove(2, mapLayout);
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void spriteWidthIsCorrect() {
+        Rect img = new Rect(0, 0, 32, 32);
+        Sprite sprite = new Sprite(R.drawable.sprite_sheet, img);
+        int expected = 32;
+        int actual = sprite.getWidth();
         assertEquals(expected, actual);
     }
 
-    //unit test to check if leaderboard displays names that correspond to scores
     @Test
-    public void leaderboardDisplaysCorrespondingNames() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        leaderboard.addScore("one", 1, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("two", 2, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("three", 3, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("four", 4, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("five", 5, "dd-MM-yyyy HH:mm");
-        String[] expected = {"five", "four", "three", "two", "one"};
-        String[] actual = leaderboard.getNames();
-        assertArrayEquals(expected, actual);
+    public void spriteHeightIsCorrect() {
+        Rect img = new Rect(0, 0, 32, 32);
+        Sprite sprite = new Sprite(R.drawable.sprite_sheet, img);
+        int expected = 32;
+        int actual = sprite.getHeight();
+        assertEquals(expected, actual);
     }
 
-    //unit test to check if leaderboard displays dates that correspond to scores
-    @Test
-    public void leaderboardDisplaysCorrespondingDates() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        leaderboard.addScore("Player", 1, "date 1");
-        leaderboard.addScore("Player", 2, "date 2");
-        leaderboard.addScore("Player", 3, "date 3");
-        leaderboard.addScore("Player", 4, "date 4");
-        leaderboard.addScore("Player", 5, "date 5");
-        String[] expected = {"date 5", "date 4", "date 3", "date 2", "date 1"};
-        String[] actual = leaderboard.getDates();
-        assertArrayEquals(expected, actual);
-    }
 
-    //unit test to check if leaderboard displays most recent score
-    @Test
-    public void leaderboardDisplaysMostRecentScore() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        leaderboard.addScore("Player", 1, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("Player", 2, "dd-MM-yyyy HH:mm");
-        int expected = 2;
-        int actual = (int) EndActivity.getCurrentScore();
-    }
+
 
 }

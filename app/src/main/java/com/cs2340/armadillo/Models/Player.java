@@ -78,11 +78,29 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         return spriteID;
     }
 
-    public void changePos(float x, float y) {
-        this.x += x;
-        this.y += y;
-        this.setY(this.y);
+    public void changeXPos(float x, float y) {
+        if (this.x < 10) {
+            this.x = 10;
+        } else if (this.x > 1310) {
+            this.x = 1310;
+        } else {
+            this.x += x;
+        }
+
         this.setX(this.x);
+        this.setY(this.y);
+    }
+    public void changeYPos(float x, float y) {
+        if (this.y < 10) {
+            this.y = 10;
+        } else if (this.y > 2760) {
+            this.y = 2760;
+        } else {
+            this.y += y;
+        }
+
+        this.setX(this.x);
+        this.setY(this.y);
     }
     public void setXCoor(float x) {
         this.x = x;
@@ -90,7 +108,12 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     public void setYCoor(float y) {
         this.y = y;
     }
-
+    public float x() {
+        return this.x;
+    }
+    public float y() {
+        return this.y;
+    }
     public void setWinText(String winText) {
         this.winText = winText;
     }
