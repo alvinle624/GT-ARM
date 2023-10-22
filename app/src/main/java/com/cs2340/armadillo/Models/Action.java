@@ -104,5 +104,8 @@ public class Action {
             mHandler.postDelayed(this, 80);
         }
     };
+    public void stopButton() {
+        mHandler.removeCallbacks(moveAction);
+    }
 
 }

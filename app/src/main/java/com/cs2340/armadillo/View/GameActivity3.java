@@ -17,6 +17,7 @@ import com.cs2340.armadillo.R;
 
 public class GameActivity3 extends AppCompatActivity {
     private Button endBtn;
+    private Action action;
     private CountDownTimer countDown;
     private long currentScore;
 
@@ -41,7 +42,7 @@ public class GameActivity3 extends AppCompatActivity {
         ImageButton right = findViewById(R.id.rightButton3);
         ImageButton down = findViewById(R.id.downButton3);
         ImageButton left = findViewById(R.id.leftButton3);
-        Action action = new Action(up, right, down, left, player);
+        action = new Action(up, right, down, left, player);
         action.setListeners();
 
         playerHp.setText("PlayerHP: " + player.getHP());
@@ -50,10 +51,9 @@ public class GameActivity3 extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen3);
         gameLayout.addView(player);
-        endBtn = (Button) findViewById(R.id.end_button3);
 
         countDown = null;
-        startScoreTimer(score);
+        startScoreTimer(score, player);
 
         endBtn.setOnClickListener(v -> {
             gameLayout.removeAllViews();
@@ -65,19 +65,30 @@ public class GameActivity3 extends AppCompatActivity {
         });
     }
 
-    private void startScoreTimer(TextView tView) {
+    private void startScoreTimer(TextView tView, Player p) {
         currentScore = (long) getIntent().getLongExtra("currentScore", 0);
-
         countDown = new CountDownTimer(currentScore, 1000) {
             @Override
             public void onTick(long untilFinish) {
                 currentScore = untilFinish;
                 updateScore(tView, currentScore);
-            }
 
+                if (p.getY() > 2200 && p.getX() < 800) {
+                    gameLayout.removeAllViews();
+                    Intent next = new Intent(GameActivity3.this, EndActivity.class);
+                    next.putExtra("currentScore", currentScore);
+                    startActivity(next);
+                    countDown.cancel();
+                    countDown = null;
+                    action.stopButton();
+                    finish();
+                }
+            }
             @Override
             public void onFinish() {
                 currentScore = 0;
+                countDown.cancel();
+                countDown = null;
                 updateScore(tView, currentScore);
             }
         }.start();

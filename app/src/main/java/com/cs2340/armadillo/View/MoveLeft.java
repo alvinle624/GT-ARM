@@ -7,7 +7,7 @@ import com.cs2340.armadillo.Models.PlayerT;
 
 public class MoveLeft implements Direction {
     public void move(Player player) {
-        player.changePos(-20, 0);
+        player.changeXPos(-20, 0);
     }
     public void move(PlayerT player) {
         player.changePos(-20, 0);

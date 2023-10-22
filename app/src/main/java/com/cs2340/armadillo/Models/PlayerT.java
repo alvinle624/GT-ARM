@@ -9,8 +9,6 @@ public class PlayerT {
     private String difficulty;
     private int sprite;
     private int HP;
-
-    private int playerWidth, playerHeight;
     private int spriteID;
 
     private float x, y;
@@ -23,13 +21,11 @@ public class PlayerT {
         RIGHT
     }
 
-    public PlayerT(float x, float y, int HP, int playerWidth, int playerHeight) {
+    public PlayerT(float x, float y, int HP) {
         this.x = x;
         this.y = y;
         this.sprite = 1;
         this.HP = HP;
-        this.playerHeight = playerHeight;
-        this.playerWidth = playerWidth;
         this.setWinText("You Win!");
     }
 

@@ -7,7 +7,7 @@ import com.cs2340.armadillo.Models.PlayerT;
 
 public class MoveDown implements Direction{
     public void move(Player player) {
-        player.changePos(0, 20);
+        player.changeYPos(0, 20);
     }
     public void move(PlayerT player) {
         player.changePos(0, 20);
