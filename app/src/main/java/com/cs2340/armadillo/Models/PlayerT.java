@@ -1,26 +1,20 @@
 package com.cs2340.armadillo.Models;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.cs2340.armadillo.R;
 
-import java.io.Serializable;
-
-public class Player extends androidx.appcompat.widget.AppCompatImageView {
+public class PlayerT {
     private String name;
     private String difficulty;
     private int sprite;
     private int HP;
+
+    private int playerWidth, playerHeight;
     private int spriteID;
 
     private float x, y;
-
     private String winText;
-
-    private static final int playerWidth = 32;
-    private static final int playerHeight = 32;
 
     public enum Direction {
         UP,
@@ -28,19 +22,17 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         LEFT,
         RIGHT
     }
-    public Player(Context context, float x, float y, int HP) {
-        super(context);
+
+    public PlayerT(float x, float y, int HP, int playerWidth, int playerHeight) {
         this.x = x;
         this.y = y;
-        this.setY(y);
-        this.setX(x);
         this.sprite = 1;
         this.HP = HP;
-        this.winText = "---";
-        this.setImageResource(R.drawable.sprite_one);
-        this.setMaxHeight(40);
-        this.setMaxWidth(50);
+        this.playerHeight = playerHeight;
+        this.playerWidth = playerWidth;
+        this.setWinText("You Win!");
     }
+
     public String getName() {
         return name;
     }
@@ -71,8 +63,6 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         } else {
             spriteID = R.drawable.sprite_three;
         }
-        this.setImageResource(spriteID);
-//        this.getLayoutParams().height = 30;
     }
     public int getSpriteID() {
         return spriteID;
@@ -81,29 +71,28 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     public void changePos(float x, float y) {
         this.x += x;
         this.y += y;
-        this.setY(this.y);
-        this.setX(this.x);
     }
     public void setXCoor(float x) {
         this.x = x;
     }
+    public float getXCoor() {
+        return x;
+    }
     public void setYCoor(float y) {
         this.y = y;
+    }
+    public float getYCoor() {
+        return y;
     }
 
     public void setWinText(String winText) {
         this.winText = winText;
     }
-
     public String getWinText() {
         return winText;
     }
-
-    // Checks if player will move into a wall:
-    // playerCanMove = 1, player can move in @direction
-    // playerCanMove = 0, player cannot move in @direction
     public boolean playerCanMove(int direction, MapLayout map) {
-        switch(Direction.values()[direction]) {
+        switch(Player.Direction.values()[direction]) {
             case UP:
                 if (map.getLayout()[(int)x][(int)y-20] > 2) {
                     return false;
@@ -130,3 +119,4 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         return true;
     }
 }
+

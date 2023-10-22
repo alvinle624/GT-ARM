@@ -23,17 +23,16 @@ public class Action {
     Direction direction;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    public Action(ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player) {
+    public Action (ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player) {
         this.up = up;
         this.right = right;
         this.down = down;
         this.left = left;
         this.player = player;
     }
-    boolean pressed;
+    @SuppressLint("ClickableViewAccessibility")
     public void setListeners() {
         up.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveUp();
@@ -50,7 +49,6 @@ public class Action {
         });
 
         right.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveRight();
@@ -67,7 +65,6 @@ public class Action {
         });
 
         down.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveDown();
@@ -84,7 +81,6 @@ public class Action {
         });
 
         left.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveLeft();
