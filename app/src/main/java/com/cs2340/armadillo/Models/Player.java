@@ -99,7 +99,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
                 }
                 break;
             case DOWN:
-                if (map.getLayout()[(int)x][(int)y+20] > 2) {
+                if (map.getLayout()[(int)x][(int)y+playerHeight+20] > 2) {
                     return false;
                 }
                 break;
@@ -109,7 +109,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
                 }
                 break;
             case RIGHT:
-                if (map.getLayout()[(int)x+20][(int)y] > 2) {
+                if (map.getLayout()[(int)x+playerWidth+20][(int)y] > 2) {
                     return false;
                 }
                 break;
