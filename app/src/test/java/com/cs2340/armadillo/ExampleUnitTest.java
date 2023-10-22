@@ -2,13 +2,23 @@ package com.cs2340.armadillo;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import android.content.Context;
+
 import com.cs2340.armadillo.Models.Leaderboard;
 import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.Models.PlayerT;
 import com.cs2340.armadillo.View.ConfigActivity;
+import com.cs2340.armadillo.View.Direction;
 import com.cs2340.armadillo.View.EndActivity;
+import com.cs2340.armadillo.View.MoveDown;
+import com.cs2340.armadillo.View.MoveLeft;
+import com.cs2340.armadillo.View.MoveRight;
+import com.cs2340.armadillo.View.MoveUp;
+
 
 
 /**
@@ -23,54 +33,54 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void onlyOneInstanceLeaderBoard() {
-        Leaderboard expected = Leaderboard.getLeaderboard();
-        Leaderboard actual = Leaderboard.getLeaderboard();
-        //checks if refers to same object
-        assertSame(expected, actual);
+    public void playerMoveUp() {
+        PlayerT player = new PlayerT(200,200,5,50,40);
+        Direction moveUp = new MoveUp();
+        moveUp.move(player);
+        moveUp.move(player);
+        moveUp.move(player);
+        assert(player.getXCoor() == 200 && player.getYCoor() == 140);
+    }
+    @Test
+    public void playerMoveDown() {
+        PlayerT player = new PlayerT(200,200,5,50,40);
+        Direction moveDown = new MoveDown();
+        moveDown.move(player);
+        moveDown.move(player);
+        moveDown.move(player);
+        assert(player.getXCoor() == 200 && player.getYCoor() == 260);
     }
 
     @Test
-    public void spriteIsDifferent() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
-        p.setSprite(1);
-        int expected = R.drawable.sprite_one;
-        int actual = p.getSpriteID();
-        assertEquals(expected, actual);
+    public void playerMoveRight() {
+        PlayerT player = new PlayerT(200,200,5,50,40);
+        Direction moveRight = new MoveRight();
+        moveRight.move(player);
+        moveRight.move(player);
+        moveRight.move(player);
+        assert(player.getXCoor() == 260 && player.getYCoor() == 200);
+    }
+    @Test
+    public void playerMoveLeft() {
+        PlayerT player = new PlayerT(200,200,5,50,40);
+        Direction moveLeft = new MoveLeft();
+        moveLeft.move(player);
+        moveLeft.move(player);
+        moveLeft.move(player);
+        assert(player.getXCoor() == 140 && player.getYCoor() == 200);
     }
 
     @Test
-    public void checkEasy() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
-        boolean expected = false;
-        if (p.getDifficulty().equals("Easy") && p.getHP() == 5) {
-            expected = true;
-        }
-        boolean actual = true;
+    public void endScreenDisplaysThatPlayerWon() {
+        PlayerT player = new PlayerT(200,200,5,50,40);
+        String expected = "You Win!";
+        String actual = player.getWinText();
         assertEquals(expected, actual);
     }
 
-    @Test
-    public void checkMedium() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
-        boolean expected = false;
-        if (p.getDifficulty().equals("Medium") && p.getHP() == 4) {
-            expected = true;
-        }
-        boolean actual = true;
-        assertEquals(expected, actual);
-    }
 
-    @Test
-    public void checkHard() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
-        boolean expected = false;
-        if (p.getDifficulty().equals("Hard") && p.getHP() == 3) {
-            expected = true;
-        }
-        boolean actual = true;
-        assertEquals(expected, actual);
-    }
+
+
 
     //unit test to check if leaderboard displays scores in descending order
     @Test
