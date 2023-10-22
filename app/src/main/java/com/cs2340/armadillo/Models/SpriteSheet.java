@@ -8,8 +8,8 @@ import android.graphics.Rect;
 import com.cs2340.armadillo.R;
 
 public class SpriteSheet {
-    private static final int spriteWidth = 64;
-    private static final int spriteHeight = 64;
+    private static final int spriteWidth = 32;
+    private static final int spriteHeight = 32;
     private Bitmap bitmap;
 
     public SpriteSheet(Context context) {
