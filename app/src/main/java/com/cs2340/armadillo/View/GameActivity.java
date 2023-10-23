@@ -56,13 +56,6 @@ public class GameActivity extends AppCompatActivity {
         action = new Action(up, right, down, left, player);
         action.setListeners();
 
-        nxtBtn.setOnClickListener(v -> {
-            gameLayout.removeAllViews();
-            Intent next = new Intent(GameActivity.this, GameActivity2.class);
-            next.putExtra("currentScore", currentScore);
-            startActivity(next);
-            finish();
-        });
     }
 
     public void startScoreTimer(TextView tView, Player p) {
