@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +9,36 @@
     android:background="@drawable/map_one"
     android:gravity="top"
     tools:context=".View.GameActivity">
+
+    <GridView
+        android:id="@+id/tile_map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="-155dp"
+        android:columnWidth="32dp"
+        android:gravity="center"
+        android:horizontalSpacing="0px"
+        android:numColumns="13"
+        android:stretchMode="none"
+        android:verticalSpacing="0dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/exit2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </GridView>
+<!--    <GridView-->
+<!--        android:id="@+id/tilemap"-->
+<!--        android:layout_width="408dp"-->
+<!--        android:layout_height="730dp"-->
+<!--        android:layout_marginEnd="3dp"-->
+<!--        android:layout_marginBottom="1dp"-->
+<!--        android:numColumns="3"-->
+<!--        -->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/player_hp"
@@ -144,5 +175,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/exit" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
