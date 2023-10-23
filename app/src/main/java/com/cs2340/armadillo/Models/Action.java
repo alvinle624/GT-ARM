@@ -31,9 +31,9 @@ public class Action {
         this.player = player;
     }
     boolean pressed;
+    @SuppressLint("ClickableViewAccessibility")
     public void setListeners() {
         up.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveUp();
@@ -50,7 +50,6 @@ public class Action {
         });
 
         right.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveRight();
@@ -67,7 +66,6 @@ public class Action {
         });
 
         down.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveDown();
@@ -84,7 +82,6 @@ public class Action {
         });
 
         left.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveLeft();
@@ -108,5 +105,9 @@ public class Action {
             mHandler.postDelayed(this, 80);
         }
     };
+
+    public void stopButton() {
+        mHandler.removeCallbacks(moveAction);
+    }
 
 }

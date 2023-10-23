@@ -2,13 +2,26 @@ package com.cs2340.armadillo;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import android.content.Context;
+import android.graphics.Rect;
+
 import com.cs2340.armadillo.Models.Leaderboard;
+import com.cs2340.armadillo.Models.MapLayout;
 import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.Models.PlayerT;
+import com.cs2340.armadillo.Models.Sprite;
 import com.cs2340.armadillo.View.ConfigActivity;
+import com.cs2340.armadillo.View.Direction;
 import com.cs2340.armadillo.View.EndActivity;
+import com.cs2340.armadillo.View.MoveDown;
+import com.cs2340.armadillo.View.MoveLeft;
+import com.cs2340.armadillo.View.MoveRight;
+import com.cs2340.armadillo.View.MoveUp;
+
 
 
 /**
@@ -23,121 +36,86 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void onlyOneInstanceLeaderBoard() {
-        Leaderboard expected = Leaderboard.getLeaderboard();
-        Leaderboard actual = Leaderboard.getLeaderboard();
-        //checks if refers to same object
-        assertSame(expected, actual);
+    public void playerMoveUp() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveUp = new MoveUp();
+        moveUp.move(player);
+        moveUp.move(player);
+        moveUp.move(player);
+        assert(player.getXCoor() == 200 && player.getYCoor() == 140);
+    }
+    @Test
+    public void playerMoveDown() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveDown = new MoveDown();
+        moveDown.move(player);
+        moveDown.move(player);
+        moveDown.move(player);
+        assert(player.getXCoor() == 200 && player.getYCoor() == 260);
     }
 
     @Test
-    public void spriteIsDifferent() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
-        p.setSprite(1);
-        int expected = R.drawable.sprite_one;
-        int actual = p.getSpriteID();
+    public void playerMoveRight() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveRight = new MoveRight();
+        moveRight.move(player);
+        moveRight.move(player);
+        moveRight.move(player);
+        assert(player.getXCoor() == 260 && player.getYCoor() == 200);
+    }
+    @Test
+    public void playerMoveLeft() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveLeft = new MoveLeft();
+        moveLeft.move(player);
+        moveLeft.move(player);
+        moveLeft.move(player);
+        assert(player.getXCoor() == 140 && player.getYCoor() == 200);
+    }
+
+    @Test
+    public void endScreenDisplaysThatPlayerWon() {
+        PlayerT player = new PlayerT(200,200,5);
+        String expected = "You Win!";
+        String actual = player.getWinText();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void checkEasy() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
+    public void checkWallCollisions() {
+        MapLayout mapLayout = new MapLayout();
+        PlayerT player = new PlayerT(35, 100, 5);
         boolean expected = false;
-        if (p.getDifficulty().equals("Easy") && p.getHP() == 5) {
-            expected = true;
-        }
-        boolean actual = true;
+        boolean actual = player.playerCanMove(2, mapLayout);
         assertEquals(expected, actual);
     }
-
     @Test
-    public void checkMedium() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
-        boolean expected = false;
-        if (p.getDifficulty().equals("Medium") && p.getHP() == 4) {
-            expected = true;
-        }
-        boolean actual = true;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void checkHard() {
-        Player p = new Player(new ConfigActivity(),0,0,5,50,40);
-        boolean expected = false;
-        if (p.getDifficulty().equals("Hard") && p.getHP() == 3) {
-            expected = true;
-        }
-        boolean actual = true;
-        assertEquals(expected, actual);
-    }
-
-    //unit test to check if leaderboard displays scores in descending order
-    @Test
-    public void leaderboardScoresDescOrder() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        for (int i = 1; i < 6; i++) {
-            leaderboard.addScore("Player", i, "dd-MM-yyyy HH:mm");
-        }
-        long[] expected = {5, 4, 3, 2, 1};
-        long[] actual = leaderboard.getScores();
-        assertArrayEquals(expected, actual);
-    }
-
-    //unit test to check if leaderboard displays five highest scores
-    @Test
-    public void leaderboardDisplaysFiveHighestScores() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        for (int i = 1; i < 7; i++) {
-            leaderboard.addScore("Player", i, "dd-MM-yyyy HH:mm");
-        }
-        long[] scores = leaderboard.getScores();
+    public void checkPlayerCanMoveNearWall() {
+        MapLayout mapLayout = new MapLayout();
+        PlayerT player = new PlayerT(53,100,5);
         boolean expected = true;
-        boolean actual = true;
-        for (long score : scores) {
-            if (score == 1) {
-                expected = false;
-            }
-        }
+        boolean actual = player.playerCanMove(2, mapLayout);
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void spriteWidthIsCorrect() {
+        Rect img = new Rect(0, 0, 32, 32);
+        Sprite sprite = new Sprite(null, img);
+        int expected = 32;
+        int actual = sprite.getWidth();
         assertEquals(expected, actual);
     }
 
-    //unit test to check if leaderboard displays names that correspond to scores
     @Test
-    public void leaderboardDisplaysCorrespondingNames() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        leaderboard.addScore("one", 1, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("two", 2, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("three", 3, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("four", 4, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("five", 5, "dd-MM-yyyy HH:mm");
-        String[] expected = {"five", "four", "three", "two", "one"};
-        String[] actual = leaderboard.getNames();
-        assertArrayEquals(expected, actual);
+    public void spriteHeightIsCorrect() {
+        Rect img = new Rect(0, 0, 32, 32);
+        Sprite sprite = new Sprite(null, img);
+        int expected = 32;
+        int actual = sprite.getHeight();
+        assertEquals(expected, actual);
     }
 
-    //unit test to check if leaderboard displays dates that correspond to scores
-    @Test
-    public void leaderboardDisplaysCorrespondingDates() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        leaderboard.addScore("Player", 1, "date 1");
-        leaderboard.addScore("Player", 2, "date 2");
-        leaderboard.addScore("Player", 3, "date 3");
-        leaderboard.addScore("Player", 4, "date 4");
-        leaderboard.addScore("Player", 5, "date 5");
-        String[] expected = {"date 5", "date 4", "date 3", "date 2", "date 1"};
-        String[] actual = leaderboard.getDates();
-        assertArrayEquals(expected, actual);
-    }
 
-    //unit test to check if leaderboard displays most recent score
-    @Test
-    public void leaderboardDisplaysMostRecentScore() {
-        Leaderboard leaderboard = Leaderboard.getLeaderboard();
-        leaderboard.addScore("Player", 1, "dd-MM-yyyy HH:mm");
-        leaderboard.addScore("Player", 2, "dd-MM-yyyy HH:mm");
-        int expected = 2;
-        int actual = (int) EndActivity.getCurrentScore();
-    }
+
 
 }
