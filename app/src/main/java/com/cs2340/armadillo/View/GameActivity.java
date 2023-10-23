@@ -23,6 +23,7 @@ public class GameActivity extends AppCompatActivity {
     private static final long startScore = 300000;
     private CountDownTimer countDown;
     private long currentScore;
+    Action action;
     ConstraintLayout gameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +44,16 @@ public class GameActivity extends AppCompatActivity {
         gameLayout = findViewById(R.id.game_screen);
         ImageView image = player;
         gameLayout.addView(player);
-        nxtBtn = (Button) findViewById(R.id.next_button);
 
         currentScore = startScore;
         countDown = null;
-        startScoreTimer(score);
+        startScoreTimer(score,player);
 
         ImageButton up = findViewById(R.id.upButton);
         ImageButton right = findViewById(R.id.rightButton);
         ImageButton down = findViewById(R.id.downButton);
         ImageButton left = findViewById(R.id.leftButton);
-        Action action = new Action(up, right, down, left, player);
+        action = new Action(up, right, down, left, player);
         action.setListeners();
 
         nxtBtn.setOnClickListener(v -> {
@@ -65,17 +65,29 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
-    public void startScoreTimer(TextView tView) {
+    public void startScoreTimer(TextView tView, Player p) {
         countDown = new CountDownTimer(currentScore, 1000) {
             @Override
             public void onTick(long untilFinish) {
                 currentScore = untilFinish;
                 updateScore(tView, currentScore);
-            }
 
+                if (p.getY() > 2200 && p.getX() < 800) {
+                    gameLayout.removeAllViews();
+                    Intent next = new Intent(GameActivity.this, GameActivity2.class);
+                    next.putExtra("currentScore", currentScore);
+                    startActivity(next);
+                    countDown.cancel();
+                    countDown = null;
+                    action.stopButton();
+                    finish();
+                }
+            }
             @Override
             public void onFinish() {
                 currentScore = 0;
+                countDown.cancel();
+                countDown = null;
                 updateScore(tView, currentScore);
             }
         }.start();

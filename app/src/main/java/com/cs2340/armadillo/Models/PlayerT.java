@@ -1,14 +1,10 @@
 package com.cs2340.armadillo.Models;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.cs2340.armadillo.R;
 
-import java.io.Serializable;
-
-public class Player extends androidx.appcompat.widget.AppCompatImageView {
+public class PlayerT {
     private String name;
     private String difficulty;
     private int sprite;
@@ -16,11 +12,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     private int spriteID;
 
     private float x, y;
-
     private String winText;
-
-    private static final int playerWidth = 32;
-    private static final int playerHeight = 32;
 
     public enum Direction {
         UP,
@@ -28,19 +20,15 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         LEFT,
         RIGHT
     }
-    public Player(Context context, float x, float y, int HP) {
-        super(context);
+
+    public PlayerT(float x, float y, int HP) {
         this.x = x;
         this.y = y;
-        this.setY(y);
-        this.setX(x);
         this.sprite = 1;
         this.HP = HP;
-        this.winText = "---";
-        this.setImageResource(R.drawable.sprite_one);
-        this.setMaxHeight(40);
-        this.setMaxWidth(50);
+        this.setWinText("You Win!");
     }
+
     public String getName() {
         return name;
     }
@@ -71,69 +59,43 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         } else {
             spriteID = R.drawable.sprite_three;
         }
-        this.setImageResource(spriteID);
-//        this.getLayoutParams().height = 30;
     }
     public int getSpriteID() {
         return spriteID;
     }
 
-    public void changeXPos(float x, float y) {
-        if (this.x < 10) {
-            this.x = 10;
-        } else if (this.x > 1310) {
-            this.x = 1310;
-        } else {
-            this.x += x;
-        }
-
-        this.setX(this.x);
-        this.setY(this.y);
-    }
-    public void changeYPos(float x, float y) {
-        if (this.y < 10) {
-            this.y = 10;
-        } else if (this.y > 2760) {
-            this.y = 2760;
-        } else {
-            this.y += y;
-        }
-
-        this.setX(this.x);
-        this.setY(this.y);
+    public void changePos(float x, float y) {
+        this.x += x;
+        this.y += y;
     }
     public void setXCoor(float x) {
         this.x = x;
     }
+    public float getXCoor() {
+        return x;
+    }
     public void setYCoor(float y) {
         this.y = y;
     }
-    public float x() {
-        return this.x;
+    public float getYCoor() {
+        return y;
     }
-    public float y() {
-        return this.y;
-    }
+
     public void setWinText(String winText) {
         this.winText = winText;
     }
-
     public String getWinText() {
         return winText;
     }
-
-    // Checks if player will move into a wall:
-    // playerCanMove = 1, player can move in @direction
-    // playerCanMove = 0, player cannot move in @direction
     public boolean playerCanMove(int direction, MapLayout map) {
-        switch(Direction.values()[direction]) {
+        switch(Player.Direction.values()[direction]) {
             case UP:
                 if (map.getLayout()[(int)x][(int)y-20] > 2) {
                     return false;
                 }
                 break;
             case DOWN:
-                if (map.getLayout()[(int)x][(int)y+playerHeight+20] > 2) {
+                if (map.getLayout()[(int)x][(int)y+20] > 2) {
                     return false;
                 }
                 break;
@@ -143,7 +105,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
                 }
                 break;
             case RIGHT:
-                if (map.getLayout()[(int)x+playerWidth+20][(int)y] > 2) {
+                if (map.getLayout()[(int)x+20][(int)y] > 2) {
                     return false;
                 }
                 break;
