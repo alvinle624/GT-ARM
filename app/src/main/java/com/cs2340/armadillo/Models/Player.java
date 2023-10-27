@@ -121,38 +121,6 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     public String getWinText() {
         return winText;
     }
-
-    private int[][] mapLay = {
-            {0,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,3,3,3,0,0,0,0,0,0,3},
-            {3,0,0,3,0,0,0,0,0,0,0,0,3},
-            {3,0,0,3,0,0,0,0,0,0,0,0,3},
-            {3,0,0,3,0,0,0,0,0,0,0,0,3},
-            {3,0,0,3,0,0,0,0,0,0,0,0,3},
-            {3,0,0,3,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,0,1,0,0,0,0,0,0,0,1,0,3},
-            {3,0,3,3,3,3,3,3,3,3,1,0,3},
-            {3,0,1,0,0,0,0,0,0,0,1,0,3},
-            {3,1,1,1,0,0,0,0,0,1,1,1,3},
-            {3,0,0,1,0,0,0,0,0,1,0,0,3},
-            {3,0,0,1,0,0,0,0,0,1,0,0,3},
-            {3,0,0,1,0,0,0,0,0,1,0,0,3},
-            {3,0,0,1,0,0,0,0,0,1,0,0,3},
-            {3,0,0,1,0,0,0,0,0,1,0,0,3},
-            {3,0,0,0,0,0,0,0,0,0,0,0,3},
-            {3,3,3,3,3,3,3,3,3,3,3,3,3}
-    };
-
     // Checks if player will move into a wall:
     // playerCanMove = 1, player can move in @direction
     // playerCanMove = 0, player cannot move in @direction
@@ -160,22 +128,22 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         switch(Direction.values()[direction]) {
             // gotta fix the row col (swap the col and rol/x and y)
             case UP:
-                if (mapLay[(int)(y-20)%28][(int)(x%13)] > 2) {
+                if (layout[(int)Math.floor((y-20)/100)][(int)Math.floor((x/100))] > 0) {
                     return false;
                 }
                 break;
             case DOWN:
-                if (mapLay[(int)((y+playerHeight+20)%28)][(int)(x%13)] > 2) {
+                if (layout[(int)Math.floor(((y+playerHeight+21)/100))][(int)Math.floor(x/100)] > 0) {
                     return false;
                 }
                 break;
             case LEFT:
-                if (mapLay[(int)(y%28)][(int)((x-20)%13)] > 2) {
+                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x-20)/100)] > 0) {
                     return false;
                 }
                 break;
             case RIGHT:
-                if (mapLay[(int)(y%28)][(int)(x+playerWidth+20)%13] > 2) {
+                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x+playerWidth+20)/100)] > 0) {
                     return false;
                 }
                 break;
