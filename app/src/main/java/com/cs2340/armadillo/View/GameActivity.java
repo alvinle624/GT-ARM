@@ -14,7 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cs2340.armadillo.Models.Action;
-import com.cs2340.armadillo.Models.Map;
+import com.cs2340.armadillo.Models.Coyote;
+import com.cs2340.armadillo.Models.Enemy;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
 
@@ -31,12 +32,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        // set tile map (mapNum: 0 ====> first map)
-        gridView = (GridView) findViewById(R.id.tile_map);
-        gridView.setAdapter(new Map(this, 0));
-
         Player player = ConfigActivity.getPlayer();
+        EnemyView enemy = new EnemyView(this, new Coyote());
 
         TextView playerHp = (TextView) findViewById(R.id.player_hp);
         TextView playerName = (TextView) findViewById(R.id.player_name);
@@ -51,12 +48,12 @@ public class GameActivity extends AppCompatActivity {
         gameLayout = findViewById(R.id.game_screen);
         ImageView image = player;
         gameLayout.addView(player);
+        gameLayout.addView(enemy);
 
         currentScore = startScore;
         countDown = null;
         startScoreTimer(score, player);
 
-        // Button for movement
         ImageButton up = findViewById(R.id.upButton);
         ImageButton right = findViewById(R.id.rightButton);
         ImageButton down = findViewById(R.id.downButton);
