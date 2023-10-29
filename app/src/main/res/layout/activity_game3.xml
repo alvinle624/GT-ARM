@@ -8,6 +8,25 @@
     android:background="@drawable/map_three"
     tools:context=".View.GameActivity3">
 
+
+    <GridView
+        android:id="@+id/tile_map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="-155dp"
+        android:columnWidth="32dp"
+        android:gravity="center"
+        android:horizontalSpacing="0px"
+        android:numColumns="13"
+        android:stretchMode="none"
+        android:verticalSpacing="0dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/exit3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </GridView>
+
     <TextView
         android:id="@+id/score3"
         android:layout_width="wrap_content"

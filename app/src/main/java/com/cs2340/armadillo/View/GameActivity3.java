@@ -8,16 +8,19 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.CountDownTimer;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.cs2340.armadillo.Models.Action;
+import com.cs2340.armadillo.Models.Map;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
 
 public class GameActivity3 extends AppCompatActivity {
     private Button endBtn;
     private Action action;
+    private GridView gridView;
     private CountDownTimer countDown;
     private long currentScore;
 
@@ -26,6 +29,10 @@ public class GameActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game3);
+        
+        // sets tiled map to tile 3
+        gridView = (GridView) findViewById(R.id.tile_map);
+        gridView.setAdapter(new Map(this, 2));
         Player player = ConfigActivity.getPlayer();
         player.setXCoor(500);
         player.setYCoor(500);
@@ -68,6 +75,7 @@ public class GameActivity3 extends AppCompatActivity {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity3.this, EndActivity.class);
                     next.putExtra("currentScore", currentScore);
+                    next.putExtra("winorlose", true);
                     startActivity(next);
                     countDown.cancel();
                     countDown = null;

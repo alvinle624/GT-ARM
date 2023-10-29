@@ -21,8 +21,7 @@ import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
 
 public class GameActivity extends AppCompatActivity {
-    GridView gridView;
-
+    private GridView gridView;
     private Button endBtn;
     private Button nxtBtn;
     private Action action;
@@ -34,8 +33,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        gridView = (GridView) findViewById(R.id.tile_map);
-        gridView.setAdapter(new Map(this));
         Player player = ConfigActivity.getPlayer();
 
         TextView playerHp = (TextView) findViewById(R.id.player_hp);

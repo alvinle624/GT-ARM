@@ -22,23 +22,12 @@
         android:stretchMode="none"
         android:verticalSpacing="0dp"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@+id/exit2"
+        app:layout_constraintBottom_toTopOf="@+id/exit1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </GridView>
-<!--    <GridView-->
-<!--        android:id="@+id/tilemap"-->
-<!--        android:layout_width="408dp"-->
-<!--        android:layout_height="730dp"-->
-<!--        android:layout_marginEnd="3dp"-->
-<!--        android:layout_marginBottom="1dp"-->
-<!--        android:numColumns="3"-->
-<!--        -->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/player_hp"
@@ -165,7 +154,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/exit2"
+        android:id="@+id/exit1"
         android:layout_width="236dp"
         android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="parent"

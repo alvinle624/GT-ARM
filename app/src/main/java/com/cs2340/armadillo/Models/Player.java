@@ -121,34 +121,32 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     public String getWinText() {
         return winText;
     }
-
     // Checks if player will move into a wall:
     // playerCanMove = 1, player can move in @direction
     // playerCanMove = 0, player cannot move in @direction
-    public boolean playerCanMove(int direction, MapLayout map) {
+    public boolean playerCanMove(int direction, int[][] layout) {
         switch(Direction.values()[direction]) {
+            // gotta fix the row col (swap the col and rol/x and y)
             case UP:
-                if (map.getLayout()[(int)x][(int)y-20] > 2) {
+                if (layout[(int)Math.floor((y-20)/100)][(int)Math.floor((x/100))] > 0) {
                     return false;
                 }
                 break;
             case DOWN:
-                if (map.getLayout()[(int)x][(int)y+playerHeight+20] > 2) {
+                if (layout[(int)Math.floor(((y+playerHeight+21)/100))][(int)Math.floor(x/100)] > 0) {
                     return false;
                 }
                 break;
             case LEFT:
-                if (map.getLayout()[(int)x-20][(int)y] > 2) {
+                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x-20)/100)] > 0) {
                     return false;
                 }
                 break;
             case RIGHT:
-                if (map.getLayout()[(int)x+playerWidth+20][(int)y] > 2) {
+                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x+playerWidth+20)/100)] > 0) {
                     return false;
                 }
                 break;
-            default:
-                return true;
         }
         return true;
     }
