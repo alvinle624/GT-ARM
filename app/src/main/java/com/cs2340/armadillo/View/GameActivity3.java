@@ -75,6 +75,7 @@ public class GameActivity3 extends AppCompatActivity {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity3.this, EndActivity.class);
                     next.putExtra("currentScore", currentScore);
+                    next.putExtra("winorlose", true);
                     startActivity(next);
                     countDown.cancel();
                     countDown = null;
