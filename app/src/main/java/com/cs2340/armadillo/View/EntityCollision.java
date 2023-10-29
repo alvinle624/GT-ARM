@@ -1,6 +1,8 @@
 package com.cs2340.armadillo.View;
 
+import com.cs2340.armadillo.Models.*;
+
 public interface EntityCollision {
-    abstract boolean isPlayer();
-    abstract boolean overlap(EntityCollision entity1, EntityCollision entity2);
+        abstract boolean overlap(Player player, EntityCollision entity);
+        abstract void setListener();
 }

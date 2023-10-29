@@ -1,6 +1,7 @@
 package com.cs2340.armadillo.View;
 
 
+import android.graphics.Rect;
 import android.content.Context;
 
 import androidx.appcompat.widget.AppCompatImageView;
@@ -8,8 +9,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.cs2340.armadillo.Models.*;
 import com.cs2340.armadillo.R;
 
-public class EnemyView extends AppCompatImageView {
+public class EnemyView extends AppCompatImageView implements EntityCollision {
     Enemy enemy;
+    Rect area;
     public EnemyView (Context context, Enemy enemy) {
         super(context);
         this.enemy = enemy;
@@ -34,5 +36,15 @@ public class EnemyView extends AppCompatImageView {
 
     }
 
+    @Override
+    public boolean overlap(Player player, EntityCollision entity) {
+        return false;
+    }
 
+    @Override
+    public void setListener() {
+        int enemyX = (int)enemy.getX();
+        int enemyY = (int)enemy.getY();
+        area = new Rect(enemyX - 16, enemyY + 16, enemyY - 16, enemyX + 16);
+    }
 }
