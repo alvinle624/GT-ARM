@@ -76,13 +76,13 @@ public class ConfigActivity extends AppCompatActivity {
 
             if (difficultyRadioId == R.id.mediumButton) {
                 player.setDifficulty("Medium");
-                player.setHP(4);
+                player.setHP(15);
             } else if (difficultyRadioId == R.id.hardButton) {
                 player.setDifficulty("Hard");
-                player.setHP(3);
+                player.setHP(10);
             } else {
                 player.setDifficulty("Easy");
-                player.setHP(5);
+                player.setHP(20);
             }
 
             int spriteRadioId = spriteRadioGroup.getCheckedRadioButtonId();
