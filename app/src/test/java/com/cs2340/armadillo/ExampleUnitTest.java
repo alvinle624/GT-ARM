@@ -7,10 +7,14 @@ import static org.junit.Assert.*;
 
 import android.graphics.Rect;
 
-import com.cs2340.armadillo.Models.Coyote;
-import com.cs2340.armadillo.Models.Enemy;
-import com.cs2340.armadillo.Models.EnemyFactory;
-import com.cs2340.armadillo.View.EnemyView;
+import com.cs2340.armadillo.Models.MapLayout;
+import com.cs2340.armadillo.Models.PlayerT;
+import com.cs2340.armadillo.View.Direction;
+import com.cs2340.armadillo.View.MoveDown;
+import com.cs2340.armadillo.View.MoveLeft;
+import com.cs2340.armadillo.View.MoveRight;
+import com.cs2340.armadillo.View.MoveUp;
+
 
 
 /**
@@ -25,53 +29,86 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void getEnemyReturnsCorrectEnemyType() {
-        EnemyFactory factory = new EnemyFactory();
-        Coyote coyote = new Coyote(0, 0);
-        Enemy enemy = factory.getEnemy("COYOTE", 0, 0);
-        String expected = coyote.getClass().getName();
-        String actual = enemy.getClass().getName();
+    public void playerMoveUp() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveUp = new MoveUp();
+        moveUp.move(player);
+        moveUp.move(player);
+        moveUp.move(player);
+        assert(player.getXCoor() == 200 && player.getYCoor() == 140);
+    }
+    @Test
+    public void playerMoveDown() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveDown = new MoveDown();
+        moveDown.move(player);
+        moveDown.move(player);
+        moveDown.move(player);
+        assert(player.getXCoor() == 200 && player.getYCoor() == 260);
+    }
+
+    @Test
+    public void playerMoveRight() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveRight = new MoveRight();
+        moveRight.move(player);
+        moveRight.move(player);
+        moveRight.move(player);
+        assert(player.getXCoor() == 260 && player.getYCoor() == 200);
+    }
+    @Test
+    public void playerMoveLeft() {
+        PlayerT player = new PlayerT(200,200,5);
+        Direction moveLeft = new MoveLeft();
+        moveLeft.move(player);
+        moveLeft.move(player);
+        moveLeft.move(player);
+        assert(player.getXCoor() == 140 && player.getYCoor() == 200);
+    }
+
+    @Test
+    public void endScreenDisplaysThatPlayerWon() {
+        PlayerT player = new PlayerT(200,200,5);
+        String expected = "You Win!";
+        String actual = player.getWinText();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void getEnemySetsCorrectCoordinates() {
-        EnemyFactory factory = new EnemyFactory();
-        Coyote coyote = new Coyote(0, 0);
-        Enemy enemy = factory.getEnemy("COYOTE", 0, 0);
-        Float expected = coyote.getX();
-        Float actual = enemy.getX();
+    public void checkWallCollisions() {
+        MapLayout mapLayout = new MapLayout(0);
+        PlayerT player = new PlayerT(35, 100, 5);
+        boolean expected = false;
+        boolean actual = player.playerCanMove(2, mapLayout);
         assertEquals(expected, actual);
     }
-
     @Test
-    public void enemyMovesUp() {
-
+    public void checkPlayerCanMoveNearWall() {
+        MapLayout mapLayout = new MapLayout(0);
+        PlayerT player = new PlayerT(53,100,5);
+        boolean expected = true;
+        boolean actual = player.playerCanMove(2, mapLayout);
+        assertEquals(expected, actual);
     }
+//    @Test
+//    public void spriteWidthIsCorrect() {
+//        Rect img = new Rect(0, 0, 32, 32);
+//        Sprite sprite = new Sprite(R.drawable.sprite_sheet, img);
+//        int expected = 32;
+//        int actual = sprite.getWidth();
+//        assertEquals(expected, actual);
+//    }
 
-    @Test
-    public void enemyMovesDown() {
+//    @Test
+//    public void spriteHeightIsCorrect() {
+//        Rect img = new Rect(0, 0, 32, 32);
+//        Sprite sprite = new Sprite(R.drawable.sprite_sheet, img);
+//        int expected = 32;
+//        int actual = sprite.getHeight();
+//        assertEquals(expected, actual);
+//    }
 
-    }
 
-    @Test
-    public void enemyMovesLeft() {
 
-    }
-
-    @Test
-    public void enemyMovesRight() {
-
-    }
-
-    @Test
-    public void endingScreenDisplaysPlayerLost() {
-
-    }
-
-    @Test
-    public void collisionUpdatesHP() {
-
-    }
 
 }
