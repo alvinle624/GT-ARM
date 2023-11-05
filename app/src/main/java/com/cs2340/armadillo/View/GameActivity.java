@@ -38,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
     private long currentScore;
     ConstraintLayout gameLayout;
     EnemyView enemyView;
+    CheckCollision checkCollision;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class GameActivity extends AppCompatActivity {
         gameLayout.addView(enemyView);
         ImageView image = player;
         gameLayout.addView(player);
+        checkCollision = new CheckCollision(enemyView, player);
 
         currentScore = startScore;
         countDown = null;
@@ -71,25 +73,38 @@ public class GameActivity extends AppCompatActivity {
         ImageButton left = findViewById(R.id.leftButton);
         action = new Action(up, right, down, left, player);
         action.setListeners();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                if (enemyView != null) {
-                    //enemyView.checkCollide();
-                    if (enemyView.checkCollide()) {
-                        playerHp.setText("HIT");
-                        enemyView.setIsHitPlayer(false);
-                    } else {
-                        playerHp.setText("Miss");
-                    }
-                }
-            }
-        });
+        handler.postDelayed(collision, 10);
+//        executor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                if (checkCollision != null) {
+//                    while (true) {
+//                        if (checkCollision.checkCollide()) {
+//                            playerHp.setText("HIT");
+//                            enemyView.setIsHitPlayer(false);
+//
+//                        }
+//                    }
+//                }
+//            }
+//        });
     }
 
-    ExecutorService executor = Executors.newSingleThreadExecutor();
     Handler handler = new Handler(Looper.getMainLooper());
+    Runnable collision = new Runnable() {
+        @Override
+        public void run() {
+            if (checkCollision != null) {
+                if(checkCollision.checkCollide()) {
+                    TextView playerHP = (TextView) findViewById(R.id.player_hp);
+                    playerHP.setText("HIT");
+                }
+            }
+            handler.postDelayed(this, 100);
+        }
+    };
 
+    ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public void startScoreTimer(TextView tView, Player p) {
         countDown = new CountDownTimer(currentScore, 1000) {
@@ -106,6 +121,7 @@ public class GameActivity extends AppCompatActivity {
                     countDown.cancel();
                     countDown = null;
                     action.stopButton();
+                    handler.removeCallbacks(collision);
                     finish();
                 }
             }
