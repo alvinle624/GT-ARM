@@ -4,5 +4,5 @@ import com.cs2340.armadillo.Models.*;
 
 public interface EntityCollision {
         abstract boolean overlap(Player player, EntityCollision entity);
-        abstract void setListener();
+        abstract boolean checkCollide();
 }

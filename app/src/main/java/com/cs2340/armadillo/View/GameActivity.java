@@ -1,12 +1,15 @@
 package com.cs2340.armadillo.View;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -20,6 +23,11 @@ import com.cs2340.armadillo.Models.Map;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
 
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class GameActivity extends AppCompatActivity {
     private GridView gridView;
     private Button endBtn;
@@ -29,6 +37,7 @@ public class GameActivity extends AppCompatActivity {
     private CountDownTimer countDown;
     private long currentScore;
     ConstraintLayout gameLayout;
+    EnemyView enemyView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +49,7 @@ public class GameActivity extends AppCompatActivity {
         TextView difficulty = (TextView) findViewById(R.id.difficulty);
         TextView score = (TextView) findViewById(R.id.score);
         Enemy coyote = new Coyote(700, 700);
-        EnemyView enemyView = new EnemyView(this, coyote);
+        enemyView = new EnemyView(this, coyote, player);
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -62,7 +71,25 @@ public class GameActivity extends AppCompatActivity {
         ImageButton left = findViewById(R.id.leftButton);
         action = new Action(up, right, down, left, player);
         action.setListeners();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                if (enemyView != null) {
+                    //enemyView.checkCollide();
+                    if (enemyView.checkCollide()) {
+                        playerHp.setText("HIT");
+                        enemyView.setIsHitPlayer(false);
+                    } else {
+                        playerHp.setText("Miss");
+                    }
+                }
+            }
+        });
     }
+
+    ExecutorService executor = Executors.newSingleThreadExecutor();
+    Handler handler = new Handler(Looper.getMainLooper());
+
 
     public void startScoreTimer(TextView tView, Player p) {
         countDown = new CountDownTimer(currentScore, 1000) {
