@@ -85,7 +85,6 @@ public class ConfigActivity extends AppCompatActivity {
                 player.setHP(20);
             }
 
-
             int spriteRadioId = spriteRadioGroup.getCheckedRadioButtonId();
 
             if (spriteRadioId == R.id.sprite1) {
