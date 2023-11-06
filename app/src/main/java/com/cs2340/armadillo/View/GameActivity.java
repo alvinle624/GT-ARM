@@ -39,11 +39,25 @@ public class GameActivity extends AppCompatActivity {
     ConstraintLayout gameLayout;
     EnemyView enemyView;
     CheckCollision checkCollision;
+    Player player;
+    int hpLoss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        Player player = ConfigActivity.getPlayer();
+        player = ConfigActivity.getPlayer();
+
+        switch(player.getDifficulty()) {
+            case ("Hard"):
+                hpLoss = 3;
+                break;
+            case ("Medium"):
+                hpLoss = 2;
+                break;
+            case("Easy"):
+                hpLoss  = 1;
+                break;
+        }
 
         TextView playerHp = (TextView) findViewById(R.id.player_hp);
         TextView playerName = (TextView) findViewById(R.id.player_name);
@@ -74,37 +88,24 @@ public class GameActivity extends AppCompatActivity {
         action = new Action(up, right, down, left, player);
         action.setListeners();
         handler.postDelayed(collision, 10);
-//        executor.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (checkCollision != null) {
-//                    while (true) {
-//                        if (checkCollision.checkCollide()) {
-//                            playerHp.setText("HIT");
-//                            enemyView.setIsHitPlayer(false);
-//
-//                        }
-//                    }
-//                }
-//            }
-//        });
     }
 
     Handler handler = new Handler(Looper.getMainLooper());
     Runnable collision = new Runnable() {
         @Override
         public void run() {
+            int delay = 100;
             if (checkCollision != null) {
                 if(checkCollision.checkCollide()) {
                     TextView playerHP = (TextView) findViewById(R.id.player_hp);
-                    playerHP.setText("HIT");
+                    player.setHP(player.getHP() - hpLoss);
+                    playerHP.setText("PlayerHP: " + player.getHP());
+                    delay = 1000;
                 }
             }
-            handler.postDelayed(this, 100);
+            handler.postDelayed(this, delay);
         }
     };
-
-    ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public void startScoreTimer(TextView tView, Player p) {
         countDown = new CountDownTimer(currentScore, 1000) {
