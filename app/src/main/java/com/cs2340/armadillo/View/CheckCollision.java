@@ -1,6 +1,10 @@
 package com.cs2340.armadillo.View;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cs2340.armadillo.Models.Enemy;
 import com.cs2340.armadillo.Models.Player;
@@ -33,5 +37,9 @@ public class CheckCollision implements EntityCollision {
         System.out.println("Player: " + playerRect.centerX() + ", " + playerRect.centerY());
         System.out.println("Player: " + enemyRect.centerX() + ", " + enemyRect.centerY());
         return enemyRect.intersect(playerRect);
+    }
+
+    public void gameOver(ConstraintLayout game, Context context, Player player) {
+
     }
 }

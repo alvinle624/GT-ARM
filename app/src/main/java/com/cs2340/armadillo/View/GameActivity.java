@@ -23,11 +23,6 @@ import com.cs2340.armadillo.Models.Map;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class GameActivity extends AppCompatActivity {
     private GridView gridView;
     private Button endBtn;
@@ -114,9 +109,13 @@ public class GameActivity extends AppCompatActivity {
                 currentScore = untilFinish;
                 updateScore(tView, currentScore);
 
-                if (p.getY() > 2200 && p.getX() < 800) {
+                if ((p.getY() > 2200 && p.getX() < 800) || (p.getHP() <= 0)) {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity.this, GameActivity2.class);
+                    if (p.getHP() <= 0) {
+                        next = new Intent(GameActivity.this, EndActivity.class);
+                        currentScore = 0;
+                    }
                     next.putExtra("currentScore", currentScore);
                     startActivity(next);
                     countDown.cancel();
