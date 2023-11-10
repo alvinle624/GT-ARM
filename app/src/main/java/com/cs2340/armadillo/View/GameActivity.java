@@ -1,7 +1,6 @@
 package com.cs2340.armadillo.View;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +15,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cs2340.armadillo.Models.Action;
-import com.cs2340.armadillo.Models.Coyote;
-import com.cs2340.armadillo.Models.Enemy;
-import com.cs2340.armadillo.Models.Map;
-import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.Models.*;
 import com.cs2340.armadillo.R;
+
+import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
     private GridView gridView;
@@ -35,12 +32,14 @@ public class GameActivity extends AppCompatActivity {
     EnemyView enemyView;
     CheckCollision checkCollision;
     Player player;
+    ArrayList<EnemyView> enemyList;
     int hpLoss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         player = ConfigActivity.getPlayer();
+        enemyList = new ArrayList<>();
 
         switch(player.getDifficulty()) {
             case ("Hard"):
@@ -58,8 +57,11 @@ public class GameActivity extends AppCompatActivity {
         TextView playerName = (TextView) findViewById(R.id.player_name);
         TextView difficulty = (TextView) findViewById(R.id.difficulty);
         TextView score = (TextView) findViewById(R.id.score);
-        Enemy coyote = new Coyote(700, 700);
-        enemyView = new EnemyView(this, coyote, player);
+
+        EnemyView enemyView = new EnemyView(this, new EnemyFactory().getEnemy("COYOTE", 700,700), player);
+        enemyList.add(enemyView);
+        EnemyView enemyView2 = new EnemyView(this, new EnemyFactory().getEnemy("COYOTE", 900,700), player);
+        enemyList.add(enemyView2);
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -68,9 +70,10 @@ public class GameActivity extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen);
         gameLayout.addView(enemyView);
+        gameLayout.addView(enemyView2);
         ImageView image = player;
         gameLayout.addView(player);
-        checkCollision = new CheckCollision(enemyView, player);
+
 
         currentScore = startScore;
         countDown = null;
@@ -90,12 +93,15 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
-            if (checkCollision != null) {
-                if(checkCollision.checkCollide()) {
-                    TextView playerHP = (TextView) findViewById(R.id.player_hp);
-                    player.setHP(player.getHP() - hpLoss);
-                    playerHP.setText("PlayerHP: " + player.getHP());
-                    delay = 1000;
+            for (EnemyView enemy: enemyList) {
+                if (enemy != null) {
+                    checkCollision = new CheckCollision(enemy, player);
+                    if (checkCollision.checkCollide()) {
+                        TextView playerHP = (TextView) findViewById(R.id.player_hp);
+                        player.setHP(player.getHP() - hpLoss);
+                        playerHP.setText("PlayerHP: " + player.getHP());
+                        delay = 1000;
+                    }
                 }
             }
             handler.postDelayed(this, delay);

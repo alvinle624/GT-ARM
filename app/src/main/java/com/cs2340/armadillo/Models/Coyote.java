@@ -18,7 +18,7 @@ public class Coyote implements Enemy {
 
     }
     @Override
-    public void moveEnemy() {
+    public void move() {
 
     }
 

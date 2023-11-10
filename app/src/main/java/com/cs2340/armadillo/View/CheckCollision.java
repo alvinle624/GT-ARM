@@ -19,11 +19,6 @@ public class CheckCollision implements EntityCollision {
         this.player = player;
     }
 
-    @Override
-    public boolean overlap(Player player, EntityCollision entity) {
-        return false;
-    }
-
     public boolean checkCollide() {
         int[] enemyPos = new int[2];
         int[] playerPos = new int[2];

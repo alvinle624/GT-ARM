@@ -7,15 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.cs2340.armadillo.Models.Action;
-import com.cs2340.armadillo.Models.Map;
-import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.Models.*;
 import com.cs2340.armadillo.R;
+
+import java.util.ArrayList;
 
 public class GameActivity2 extends AppCompatActivity {
     private Button endBtn;
@@ -25,6 +27,11 @@ public class GameActivity2 extends AppCompatActivity {
     private CountDownTimer countDown;
     private long currentScore;
     ConstraintLayout gameLayout;
+    CheckCollision checkCollision;
+    Player player;
+    ArrayList<EnemyView> enemyList;
+    int hpLoss;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,21 @@ public class GameActivity2 extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.tile_map);
         gridView.setAdapter(new Map(this, 1));
 
-        Player player = ConfigActivity.getPlayer();
+        player = ConfigActivity.getPlayer();
+        enemyList = new ArrayList<>();
+
+        switch(player.getDifficulty()) {
+            case ("Hard"):
+                hpLoss = 3;
+                break;
+            case ("Medium"):
+                hpLoss = 2;
+                break;
+            case("Easy"):
+                hpLoss  = 1;
+                break;
+        }
+
         player.setXCoor(500);
         player.setYCoor(500);
         player.setX(500);
@@ -44,6 +65,11 @@ public class GameActivity2 extends AppCompatActivity {
         TextView playerName = (TextView) findViewById(R.id.player_name2);
         TextView difficulty = (TextView) findViewById(R.id.difficulty2);
         TextView score = (TextView) findViewById(R.id.score2);
+
+        EnemyView enemyView = new EnemyView(this, new EnemyFactory().getEnemy("WOLF", 700,700), player);
+        enemyList.add(enemyView);
+        EnemyView enemyView2 = new EnemyView(this, new EnemyFactory().getEnemy("COYOTE", 900,700), player);
+        enemyList.add(enemyView2);
 
         ImageButton up = findViewById(R.id.upButton2);
         ImageButton right = findViewById(R.id.rightButton2);
@@ -57,12 +83,35 @@ public class GameActivity2 extends AppCompatActivity {
         difficulty.setText("Difficulty: " + player.getDifficulty());
 
         gameLayout = findViewById(R.id.game_screen2);
+        gameLayout.addView(enemyView);
+        gameLayout.addView(enemyView2);
         gameLayout.addView(player);
         gameLayout.getViewById(R.id.player_hp2);
 
         countDown = null;
         startScoreTimer(score, player);
+        handler.postDelayed(collision, 10);
     }
+
+    Handler handler = new Handler(Looper.getMainLooper());
+    Runnable collision = new Runnable() {
+        @Override
+        public void run() {
+            int delay = 100;
+            for (EnemyView enemy: enemyList) {
+                if (enemy != null) {
+                    checkCollision = new CheckCollision(enemy, player);
+                    if (checkCollision.checkCollide()) {
+                        TextView playerHP = (TextView) findViewById(R.id.player_hp2);
+                        player.setHP(player.getHP() - hpLoss);
+                        playerHP.setText("PlayerHP: " + player.getHP());
+                        delay = 1000;
+                    }
+                }
+            }
+            handler.postDelayed(this, delay);
+        }
+    };
 
 
     private void startScoreTimer(TextView tView, Player p) {
@@ -73,14 +122,19 @@ public class GameActivity2 extends AppCompatActivity {
                 currentScore = untilFinish;
                 updateScore(tView, currentScore);
 
-                if (p.getY() > 2200 && p.getX() < 800) {
+                if ((p.getY() > 2200 && p.getX() < 800) || (p.getHP() <= 0)) {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity2.this, GameActivity3.class);
+                    if (p.getHP() <= 0) {
+                        next = new Intent(GameActivity2.this, EndActivity.class);
+                        currentScore = 0;
+                    }
                     next.putExtra("currentScore", currentScore);
                     startActivity(next);
                     countDown.cancel();
                     countDown = null;
                     action.stopButton();
+                    handler.removeCallbacks(collision);
                     finish();
                 }
             }
