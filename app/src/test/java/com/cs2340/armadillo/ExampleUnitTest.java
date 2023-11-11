@@ -41,4 +41,15 @@ public class ExampleUnitTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void enemyMovesUpCorrectly() {
+
+    }
+
+    @Test
+    public void enemyMovesDownCorrectly() {
+
+    }
+
+
 }
