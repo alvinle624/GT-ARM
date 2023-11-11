@@ -18,6 +18,8 @@ import java.util.Random;
 public class EndActivity extends AppCompatActivity {
     private static long currentScore;
 
+    boolean win;
+    String winText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class EndActivity extends AppCompatActivity {
         TextView currName = (TextView) findViewById(R.id.current_player);
         TextView currScore = (TextView) findViewById(R.id.current_score);
         TextView boardTime = (TextView) findViewById(R.id.time_text);
+        TextView head = (TextView) findViewById(R.id.leaderboard_head);
 
         Button restart = (Button) findViewById(R.id.reset_button);
 
@@ -67,6 +70,14 @@ public class EndActivity extends AppCompatActivity {
         currName.setText(player.getName());
         currScore.setText("" + currentScore);
 
+        win = getIntent().getBooleanExtra("winorlose", false);
+        if (win) {
+            player.setWinText("You Win!");
+        } else {
+            player.setWinText("You Lose.");
+        }
+        head.setText(player.getWinText());
+
         restart.setOnClickListener(v -> {
             Intent res = new Intent(EndActivity.this, MainActivity.class);
             startActivity(res);
@@ -76,5 +87,9 @@ public class EndActivity extends AppCompatActivity {
 
     public static long getCurrentScore() {
         return currentScore;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
     }
 }

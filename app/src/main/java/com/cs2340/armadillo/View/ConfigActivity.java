@@ -60,9 +60,9 @@ public class ConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_configuration_screen);
-        playerX = (float) 100;
-        playerY = (float) 200;
-        player = new Player(this, playerX, playerY, playerHP, 50, 50);
+        playerX = (float) 500;
+        playerY = (float) 500;
+        player = new Player(this, playerX, playerY, playerHP);
         playerName = findViewById(R.id.nameInput);
         difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
         spriteRadioGroup = findViewById(R.id.spriteGroup);
@@ -76,14 +76,15 @@ public class ConfigActivity extends AppCompatActivity {
 
             if (difficultyRadioId == R.id.mediumButton) {
                 player.setDifficulty("Medium");
-                player.setHP(4);
+                player.setHP(15);
             } else if (difficultyRadioId == R.id.hardButton) {
                 player.setDifficulty("Hard");
-                player.setHP(3);
+                player.setHP(10);
             } else {
                 player.setDifficulty("Easy");
-                player.setHP(5);
+                player.setHP(20);
             }
+
 
             int spriteRadioId = spriteRadioGroup.getCheckedRadioButtonId();
 

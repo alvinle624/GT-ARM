@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="difficultySelectionText">Choose your difficulty:</string>
+    <string name="nameInputText">Input your character\'s name:</string>
+    <string name="startButton">Start!</string>
+    <string name="initialConfigText">Customize your game experience!</string>
+    <string name="easyButton">Easy</string>
+    <string name="mediumButton">Medium</string>
+    <string name="hardButton">Hard</string>
+    <string name="appearanceSelectionText">Choose your character\'s appearance:</string>
+    <string name="nameInputHint">Enter name</string>
+    <string name="sprite1Context">Sprite 1</string>
+    <string name="sprite2Context">Sprite 2</string>
+    <string name="sprite3Context">Sprite 3</string>
+</resources>
