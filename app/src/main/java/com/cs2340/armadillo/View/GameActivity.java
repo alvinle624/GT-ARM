@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.cs2340.armadillo.Models.Action;
 import com.cs2340.armadillo.Models.Coyote;
+import com.cs2340.armadillo.Models.Enemies;
 import com.cs2340.armadillo.Models.Enemy;
 import com.cs2340.armadillo.Models.Map;
 import com.cs2340.armadillo.Models.Player;
@@ -26,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private Button nxtBtn;
     private Action action;
     private static final long startScore = 300000;
+    private Enemies allEnemies;
     private CountDownTimer countDown;
     private long currentScore;
     ConstraintLayout gameLayout;
@@ -39,8 +41,12 @@ public class GameActivity extends AppCompatActivity {
         TextView playerName = (TextView) findViewById(R.id.player_name);
         TextView difficulty = (TextView) findViewById(R.id.difficulty);
         TextView score = (TextView) findViewById(R.id.score);
-        Enemy coyote = new Coyote(700, 700);
-        EnemyView enemyView = new EnemyView(this, coyote);
+
+        Enemy coyote = new Coyote();
+        EnemyView coyoteView = new EnemyView(this, coyote, 700, 700);
+
+        allEnemies = new Enemies();
+        allEnemies.addEnemy(coyoteView);
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -48,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
         difficulty.setText("Difficulty: " + player.getDifficulty());
 
         gameLayout = findViewById(R.id.game_screen);
-        gameLayout.addView(enemyView);
+        gameLayout.addView(coyoteView);
         ImageView image = player;
         gameLayout.addView(player);
 
@@ -60,7 +66,7 @@ public class GameActivity extends AppCompatActivity {
         ImageButton right = findViewById(R.id.rightButton);
         ImageButton down = findViewById(R.id.downButton);
         ImageButton left = findViewById(R.id.leftButton);
-        action = new Action(up, right, down, left, player);
+        action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
     }
 

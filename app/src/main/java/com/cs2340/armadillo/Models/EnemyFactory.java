@@ -6,7 +6,7 @@ public class EnemyFactory {
             return null;
         }
         if (enemyType.equalsIgnoreCase("COYOTE")) {
-            return new Coyote(xPos, yPos);
+            return new Coyote();
 
         } else if (enemyType.equalsIgnoreCase("BEAR")) {
             return new Bear(xPos, yPos);
@@ -14,7 +14,7 @@ public class EnemyFactory {
         } else if (enemyType.equalsIgnoreCase("WOLF")) {
             return new Wolf(xPos, yPos);
         } else if (enemyType.equalsIgnoreCase("HUMAN")) {
-            return new Human(xPos, yPos);
+            return new Human();
         }
         return null;
     }

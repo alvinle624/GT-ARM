@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.cs2340.armadillo.Models.Action;
+import com.cs2340.armadillo.Models.Enemies;
 import com.cs2340.armadillo.Models.Map;
 import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.R;
@@ -21,6 +22,7 @@ public class GameActivity3 extends AppCompatActivity {
     private Button endBtn;
     private Action action;
     private GridView gridView;
+    private Enemies allEnemies;
     private CountDownTimer countDown;
     private long currentScore;
 
@@ -49,7 +51,9 @@ public class GameActivity3 extends AppCompatActivity {
         ImageButton right = findViewById(R.id.rightButton3);
         ImageButton down = findViewById(R.id.downButton3);
         ImageButton left = findViewById(R.id.leftButton3);
-        action = new Action(up, right, down, left, player);
+        allEnemies = new Enemies();
+
+        action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
 
         playerHp.setText("PlayerHP: " + player.getHP());
