@@ -1,6 +1,6 @@
 package com.cs2340.armadillo.Models;
 
-public class enemyFactory {
+public class EnemyFactory {
     public Enemy getEnemy(String enemyType, float xPos, float yPos){
         if (enemyType == null) {
             return null;
