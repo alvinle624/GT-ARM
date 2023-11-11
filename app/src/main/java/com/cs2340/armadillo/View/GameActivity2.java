@@ -23,7 +23,6 @@ public class GameActivity2 extends AppCompatActivity {
     private Button nxtBtn;
     private Action action;
     private GridView gridView;
-
     private Enemies allEnemies;
     private CountDownTimer countDown;
     private long currentScore;
@@ -52,7 +51,6 @@ public class GameActivity2 extends AppCompatActivity {
         ImageButton right = findViewById(R.id.rightButton2);
         ImageButton down = findViewById(R.id.downButton2);
         ImageButton left = findViewById(R.id.leftButton2);
-
         allEnemies = new Enemies();
 
         action = new Action(up, right, down, left, player, allEnemies);

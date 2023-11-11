@@ -51,7 +51,6 @@ public class GameActivity3 extends AppCompatActivity {
         ImageButton right = findViewById(R.id.rightButton3);
         ImageButton down = findViewById(R.id.downButton3);
         ImageButton left = findViewById(R.id.leftButton3);
-
         allEnemies = new Enemies();
 
         action = new Action(up, right, down, left, player, allEnemies);

@@ -29,7 +29,6 @@ public class EnemyView extends AppCompatImageView {
 
         this.rightTrue = true;
         this.upTrue = true;
-
         this.setMaxHeight(40);
         this.setMaxWidth(50);
     }
@@ -186,14 +185,13 @@ public class EnemyView extends AppCompatImageView {
         }
     }
 
-
     public void setSprite(int sprite) {
         if (sprite == 1) {
             this.setImageResource(R.drawable.coyote);
         } else if (sprite == 2) {
-            this.setImageResource(R.drawable.coyote);
+            this.setImageResource(R.drawable.cougar);
         } else {
-            this.setImageResource(R.drawable.coyote);
+            this.setImageResource(R.drawable.bulldog);
         }
     }
 }

@@ -21,7 +21,6 @@ public class MoveUp implements Direction {
             }
             System.out.println();
         }
-
         System.out.println("player coords: (" + player.getX() + ", " + player.getY() + ")");
 
         if (player.playerCanMove(0, layout)){

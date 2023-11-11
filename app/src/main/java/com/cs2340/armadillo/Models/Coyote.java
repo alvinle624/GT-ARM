@@ -10,15 +10,6 @@ public class Coyote implements Enemy {
         hp = 5;
         dmg = 1;
     }
-
-    public void createView() {
-
-    }
-    @Override
-    public void move() {
-
-    }
-
     public void setHP(int hp) {
         this.hp = hp;
     }
