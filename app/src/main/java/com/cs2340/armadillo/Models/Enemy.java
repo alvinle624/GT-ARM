@@ -4,5 +4,4 @@ public interface Enemy {
     abstract void setHP(int hp);
     abstract void setDmg(int dmg);
     abstract int getSpriteID();
-
 }

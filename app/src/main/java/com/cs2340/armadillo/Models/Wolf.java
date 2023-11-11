@@ -3,7 +3,8 @@ package com.cs2340.armadillo.Models;
 public class Wolf implements Enemy {
     private int hp;
     private int dmg;
-    private final int spriteID = 1;
+    private float x, y;
+    private final int spriteID = 3;
 
     public Wolf(float xPos, float yPos) {
         hp = 5;

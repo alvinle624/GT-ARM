@@ -1,7 +1,10 @@
 package com.cs2340.armadillo.View;
 
 
+import android.graphics.Rect;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -189,9 +192,11 @@ public class EnemyView extends AppCompatImageView {
         if (sprite == 1) {
             this.setImageResource(R.drawable.coyote);
         } else if (sprite == 2) {
-            this.setImageResource(R.drawable.cougar);
+            this.setImageResource(R.drawable.bear);
+        } else if (sprite == 3){
+            this.setImageResource(R.drawable.wolf);
         } else {
-            this.setImageResource(R.drawable.bulldog);
+            this.setImageResource(R.drawable.human);
         }
     }
 }

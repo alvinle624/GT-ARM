@@ -7,16 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.cs2340.armadillo.Models.Action;
-import com.cs2340.armadillo.Models.Enemies;
-import com.cs2340.armadillo.Models.Map;
-import com.cs2340.armadillo.Models.Player;
+import com.cs2340.armadillo.Models.*;
 import com.cs2340.armadillo.R;
+
+import java.util.ArrayList;
 
 public class GameActivity3 extends AppCompatActivity {
     private Button endBtn;
@@ -28,6 +29,10 @@ public class GameActivity3 extends AppCompatActivity {
 
     ConstraintLayout gameLayout;
 
+    CheckCollision checkCollision;
+    Player player;
+    int hpLoss;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game3);
@@ -35,7 +40,20 @@ public class GameActivity3 extends AppCompatActivity {
         // sets tiled map to tile 3
         gridView = (GridView) findViewById(R.id.tile_map);
         gridView.setAdapter(new Map(this, 2));
-        Player player = ConfigActivity.getPlayer();
+        player = ConfigActivity.getPlayer();
+
+        switch(player.getDifficulty()) {
+            case ("Hard"):
+                hpLoss = 3;
+                break;
+            case ("Medium"):
+                hpLoss = 2;
+                break;
+            case("Easy"):
+                hpLoss  = 1;
+                break;
+        }
+
         player.setXCoor(500);
         player.setYCoor(500);
         player.setX(500);
@@ -65,7 +83,30 @@ public class GameActivity3 extends AppCompatActivity {
 
         countDown = null;
         startScoreTimer(score, player);
+        handler.postDelayed(collision, 10);
     }
+
+    Handler handler = new Handler(Looper.getMainLooper());
+    Runnable collision = new Runnable() {
+        @Override
+        public void run() {
+            int delay = 100;
+            for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
+                EnemyView enemy = allEnemies.findE(i);
+                if (enemy != null) {
+                    checkCollision = new CheckCollision(enemy, player);
+                    if (checkCollision.checkCollide()) {
+                        TextView playerHP = (TextView) findViewById(R.id.player_hp);
+                        player.setHP(player.getHP() - hpLoss);
+                        playerHP.setText("PlayerHP: " + player.getHP());
+                        delay = 1200;
+                    }
+                }
+            }
+            handler.postDelayed(this, delay);
+        }
+    };
+
 
     private void startScoreTimer(TextView tView, Player p) {
         currentScore = (long) getIntent().getLongExtra("currentScore", 0);
@@ -74,16 +115,22 @@ public class GameActivity3 extends AppCompatActivity {
             public void onTick(long untilFinish) {
                 currentScore = untilFinish;
                 updateScore(tView, currentScore);
+                boolean winner = true;
 
-                if (p.getY() > 2200 && p.getX() < 800) {
+                if ((p.getY() > 2200 && p.getX() < 800) || (p.getHP() <= 0)) {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity3.this, EndActivity.class);
+                    if (p.getHP() <= 0) {
+                        winner = false;
+                        currentScore = 0;
+                    }
                     next.putExtra("currentScore", currentScore);
-                    next.putExtra("winorlose", true);
+                    next.putExtra("winorlose", winner);
                     startActivity(next);
                     countDown.cancel();
                     countDown = null;
                     action.stopButton();
+                    handler.removeCallbacks(collision);
                     finish();
                 }
             }

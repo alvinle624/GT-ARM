@@ -3,7 +3,7 @@ package com.cs2340.armadillo.Models;
 public class Bear implements Enemy {
     private int hp;
     private int dmg;
-    private final int spriteID = 1;
+    private final int spriteID = 2;
 
     public Bear(float xPos, float yPos) {
         hp = 5;
