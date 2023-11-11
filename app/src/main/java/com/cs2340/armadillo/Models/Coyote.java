@@ -4,24 +4,12 @@ public class Coyote implements Enemy {
 
     private int hp;
     private int dmg;
-    private float x, y;
     private final int spriteID = 1;
 
-    public Coyote(float xPos, float yPos) {
+    public Coyote() {
         hp = 5;
         dmg = 1;
-        x = xPos;
-        y = yPos;
     }
-
-    public void createView() {
-
-    }
-    @Override
-    public void move() {
-
-    }
-
     public void setHP(int hp) {
         this.hp = hp;
     }
@@ -33,21 +21,5 @@ public class Coyote implements Enemy {
     @Override
     public int getSpriteID() {
         return spriteID;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
     }
 }

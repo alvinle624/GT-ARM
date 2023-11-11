@@ -23,6 +23,7 @@ public class GameActivity3 extends AppCompatActivity {
     private Button endBtn;
     private Action action;
     private GridView gridView;
+    private Enemies allEnemies;
     private CountDownTimer countDown;
     private long currentScore;
 
@@ -30,7 +31,6 @@ public class GameActivity3 extends AppCompatActivity {
 
     CheckCollision checkCollision;
     Player player;
-    ArrayList<EnemyView> enemyList;
     int hpLoss;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,6 @@ public class GameActivity3 extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.tile_map);
         gridView.setAdapter(new Map(this, 2));
         player = ConfigActivity.getPlayer();
-        enemyList = new ArrayList<>();
 
         switch(player.getDifficulty()) {
             case ("Hard"):
@@ -66,16 +65,13 @@ public class GameActivity3 extends AppCompatActivity {
         TextView difficulty = (TextView) findViewById(R.id.difficulty3);
         TextView score = (TextView) findViewById(R.id.score3);
 
-        EnemyView enemyView = new EnemyView(this, new EnemyFactory().getEnemy("COYOTE", 700,700), player);
-        enemyList.add(enemyView);
-        EnemyView enemyView2 = new EnemyView(this, new EnemyFactory().getEnemy("COYOTE", 900,700), player);
-        enemyList.add(enemyView2);
-
         ImageButton up = findViewById(R.id.upButton3);
         ImageButton right = findViewById(R.id.rightButton3);
         ImageButton down = findViewById(R.id.downButton3);
         ImageButton left = findViewById(R.id.leftButton3);
-        action = new Action(up, right, down, left, player);
+        allEnemies = new Enemies();
+
+        action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
 
         playerHp.setText("PlayerHP: " + player.getHP());
@@ -83,8 +79,6 @@ public class GameActivity3 extends AppCompatActivity {
         difficulty.setText("Difficulty: " + player.getDifficulty());
 
         gameLayout = findViewById(R.id.game_screen3);
-        gameLayout.addView(enemyView);
-        gameLayout.addView(enemyView2);
         gameLayout.addView(player);
 
         countDown = null;
@@ -97,11 +91,12 @@ public class GameActivity3 extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
-            for (EnemyView enemy: enemyList) {
+            for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
+                EnemyView enemy = allEnemies.findE(i);
                 if (enemy != null) {
                     checkCollision = new CheckCollision(enemy, player);
                     if (checkCollision.checkCollide()) {
-                        TextView playerHP = (TextView) findViewById(R.id.player_hp3);
+                        TextView playerHP = (TextView) findViewById(R.id.player_hp);
                         player.setHP(player.getHP() - hpLoss);
                         playerHP.setText("PlayerHP: " + player.getHP());
                         delay = 1200;

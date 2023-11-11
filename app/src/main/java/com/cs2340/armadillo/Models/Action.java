@@ -20,15 +20,17 @@ public class Action {
     ImageButton down;
     ImageButton left;
     Player player;
+    Enemies enemies;
     Direction direction;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    public Action (ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player) {
+    public Action (ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player, Enemies enemies) {
         this.up = up;
         this.right = right;
         this.down = down;
         this.left = left;
         this.player = player;
+        this.enemies = enemies;
     }
     @SuppressLint("ClickableViewAccessibility")
     public void setListeners() {
@@ -100,7 +102,7 @@ public class Action {
     Runnable moveAction = new Runnable() {
         @Override
         public void run() {
-            direction.move(player);
+            direction.move(player, enemies);
             mHandler.postDelayed(this, 80);
         }
     };

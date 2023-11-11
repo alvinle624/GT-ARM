@@ -9,16 +9,6 @@ public class Wolf implements Enemy {
     public Wolf(float xPos, float yPos) {
         hp = 5;
         dmg = 1;
-        x = xPos;
-        y = yPos;
-    }
-
-    public void createView() {
-
-    }
-    @Override
-    public void move() {
-
     }
 
     public void setHP(int hp) {
@@ -32,21 +22,5 @@ public class Wolf implements Enemy {
     @Override
     public int getSpriteID() {
         return spriteID;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
     }
 }
