@@ -29,7 +29,7 @@ public class MoveUp implements Direction {
 
             for (int i = 0; i < enemies.getEnemyList().size(); i = i + 1) {
                 EnemyView enemy = enemies.findE(i);
-                enemy.moveEnemy(enemy, layout);
+                enemy.moveEnemy(enemy, player, layout);
             }
         }
     }

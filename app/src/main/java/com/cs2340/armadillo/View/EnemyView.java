@@ -111,9 +111,9 @@ public class EnemyView extends AppCompatImageView {
         return true;
     }
 
-    public void moveEnemy(EnemyView enemyEntity, int[][] layout) {
+    public void moveEnemy(EnemyView enemyEntity, Player player, int[][] layout) {
         switch (enemyEntity.enemy.getSpriteID()) {
-            case 1:
+            case 1: // left right
                 if (enemyEntity.rightTrue) {
                     // check if hit wall
                     if(enemyEntity.enemyCanMove(3, layout)) {
@@ -129,9 +129,63 @@ public class EnemyView extends AppCompatImageView {
                         enemyEntity.switchRight(); // changes direction to left (rightTrue = true)
                     }
                 }
+                break;
 
+            case 2: // up down
+                if (enemyEntity.upTrue) {
+                    if(enemyEntity.enemyCanMove(0, layout)) {
+                        enemyEntity.changeY(-20);
+                    } else {
+                        enemyEntity.switchUp();
+                    }
+                } else {
+                    if(enemyEntity.enemyCanMove(1, layout)) {
+                        enemyEntity.changeY(20);
+                    } else {
+                        enemyEntity.switchUp();
+                    }
+                }
+                break;
+
+            case 3: // diagonal
+                if (enemyEntity.rightTrue && enemyEntity.upTrue) {
+                    if (enemyEntity.enemyCanMove(3, layout) && enemyEntity.enemyCanMove(0, layout)) {
+                        enemyEntity.changeY(-20);
+                        enemyEntity.changeX(20);
+                    } else {
+                        switchUp();
+                        switchRight();
+                    }
+                } else {
+                    if (enemyEntity.enemyCanMove(2, layout) && enemyEntity.enemyCanMove(1, layout)) {
+                        enemyEntity.changeY(20);
+                        enemyEntity.changeX(-20);
+                    } else {
+                        switchUp();
+                        switchRight();
+                    }
+                }
+                break;
+
+            case 4: // follow;
+                float distX = player.getX() - enemyX;
+                float distY = player.getY() - enemyY;
+
+                if (distX >= 0) {
+                    enemyEntity.changeX(10);
+                } else {
+                    enemyEntity.changeX(-10);
+                }
+
+                if (distY >= 0) {
+                    enemyEntity.changeY(10);
+                } else {
+                    enemyEntity.changeY(-10);
+                }
+                break;
         }
     }
+
 
     public void setSprite(int sprite) {
         if (sprite == 1) {
