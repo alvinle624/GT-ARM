@@ -129,6 +129,7 @@ public class EnemyView extends AppCompatImageView {
                         enemyEntity.switchRight(); // changes direction to left (rightTrue = true)
                     }
                 }
+
         }
     }
 
