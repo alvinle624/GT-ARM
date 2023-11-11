@@ -27,7 +27,8 @@ public class MoveRight implements Direction{
             player.changeXPos(20, 0);
 
             for (int i = 0; i < enemies.getEnemyList().size(); i = i + 1) {
-                enemies.findE(i).enemyMovement(enemies.findE(i), enemies.findE(i).enemyCanMove(3, layout));
+                EnemyView enemy = enemies.findE(i);
+                enemy.moveEnemy(enemy, layout);
             }
         }
     }

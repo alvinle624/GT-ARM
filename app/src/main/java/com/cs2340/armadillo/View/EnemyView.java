@@ -111,23 +111,24 @@ public class EnemyView extends AppCompatImageView {
         return true;
     }
 
-    public void enemyMovement(EnemyView enemyEntity, boolean canMove) {
+    public void moveEnemy(EnemyView enemyEntity, int[][] layout) {
         switch (enemyEntity.enemy.getSpriteID()) {
             case 1:
-                if (canMove) {
-                    System.out.println("canMove = " + canMove);
-                    System.out.println("canMove = " + canMove);
-                    System.out.println("canMove = " + canMove);
-
-                    if (enemyEntity.rightTrue) {
+                if (enemyEntity.rightTrue) {
+                    // check if hit wall
+                    if(enemyEntity.enemyCanMove(3, layout)) {
+                        // move enemy right
                         enemyEntity.changeX(20);
                     } else {
-                        enemyEntity.changeX(-20);
+                        enemyEntity.switchRight(); // changes direction to left (rightTrue = false)
                     }
                 } else {
-                    enemyEntity.switchRight();
+                    if(enemyEntity.enemyCanMove(2, layout)) {
+                        enemyEntity.changeX(-20);
+                    } else {
+                        enemyEntity.switchRight(); // changes direction to left (rightTrue = true)
+                    }
                 }
-                break;
         }
     }
 

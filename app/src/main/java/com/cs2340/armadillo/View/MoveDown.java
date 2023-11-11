@@ -32,7 +32,8 @@ public class MoveDown implements Direction{
             player.changeYPos(0, 20);
 
             for (int i = 0; i < enemies.getEnemyList().size(); i = i + 1) {
-                enemies.findE(i).enemyMovement(enemies.findE(i), enemies.findE(i).enemyCanMove(1, layout));
+                EnemyView enemy = enemies.findE(i);
+                enemy.moveEnemy(enemy, layout);
             }
         }
     }
