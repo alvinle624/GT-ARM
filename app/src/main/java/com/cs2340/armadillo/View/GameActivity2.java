@@ -105,7 +105,7 @@ public class GameActivity2 extends AppCompatActivity {
                         TextView playerHP = (TextView) findViewById(R.id.player_hp2);
                         player.setHP(player.getHP() - hpLoss);
                         playerHP.setText("PlayerHP: " + player.getHP());
-                        delay = 1000;
+                        delay = 1200;
                     }
                 }
             }

@@ -104,7 +104,7 @@ public class GameActivity3 extends AppCompatActivity {
                         TextView playerHP = (TextView) findViewById(R.id.player_hp3);
                         player.setHP(player.getHP() - hpLoss);
                         playerHP.setText("PlayerHP: " + player.getHP());
-                        delay = 1000;
+                        delay = 1200;
                     }
                 }
             }
@@ -120,16 +120,17 @@ public class GameActivity3 extends AppCompatActivity {
             public void onTick(long untilFinish) {
                 currentScore = untilFinish;
                 updateScore(tView, currentScore);
+                boolean winner = true;
 
                 if ((p.getY() > 2200 && p.getX() < 800) || (p.getHP() <= 0)) {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity3.this, EndActivity.class);
                     if (p.getHP() <= 0) {
-                        next = new Intent(GameActivity3.this, EndActivity.class);
+                        winner = false;
                         currentScore = 0;
                     }
                     next.putExtra("currentScore", currentScore);
-                    next.putExtra("winorlose", true);
+                    next.putExtra("winorlose", winner);
                     startActivity(next);
                     countDown.cancel();
                     countDown = null;
