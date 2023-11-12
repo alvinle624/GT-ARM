@@ -39,7 +39,7 @@ public class ExampleUnitTest {
         Enemy enemy = factory.getEnemy("WOLF");
         Wolf wolf = new Wolf();
         String expected = wolf.getClass().getName();
-        String actual = enemy.getClass().getName();
+        String actual = enemy.getClass().getName(); //fixed
         assertTrue(expected.equals(actual));
     }
 
