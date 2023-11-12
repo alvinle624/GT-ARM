@@ -3,7 +3,7 @@ package com.cs2340.armadillo.Models;
 public class Human implements Enemy {
     private int hp;
     private int dmg;
-    private final int spriteID = 4;
+    private final int spriteID = 1;
 
     private int xPos = 0;
 
