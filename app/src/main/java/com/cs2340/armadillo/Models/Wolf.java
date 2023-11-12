@@ -6,7 +6,7 @@ public class Wolf implements Enemy {
     private float x, y;
     private final int spriteID = 3;
 
-    public Wolf(float xPos, float yPos) {
+    public Wolf() {
         hp = 5;
         dmg = 1;
     }
