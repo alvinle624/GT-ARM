@@ -72,12 +72,12 @@ public class GameActivity3 extends AppCompatActivity {
         allEnemies = new Enemies();
 
         Enemy wolf = new Wolf();
-        Enemy wolf2 = new Wolf();
+        Enemy human = new Human();
 
         EnemyView wolfView = new EnemyView(this, wolf, 500, 700);
-        EnemyView wolfView2 = new EnemyView(this, wolf2, 700, 700);
+        EnemyView humanView = new EnemyView(this, human, 700, 700);
         allEnemies.addEnemy(wolfView);
-        allEnemies.addEnemy(wolfView2);
+        allEnemies.addEnemy(humanView);
 
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
@@ -88,7 +88,7 @@ public class GameActivity3 extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen3);
         gameLayout.addView(player);
-        gameLayout.addView(wolfView2);
+        gameLayout.addView(humanView);
         gameLayout.addView(wolfView);
 
 
