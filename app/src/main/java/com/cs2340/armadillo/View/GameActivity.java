@@ -60,8 +60,12 @@ public class GameActivity extends AppCompatActivity {
         Enemy coyote = new Coyote();
         EnemyView coyoteView = new EnemyView(this, coyote, 700, 700);
 
+        Enemy bear = new Bear();
+        EnemyView bearView = new EnemyView(this, bear, 800, 800);
         allEnemies = new Enemies();
+        allEnemies.addEnemy(bearView);
         allEnemies.addEnemy(coyoteView);
+
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -70,8 +74,7 @@ public class GameActivity extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen);
         gameLayout.addView(coyoteView);
-
-        ImageView image = player;
+        gameLayout.addView(bearView);
         gameLayout.addView(player);
 
 

@@ -79,9 +79,21 @@ public class GameActivity2 extends AppCompatActivity {
         playerName.setText(player.getName());
         difficulty.setText("Difficulty: " + player.getDifficulty());
 
+        Enemy wolf = new Wolf();
+        EnemyView wolfView = new EnemyView(this, wolf, 700, 700);
+
+        Enemy human = new Human();
+        EnemyView humanView = new EnemyView(this, human, 800, 800);
+        allEnemies = new Enemies();
+        allEnemies.addEnemy(humanView);
+        allEnemies.addEnemy(wolfView);
+
         gameLayout = findViewById(R.id.game_screen2);
         gameLayout.addView(player);
         gameLayout.getViewById(R.id.player_hp2);
+
+        gameLayout.addView(humanView);
+        gameLayout.addView(wolfView);
 
         countDown = null;
         startScoreTimer(score, player);

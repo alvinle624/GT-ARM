@@ -13,6 +13,7 @@ import com.cs2340.armadillo.R;
 
 public class EnemyView extends AppCompatImageView {
     Enemy enemy;
+    private int viewSpriteID;
     private float enemyX;
     private float enemyY;
     private boolean rightTrue;
@@ -22,8 +23,8 @@ public class EnemyView extends AppCompatImageView {
     public EnemyView (Context context, Enemy enemy, float xPos, float yPos) {
         super(context);
         this.enemy = enemy;
-        setSprite(this.enemy.getSpriteID());
-
+        this.viewSpriteID = enemy.getSpriteID();
+        setSprite(viewSpriteID);
         this.enemyX = xPos;
         this.enemyY = yPos;
 
