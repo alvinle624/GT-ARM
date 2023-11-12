@@ -27,18 +27,20 @@ public class ExampleUnitTest {
     public void getEnemyReturnsCoyoteCorrectly() {
         EnemyFactory factory = new EnemyFactory();
         Enemy enemy = factory.getEnemy("COYOTE");
-        String expected = "com.cs2340.armadillo.Coyote";
+        Coyote coyote = new Coyote();
+        String expected = coyote.getClass().getName();
         String actual = enemy.getClass().getName();
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
     public void getEnemyReturnsWolfCorrectly() {
         EnemyFactory factory = new EnemyFactory();
         Enemy enemy = factory.getEnemy("WOLF");
-        String expected = "com.cs2340.armadillo.Wolf";
+        Wolf wolf = new Wolf();
+        String expected = wolf.getClass().getName();
         String actual = enemy.getClass().getName();
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
