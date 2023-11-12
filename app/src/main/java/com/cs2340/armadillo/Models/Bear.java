@@ -5,7 +5,7 @@ public class Bear implements Enemy {
     private int dmg;
     private final int spriteID = 2;
 
-    public Bear(float xPos, float yPos) {
+    public Bear() {
         hp = 5;
         dmg = 1;
     }

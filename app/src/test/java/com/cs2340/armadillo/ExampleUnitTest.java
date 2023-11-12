@@ -1,6 +1,7 @@
 package com.cs2340.armadillo;
 
 import org.junit.Ignore;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
@@ -17,33 +18,33 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
-//
-//    @Test
-//    public void getEnemyReturnsCorrectEnemyType() {
-//        EnemyFactory factory = new EnemyFactory();
-//        Enemy enemy = factory.getEnemy("COYOTE", 0, 0);
-//        String expected = "com.cs2340.armadillo.Coyote";
-//        String actual = enemy.getClass().getName();
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void getEnemySetsEnemyCoordinatesCorrectly() {
-//        EnemyFactory factory = new EnemyFactory();
-//        Enemy enemy = factory.getEnemy("COYOTE", 0, 0);
-//        float expected = 0;
-//        float actual = enemy.getX();
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void enemyMovesUpCorrectly() {
-//
-//    }
-//
-//    @Test
-//    public void enemyMovesDownCorrectly() {
-//
-//    }
+
+    @Test
+    public void getEnemyReturnsCoyoteCorrectly() {
+        EnemyFactory factory = new EnemyFactory();
+        Enemy enemy = factory.getEnemy("COYOTE");
+        String expected = "com.cs2340.armadillo.Coyote";
+        String actual = enemy.getClass().getName();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getEnemyReturnsWolfCorrectly() {
+        EnemyFactory factory = new EnemyFactory();
+        Enemy enemy = factory.getEnemy("WOLF");
+        String expected = "com.cs2340.armadillo.Wolf";
+        String actual = enemy.getClass().getName();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void enemyMovesUpCorrectly() {
+
+    }
+
+    @Test
+    public void enemyMovesDownCorrectly() {
+
+    }
 
 }
