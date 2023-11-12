@@ -72,6 +72,13 @@ public class GameActivity2 extends AppCompatActivity {
         ImageButton left = findViewById(R.id.leftButton2);
         allEnemies = new Enemies();
 
+        Enemy bear = new Bear();
+        Enemy bear2 = new Bear();
+        EnemyView bearView = new EnemyView(this, bear, 800, 700);
+        EnemyView bearView2 = new EnemyView(this, bear2, 700, 700);
+        allEnemies.addEnemy(bearView2);
+        allEnemies.addEnemy(bearView);
+
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
 
@@ -82,6 +89,9 @@ public class GameActivity2 extends AppCompatActivity {
         gameLayout = findViewById(R.id.game_screen2);
         gameLayout.addView(player);
         gameLayout.getViewById(R.id.player_hp2);
+        gameLayout.addView(bearView);
+        gameLayout.addView(bearView2);
+
 
         countDown = null;
         startScoreTimer(score, player);
@@ -98,7 +108,7 @@ public class GameActivity2 extends AppCompatActivity {
                 if (enemy != null) {
                     checkCollision = new CheckCollision(enemy, player);
                     if (checkCollision.checkCollide()) {
-                        TextView playerHP = (TextView) findViewById(R.id.player_hp);
+                        TextView playerHP = (TextView) findViewById(R.id.player_hp2);
                         player.setHP(player.getHP() - hpLoss);
                         playerHP.setText("PlayerHP: " + player.getHP());
                         delay = 1200;

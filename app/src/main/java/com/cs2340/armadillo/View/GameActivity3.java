@@ -71,6 +71,14 @@ public class GameActivity3 extends AppCompatActivity {
         ImageButton left = findViewById(R.id.leftButton3);
         allEnemies = new Enemies();
 
+        Enemy wolf = new Wolf();
+        Enemy wolf2 = new Wolf();
+
+        EnemyView wolfView = new EnemyView(this, wolf, 500, 700);
+        EnemyView wolfView2 = new EnemyView(this, wolf2, 700, 700);
+        allEnemies.addEnemy(wolfView);
+        allEnemies.addEnemy(wolfView2);
+
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
 
@@ -80,6 +88,9 @@ public class GameActivity3 extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen3);
         gameLayout.addView(player);
+        gameLayout.addView(wolfView2);
+        gameLayout.addView(wolfView);
+
 
         countDown = null;
         startScoreTimer(score, player);
@@ -96,7 +107,7 @@ public class GameActivity3 extends AppCompatActivity {
                 if (enemy != null) {
                     checkCollision = new CheckCollision(enemy, player);
                     if (checkCollision.checkCollide()) {
-                        TextView playerHP = (TextView) findViewById(R.id.player_hp);
+                        TextView playerHP = (TextView) findViewById(R.id.player_hp3);
                         player.setHP(player.getHP() - hpLoss);
                         playerHP.setText("PlayerHP: " + player.getHP());
                         delay = 1200;
