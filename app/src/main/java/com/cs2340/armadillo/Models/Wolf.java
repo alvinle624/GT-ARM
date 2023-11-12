@@ -6,6 +6,10 @@ public class Wolf implements Enemy {
     private float x, y;
     private final int spriteID = 3;
 
+    private int xPos = 0;
+
+    private int yPos = 0;
+
     public Wolf() {
         hp = 5;
         dmg = 1;
@@ -22,5 +26,18 @@ public class Wolf implements Enemy {
     @Override
     public int getSpriteID() {
         return spriteID;
+    }
+
+    public void move() {
+        xPos++;
+        yPos++;
+    }
+
+    public int getX() {
+        return xPos;
+    }
+
+    public int getY() {
+        return yPos;
     }
 }

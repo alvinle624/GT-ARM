@@ -193,7 +193,7 @@ public class EnemyView extends AppCompatImageView {
             this.setImageResource(R.drawable.coyote);
         } else if (sprite == 2) {
             this.setImageResource(R.drawable.bear);
-        } else if (sprite == 3){
+        } else if (sprite == 3) {
             this.setImageResource(R.drawable.wolf);
         } else {
             this.setImageResource(R.drawable.human);
