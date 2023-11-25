@@ -17,6 +17,7 @@ public class EnemyView extends AppCompatImageView {
     private float enemyY;
     private boolean rightTrue;
     private boolean upTrue;
+    private boolean dead;
     private static final int enemyWidth = 32;
     private static final int enemyHeight = 32;
     public EnemyView (Context context, Enemy enemy, float xPos, float yPos) {
@@ -32,6 +33,7 @@ public class EnemyView extends AppCompatImageView {
 
         this.rightTrue = true;
         this.upTrue = true;
+        this.dead = false;
         this.setMaxHeight(40);
         this.setMaxWidth(50);
     }
@@ -198,5 +200,13 @@ public class EnemyView extends AppCompatImageView {
         } else {
             this.setImageResource(R.drawable.human);
         }
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 }

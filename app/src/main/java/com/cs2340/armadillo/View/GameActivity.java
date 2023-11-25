@@ -25,6 +25,7 @@ public class GameActivity extends AppCompatActivity {
     private Button endBtn;
     private Button nxtBtn;
     private Action action;
+    private Attack attack;
     private static final long startScore = 300000;
     private Enemies allEnemies;
     private CountDownTimer countDown;
@@ -56,6 +57,7 @@ public class GameActivity extends AppCompatActivity {
         TextView playerName = (TextView) findViewById(R.id.player_name);
         TextView difficulty = (TextView) findViewById(R.id.difficulty);
         TextView score = (TextView) findViewById(R.id.score);
+        Button attackButton = findViewById(R.id.attackButton);
         
         Enemy coyote = new Coyote();
         Enemy coyote2 = new Coyote();
@@ -90,6 +92,8 @@ public class GameActivity extends AppCompatActivity {
         ImageButton left = findViewById(R.id.leftButton);
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
+        attack = new Attack(player, attackButton, allEnemies);
+        attack.attackListener();
         handler.postDelayed(collision, 10);
     }
 

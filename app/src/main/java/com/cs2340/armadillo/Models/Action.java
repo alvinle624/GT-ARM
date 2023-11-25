@@ -24,7 +24,7 @@ public class Action {
     Direction direction;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    public Action (ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player, Enemies enemies) {
+    public Action(ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player, Enemies enemies) {
         this.up = up;
         this.right = right;
         this.down = down;
@@ -38,6 +38,7 @@ public class Action {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveUp();
+                player.setFacing(Player.Direction.UP);
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mHandler.postDelayed(moveAction, 10);
@@ -54,6 +55,7 @@ public class Action {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveRight();
+                player.setFacing(Player.Direction.RIGHT);
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mHandler.postDelayed(moveAction, 10);
@@ -70,6 +72,7 @@ public class Action {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveDown();
+                player.setFacing(Player.Direction.DOWN);
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mHandler.postDelayed(moveAction, 10);
@@ -86,6 +89,7 @@ public class Action {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 direction = new MoveLeft();
+                player.setFacing(Player.Direction.LEFT);
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mHandler.postDelayed(moveAction, 10);

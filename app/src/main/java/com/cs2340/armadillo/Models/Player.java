@@ -22,6 +22,8 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     private static final int playerWidth = 32;
     private static final int playerHeight = 32;
 
+    private Direction facing;
+
     public enum Direction {
         UP,
         DOWN,
@@ -72,7 +74,6 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
             spriteID = R.drawable.sprite_three;
         }
         this.setImageResource(spriteID);
-//        this.getLayoutParams().height = 30;
     }
     public int getSpriteID() {
         return spriteID;
@@ -149,5 +150,16 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
                 break;
         }
         return true;
+    }
+
+    public Direction getFacing() {
+        if (facing != null) {
+            return facing;
+        }
+        return Direction.DOWN;
+    }
+
+    public void setFacing(Direction direction) {
+        facing = direction;
     }
 }

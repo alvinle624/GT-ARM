@@ -7,5 +7,4 @@ import com.cs2340.armadillo.Models.PlayerT;
 
 public interface Direction {
     abstract void move(Player player, Enemies enemies);
-//    abstract void move(PlayerT player);
 }
