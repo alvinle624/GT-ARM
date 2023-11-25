@@ -65,16 +65,16 @@ public class Attack {
 
             switch (direction) {
                 case UP:
-                    attackRect = new Rect(playerPos[0], playerPos[1] + player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1] + player.getMeasuredHeight() * 2);
+                    attackRect = new Rect(playerPos[0], playerPos[1] - player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1]);
                     break;
                 case RIGHT:
                     attackRect = new Rect(playerPos[0] + player.getMeasuredWidth(), playerPos[1], playerPos[0] + player.getMeasuredWidth() * 2, playerPos[1] + player.getMeasuredHeight());
                     break;
                 case DOWN:
-                    attackRect = new Rect(playerPos[0], playerPos[1] - player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1] - player.getMeasuredHeight() * 2);
+                    attackRect = new Rect(playerPos[0], playerPos[1] + player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1] + player.getMeasuredHeight() * 2);
                     break;
                 case LEFT:
-                    attackRect = new Rect(playerPos[0] - player.getMeasuredWidth(), playerPos[1], playerPos[0] - player.getMeasuredWidth() * 2, playerPos[1] + player.getMeasuredHeight());
+                    attackRect = new Rect(playerPos[0] - player.getMeasuredWidth(), playerPos[1], playerPos[0], playerPos[1] + player.getMeasuredHeight());
                     break;
             }
             if (enemyRect.intersect(attackRect)) {
