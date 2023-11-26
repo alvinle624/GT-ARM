@@ -5,11 +5,14 @@
     <scanScope>Everything</scanScope>
     <copyLibs>true</copyLibs>
     <option name="thirdPartyClasspath" />
-    <option name="activeLocationIds" />
+    <option name="activeLocationIds">
+      <option value="7c8361b0-facd-4bda-9627-2f63d9b74878" />
+    </option>
     <option name="locations">
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="7c8361b0-facd-4bda-9627-2f63d9b74878" type="LOCAL_FILE" scope="All" description="check">$USER_HOME$/Downloads/CS1332-checkstyle/CS1332-checkstyle.xml</ConfigurationLocation>
         <ConfigurationLocation id="b949f34b-aa34-410c-80ed-05a98e885bce" type="LOCAL_FILE" scope="All" description="checkstyle">$PROJECT_DIR$/../../../CS 1332/CS1332-checkstyle.xml</ConfigurationLocation>
       </list>
     </option>

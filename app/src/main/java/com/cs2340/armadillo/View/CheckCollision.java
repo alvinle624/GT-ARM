@@ -20,6 +20,9 @@ public class CheckCollision implements EntityCollision {
     }
 
     public boolean checkCollide() {
+        if (enemy.isDead()) {
+            return false;
+        }
         int[] enemyPos = new int[2];
         int[] playerPos = new int[2];
 
