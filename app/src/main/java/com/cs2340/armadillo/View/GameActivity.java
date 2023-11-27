@@ -18,8 +18,6 @@ import android.widget.TextView;
 import com.cs2340.armadillo.Models.*;
 import com.cs2340.armadillo.R;
 
-import java.util.ArrayList;
-
 public class GameActivity extends AppCompatActivity {
     private GridView gridView;
     private Button endBtn;
@@ -58,6 +56,7 @@ public class GameActivity extends AppCompatActivity {
         TextView difficulty = (TextView) findViewById(R.id.difficulty);
         TextView score = (TextView) findViewById(R.id.score);
         Button attackButton = findViewById(R.id.attackButton);
+        ImageView claw = findViewById(R.id.clawSwipe);
         
         Enemy coyote = new Coyote();
         Enemy coyote2 = new Coyote();
@@ -78,7 +77,7 @@ public class GameActivity extends AppCompatActivity {
         gameLayout.addView(coyoteView2);
 
 
-        ImageView image = player;
+        ImageView clawVisual = player;
         gameLayout.addView(player);
 
 
@@ -92,7 +91,7 @@ public class GameActivity extends AppCompatActivity {
         ImageButton left = findViewById(R.id.leftButton);
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
-        attack = new Attack(player, attackButton, allEnemies);
+        attack = new Attack(player, attackButton, allEnemies, claw);
         attack.attackListener();
         handler.postDelayed(collision, 10);
     }

@@ -4,13 +4,17 @@ import com.cs2340.armadillo.View.*;
 import com.cs2340.armadillo.View.Direction;
 
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class Attack {
     Player player;
     Button button;
     Enemies enemyList;
+    ImageView visual;
 
     public enum AttackDirect {
         UP,
@@ -19,10 +23,11 @@ public class Attack {
         LEFT
     }
 
-    public Attack (Player player, Button button, Enemies enemyList) {
+    public Attack (Player player, Button button, Enemies enemyList, ImageView visual) {
         this.player = player;
         this.button = button;
         this.enemyList = enemyList;
+        this.visual = visual;
     }
     public void attackListener() {
         button.setOnClickListener(new View.OnClickListener() {
@@ -66,21 +71,37 @@ public class Attack {
             switch (direction) {
                 case UP:
                     attackRect = new Rect(playerPos[0], playerPos[1] - player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1]);
+                    visual.setX(player.getX());
+                    visual.setY(player.getY() - 110);
                     break;
                 case RIGHT:
                     attackRect = new Rect(playerPos[0] + player.getMeasuredWidth(), playerPos[1], playerPos[0] + player.getMeasuredWidth() * 2, playerPos[1] + player.getMeasuredHeight());
+                    visual.setX(player.getX() + 110);
+                    visual.setY(player.getY());
                     break;
                 case DOWN:
                     attackRect = new Rect(playerPos[0], playerPos[1] + player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1] + player.getMeasuredHeight() * 2);
+                    visual.setX(player.getX());
+                    visual.setY(player.getY() + 110);
                     break;
                 case LEFT:
                     attackRect = new Rect(playerPos[0] - player.getMeasuredWidth(), playerPos[1], playerPos[0], playerPos[1] + player.getMeasuredHeight());
+                    visual.setX(player.getX() - 110);
+                    visual.setY(player.getY());
                     break;
             }
+            visual.setVisibility(View.VISIBLE);
             if (enemyRect.intersect(attackRect)) {
                 enemy.setDead(true);
                 enemy.setVisibility(View.INVISIBLE);
             }
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    visual.setVisibility(View.INVISIBLE);
+                }
+            }, 400);
+
         }
         return false;
     }
