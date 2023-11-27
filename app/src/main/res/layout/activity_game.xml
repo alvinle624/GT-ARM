@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/map_one"
     android:gravity="top"
+    android:visibility="visible"
     tools:context=".View.GameActivity">
 
     <GridView
@@ -136,6 +137,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upButton" />
 
+    <ImageView
+        android:id="@+id/clawSwipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/claw" />
+
     <ImageButton
         android:id="@+id/downButton"
         android:layout_width="50dp"
@@ -176,7 +186,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/exit" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
