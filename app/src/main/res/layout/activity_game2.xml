@@ -23,8 +23,10 @@
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/exit1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
     </GridView>
 
@@ -67,6 +69,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.082" />
 
+    <Button
+        android:id="@+id/attackButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="530dp"
+        android:layout_marginEnd="-370dp"
+        android:text="Attack"
+        app:layout_constraintEnd_toStartOf="@+id/tile_map"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/difficulty2"
         android:layout_width="wrap_content"
@@ -92,6 +104,15 @@
         android:scaleY=".65"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/clawSwipe2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/claw" />
 
     <ImageButton
         android:id="@+id/rightButton2"
