@@ -14,6 +14,11 @@ public class MoveUp implements Direction {
     MapLayout map = new MapLayout(mapNum);
     int[][] layout = map.getLayout();
 
+    /**
+     * moves player up
+     * @param player player
+     * @param enemies enemies
+     */
     public void move(Player player, Enemies enemies) {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 28; j++) {
