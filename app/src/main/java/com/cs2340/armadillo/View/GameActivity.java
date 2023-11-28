@@ -115,6 +115,7 @@ public class GameActivity extends AppCompatActivity {
         }
     };
 
+    // starts the timer used for Scoring
     public void startScoreTimer(TextView tView, Player p) {
         countDown = new CountDownTimer(currentScore, 1000) {
             @Override
