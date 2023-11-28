@@ -62,4 +62,6 @@ public class Coyote implements Enemy {
     public int getY() {
         return yPos;
     }
+
+
 }
