@@ -89,7 +89,6 @@ public class GameActivity3 extends AppCompatActivity {
         attack = new Attack(player, attackButton, allEnemies, claw);
         attack.attackListener();
 
-
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
         difficulty.setText("Difficulty: " + player.getDifficulty());
