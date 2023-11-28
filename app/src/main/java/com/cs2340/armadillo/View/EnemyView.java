@@ -20,6 +20,14 @@ public class EnemyView extends AppCompatImageView {
     private boolean dead;
     private static final int enemyWidth = 32;
     private static final int enemyHeight = 32;
+
+    /**
+     * Constructor for displaying EnemyView
+     * @param context for view
+     * @param enemy enemy object
+     * @param xPos x coordinate of enemy
+     * @param yPos y coordinate of enemy
+     */
     public EnemyView (Context context, Enemy enemy, float xPos, float yPos) {
         super(context);
         this.enemy = enemy;
@@ -38,14 +46,26 @@ public class EnemyView extends AppCompatImageView {
         this.setMaxWidth(50);
     }
 
+    /**
+     * Getter for x coordinate of EnemyView
+     * @return x coordinate as a float
+     */
     public float getX() {
         return this.enemyX;
     }
 
+    /**
+     * Getter for y coordinate of EnemyView
+     * @return y coordinate as a float
+     */
     public float getY() {
         return this.enemyY;
     }
 
+    /**
+     * Change x coordinate of EnemyView
+     * @param x original float coordinate of EnemyView
+     */
     public void changeX(float x) {
         if (this.enemyX < 10) {
             this.enemyX = 10;
@@ -57,6 +77,11 @@ public class EnemyView extends AppCompatImageView {
 
         this.setX(this.enemyX);
     }
+
+    /**
+     * Change y coordinate of EnemyView
+     * @param y original float coordinate of enemy
+     */
     public void changeY(float y) {
         if (this.enemyY < 10) {
             this.enemyY = 10;
@@ -69,6 +94,9 @@ public class EnemyView extends AppCompatImageView {
         this.setY(this.enemyY);
     }
 
+    /**
+     * switching enemy to right
+     */
     public void switchRight() {
         if (this.rightTrue) {
             this.rightTrue = false;
@@ -77,6 +105,9 @@ public class EnemyView extends AppCompatImageView {
         }
     }
 
+    /**
+     * switching enemy to up
+     */
     public void switchUp() {
         if (this.upTrue) {
             this.upTrue = false;
@@ -85,6 +116,12 @@ public class EnemyView extends AppCompatImageView {
         }
     }
 
+    /**
+     * checking whether enemy has space to move
+     * @param direction to move enemy
+     * @param layout of game screen
+     * @return boolean indicating whether enemy can move
+     */
     public boolean enemyCanMove(int direction, int[][] layout) {
         switch(direction) {
             case 0:
@@ -115,6 +152,12 @@ public class EnemyView extends AppCompatImageView {
         return true;
     }
 
+    /**
+     * Moving enemy
+     * @param enemyEntity EnemyView to move
+     * @param player Player
+     * @param layout layout of game screen
+     */
     public void moveEnemy(EnemyView enemyEntity, Player player, int[][] layout) {
         switch (enemyEntity.enemy.getSpriteID()) {
             case 1: // left right
@@ -190,6 +233,10 @@ public class EnemyView extends AppCompatImageView {
         }
     }
 
+    /**
+     * Setter for sprite of enemy
+     * @param sprite indicated by int
+     */
     public void setSprite(int sprite) {
         if (sprite == 1) {
             this.setImageResource(R.drawable.coyote);
@@ -202,10 +249,18 @@ public class EnemyView extends AppCompatImageView {
         }
     }
 
+    /**
+     * checks whether enemy is dead
+     * @return boolean check
+     */
     public boolean isDead() {
         return dead;
     }
 
+    /**
+     * sets enemy to dead status
+     * @param dead boolean whether enemy is dead
+     */
     public void setDead(boolean dead) {
         this.dead = dead;
     }
