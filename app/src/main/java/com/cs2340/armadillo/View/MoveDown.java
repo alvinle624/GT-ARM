@@ -13,7 +13,6 @@ public class MoveDown implements Direction{
 
     MapLayout map = new MapLayout(mapNum);
     int[][] layout = map.getLayout();
-//    System.out.println(layout[0][0]);
 
     /**
      * moves player down
