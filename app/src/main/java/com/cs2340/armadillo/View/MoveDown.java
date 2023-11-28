@@ -14,6 +14,12 @@ public class MoveDown implements Direction{
     MapLayout map = new MapLayout(mapNum);
     int[][] layout = map.getLayout();
 //    System.out.println(layout[0][0]);
+
+    /**
+     * moves player down
+     * @param player player
+     * @param enemies enemies
+     */
     public void move(Player player, Enemies enemies) {
         System.out.println(player.playerCanMove(1, layout));
         for (int i = 0; i < 13; i++) {
@@ -36,6 +42,4 @@ public class MoveDown implements Direction{
 //    public void move(PlayerT player) {
 //        player.changePos(0, 20);
 //    }
-    // test
-    //test 2
 }
