@@ -87,6 +87,7 @@ public class GameActivity extends AppCompatActivity {
         ImageButton right = findViewById(R.id.rightButton);
         ImageButton down = findViewById(R.id.downButton);
         ImageButton left = findViewById(R.id.leftButton);
+
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
         attack = new Attack(player, attackButton, allEnemies, claw);
@@ -149,6 +150,7 @@ public class GameActivity extends AppCompatActivity {
         }.start();
     }
 
+    // method to update the score
     public void updateScore(TextView text, long num) {
         int newScore = (int) num;
         text.setText("Score: " + newScore);
