@@ -23,11 +23,22 @@ public class MoveLeft implements Direction {
         System.out.println("player coords: (" + player.getX() + ", " + player.getY() + ")");
 
         if (player.playerCanMove(2, layout)) {
-            player.changeXPos(-20, 0);
+            player.changeXPos(-player.getSpeed(), 0);
 
             for (int i = 0; i < enemies.getEnemyList().size(); i = i + 1) {
                 EnemyView enemy = enemies.findE(i);
                 enemy.moveEnemy(enemy, player, layout);
+            }
+        }
+        if ((player.getX() >= 700 && player.getX() < 732)
+                && (player.getY() >= 700 && player.getY() <= 732)
+        ) {
+            if (player.getPowerupID() == 1) {
+                player.setHP(30);
+            } else if (player.getPowerupID() == 2) {
+                player.setSpeed(30);
+            } else if (player.getPowerupID() == 3) {
+                player.setSprite((player.getSpriteID() + 1)%3);
             }
         }
     }

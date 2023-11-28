@@ -8,7 +8,7 @@ import com.cs2340.armadillo.R;
 
 import java.io.Serializable;
 
-public class Player extends androidx.appcompat.widget.AppCompatImageView {
+public class Player extends androidx.appcompat.widget.AppCompatImageView implements PlayerInterface {
     private String name;
     private String difficulty;
     private int sprite;
@@ -23,6 +23,10 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     private static final int playerHeight = 32;
 
     private Direction facing;
+
+    public void powerUp() {
+        return;
+    }
 
     public enum Direction {
         UP,
@@ -61,8 +65,27 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
     public void setHP(int HP) {
         this.HP = HP;
     }
+
+    public int powerupID = 1;
+
+    public float speed = 20;
+
+    public void setPowerupID(int powerupID) {
+        this.powerupID = powerupID;
+    }
+    public int getPowerupID () {
+        return powerupID;
+    }
     public int getSprite() {
         return sprite;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public float getSpeed() {
+        return speed;
     }
     public void setSprite(int sprite) {
         this.sprite = sprite;
@@ -129,22 +152,22 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView {
         switch(Direction.values()[direction]) {
             // gotta fix the row col (swap the col and rol/x and y)
             case UP:
-                if (layout[(int)Math.floor((y-20)/100)][(int)Math.floor((x/100))] > 0) {
+                if (layout[(int)Math.floor((y-(int)speed)/100)][(int)Math.floor((x/100))] > 0) {
                     return false;
                 }
                 break;
             case DOWN:
-                if (layout[(int)Math.floor(((y+playerHeight+21)/100))][(int)Math.floor(x/100)] > 0) {
+                if (layout[(int)Math.floor(((y+playerHeight+(int)speed)/100))][(int)Math.floor(x/100)] > 0) {
                     return false;
                 }
                 break;
             case LEFT:
-                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x-20)/100)] > 0) {
+                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x-(int)speed)/100)] > 0) {
                     return false;
                 }
                 break;
             case RIGHT:
-                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x+playerWidth+20)/100)] > 0) {
+                if (layout[(int)Math.floor(y/100)][(int)Math.floor((x+playerWidth+(int)speed)/100)] > 0) {
                     return false;
                 }
                 break;
