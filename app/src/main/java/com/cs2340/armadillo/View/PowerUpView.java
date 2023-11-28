@@ -37,9 +37,9 @@ public class PowerUpView extends AppCompatImageView {
     }
 
     public boolean checkCollision(float playerX, float playerY) {
-        if (playerX == x && playerY == y) {
-            return true;
+        if ((playerX >= x && playerX < x + size) && (playerY >= y && playerY < y + size)) {
+            return false;
         }
-        return false;
+        return true;
     }
 }
