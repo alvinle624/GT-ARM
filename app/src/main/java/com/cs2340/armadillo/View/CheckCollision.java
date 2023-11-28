@@ -35,8 +35,4 @@ public class CheckCollision implements EntityCollision {
         System.out.println("Player: " + enemyRect.centerX() + ", " + enemyRect.centerY());
         return enemyRect.intersect(playerRect);
     }
-
-    public void gameOver(ConstraintLayout game, Context context, Player player) {
-
-    }
 }
