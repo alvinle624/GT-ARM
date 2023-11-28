@@ -79,9 +79,9 @@ public class GameActivity extends AppCompatActivity {
 
         PowerUpView healthBug = new PowerUpView(this, 700, 700, "health");
 
-        ImageView clawVisual = player;
         gameLayout.addView(player);
         gameLayout.addView(healthBug);
+
 
         currentScore = startScore;
         countDown = null;
@@ -91,6 +91,7 @@ public class GameActivity extends AppCompatActivity {
         ImageButton right = findViewById(R.id.rightButton);
         ImageButton down = findViewById(R.id.downButton);
         ImageButton left = findViewById(R.id.leftButton);
+
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
         attack = new Attack(player, attackButton, allEnemies, claw);
@@ -120,6 +121,7 @@ public class GameActivity extends AppCompatActivity {
         }
     };
 
+    // starts the timer used for Scoring
     public void startScoreTimer(TextView tView, Player p) {
         countDown = new CountDownTimer(currentScore, 1000) {
             @Override
@@ -130,10 +132,12 @@ public class GameActivity extends AppCompatActivity {
                 if ((p.getY() > 2200 && p.getX() < 800) || (p.getHP() <= 0)) {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity.this, GameActivity2.class);
+
                     if (p.getHP() <= 0) {
                         next = new Intent(GameActivity.this, EndActivity.class);
                         currentScore = 0;
                     }
+
                     next.putExtra("currentScore", currentScore);
                     startActivity(next);
                     countDown.cancel();
@@ -153,6 +157,7 @@ public class GameActivity extends AppCompatActivity {
         }.start();
     }
 
+    // method to update the score
     public void updateScore(TextView text, long num) {
         int newScore = (int) num;
         text.setText("Score: " + newScore);
