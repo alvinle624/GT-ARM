@@ -116,7 +116,6 @@ public class EnemyView extends AppCompatImageView {
     }
 
 
-    // moves an enemy
     public void moveEnemy(EnemyView enemyEntity, Player player, int[][] layout) {
         switch (enemyEntity.enemy.getSpriteID()) {
             case 1: // left right
