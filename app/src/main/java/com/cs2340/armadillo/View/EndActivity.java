@@ -17,7 +17,9 @@ import java.util.Random;
 
 public class EndActivity extends AppCompatActivity {
     private static long currentScore;
-
+    private double orgHealth;
+    private long fScore;
+    Player player;
     boolean win;
     String winText;
 
@@ -26,7 +28,7 @@ public class EndActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
 
-        Player player = ConfigActivity.getPlayer();
+        player = ConfigActivity.getPlayer();
         TextView boardName = (TextView) findViewById(R.id.name_text);
         TextView boardScore = (TextView) findViewById(R.id.score_text);
 
@@ -37,14 +39,28 @@ public class EndActivity extends AppCompatActivity {
 
         Button restart = (Button) findViewById(R.id.reset_button);
 
+        switch(player.getDifficulty()) {
+            case ("Hard"):
+                orgHealth = 10;
+                break;
+            case ("Medium"):
+                orgHealth = 15;
+                break;
+            case("Easy"):
+                orgHealth  = 20;
+                break;
+        }
+
+        double healthScore = (player.getHP() / orgHealth);
         currentScore = (long) getIntent().getLongExtra("currentScore", 0);
+        fScore = (long) (currentScore * healthScore);
 
         Leaderboard leaderboard = Leaderboard.getLeaderboard();
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String strDate = dateFormat.format(calendar.getTime());
 
-        leaderboard.addScore(player.getName(), currentScore, strDate);
+        leaderboard.addScore(player.getName(), fScore, strDate);
 
         String[] names = leaderboard.getNames();
         long[] scores = leaderboard.getScores();
@@ -56,7 +72,7 @@ public class EndActivity extends AppCompatActivity {
         for (String name: names) {
             nameCol = nameCol + name + "\n\n";
         }
-        for (long score: scores) {
+        for (double score: scores) {
             scoreCol = scoreCol + score + "\n\n";
         }
         for (String time: times) {
