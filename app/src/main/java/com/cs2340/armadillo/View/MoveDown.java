@@ -37,4 +37,5 @@ public class MoveDown implements Direction{
 //        player.changePos(0, 20);
 //    }
     // test
+    //test 2
 }
