@@ -10,15 +10,26 @@ public class Wolf implements Enemy {
 
     private int yPos = 0;
 
+    /**
+     * Wolf constructor
+     */
     public Wolf() {
         hp = 5;
         dmg = 1;
     }
 
+    /**
+     * Setter for wolf HP
+     * @param hp wolf's health
+     */
     public void setHP(int hp) {
         this.hp = hp;
     }
 
+    /**
+     * Setter for wolf damage
+     * @param dmg damage in int
+     */
     public void setDmg(int dmg) {
         this.dmg = dmg;
     }
@@ -28,15 +39,26 @@ public class Wolf implements Enemy {
         return spriteID;
     }
 
+    /**
+     * increments x and y position of wolf
+     */
     public void move() {
         xPos++;
         yPos++;
     }
 
+    /**
+     * x position of wolf
+     * @return x position of wolf
+     */
     public int getX() {
         return xPos;
     }
 
+    /**
+     * y position of wolf
+     * @return y position of wolf
+     */
     public int getY() {
         return yPos;
     }
