@@ -23,6 +23,15 @@ public class Attack {
         LEFT
     }
 
+    /**
+     * This constructor takes player and a button that
+     * becomes the attack button.
+     *
+     * @param player
+     * @param button
+     * @param enemyList
+     * @param visual
+     */
     public Attack (Player player, Button button, Enemies enemyList, ImageView visual) {
         this.player = player;
         this.button = button;
