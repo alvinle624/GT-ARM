@@ -115,6 +115,8 @@ public class Attack {
                     visual.setY(player.getY());
                     break;
             }
+
+            // Attack visual visibility is changed so that it briefly appears before disappearing.
             visual.setVisibility(View.VISIBLE);
             if (enemyRect.intersect(attackRect)) {
                 enemy.setDead(true);
