@@ -16,6 +16,7 @@ public class Attack {
     Enemies enemyList;
     ImageView visual;
 
+    //enumeration to store attack directions
     public enum AttackDirect {
         UP,
         DOWN,
