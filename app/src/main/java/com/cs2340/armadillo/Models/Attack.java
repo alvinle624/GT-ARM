@@ -85,6 +85,7 @@ public class Attack {
         ;
         for (int i = 0; i < enemyList.getEnemyList().size(); i++) {
 
+            // Takes current player and enemy position and creates rectangles there.
             EnemyView enemy = enemyList.findE(i);
             enemy.getLocationOnScreen(enemyPos);
             player.getLocationOnScreen(playerPos);
