@@ -55,6 +55,15 @@ public class Attack {
         });
     }
 
+    /**
+     * This class creates an
+     * attack hitbox in the direction
+     * the player is facing and will remove enemies if
+     * the hitboxes overlap.
+     *
+     * @param direction
+     * @return
+     */
     public boolean enemyAttacked(AttackDirect direction) {
         int[] playerPos = new int[2];
         int[] enemyPos = new int[2];
