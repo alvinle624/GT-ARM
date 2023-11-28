@@ -7,6 +7,7 @@ public class Player2 {
     private int score;
 
     private int time;
+    private String moveFacing;
 
     public Player2() {
         hp = 0;
@@ -56,4 +57,22 @@ public class Player2 {
         enemy.setIsAlive(false);
     }
 
+    public void moveUp() {
+        moveFacing = "UP";
+    }
+
+    public void moveDown() {
+        moveFacing = "DOWN";
+    }
+
+    public void moveLeft() {
+        moveFacing = "LEFT";
+    }
+
+    public void moveRight() {
+        moveFacing = "RIGHT";
+    }
+    public String moveFacing() {
+        return moveFacing;
+    }
 }
