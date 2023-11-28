@@ -126,7 +126,7 @@ public class GameActivity2 extends AppCompatActivity {
         }
     };
 
-
+    // starts timer
     private void startScoreTimer(TextView tView, Player p) {
         currentScore = (long) getIntent().getLongExtra("currentScore", 0);
         countDown = new CountDownTimer(currentScore, 1000) {
