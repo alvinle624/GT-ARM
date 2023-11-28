@@ -39,7 +39,4 @@ public class MoveDown implements Direction{
             }
         }
     }
-//    public void move(PlayerT player) {
-//        player.changePos(0, 20);
-//    }
 }
