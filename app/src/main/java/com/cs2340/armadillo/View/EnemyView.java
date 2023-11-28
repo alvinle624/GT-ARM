@@ -150,7 +150,8 @@ public class EnemyView extends AppCompatImageView {
                 break;
         }
         return true;
-  
+    }
+    
     /**
      * Moving enemy
      * @param enemyEntity EnemyView to move
