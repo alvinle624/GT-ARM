@@ -9,4 +9,7 @@ public class Enemy2 {
     public void setIsAlive(boolean isAlive) {
         this.isAlive = isAlive;
     }
+    public boolean getIsAlive() {
+        return isAlive;
+    }
 }
