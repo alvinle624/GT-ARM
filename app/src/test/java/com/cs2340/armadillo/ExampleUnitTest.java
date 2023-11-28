@@ -44,7 +44,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void WolfMovesVertically() {
+    public void wolfMovesVertically() {
         Wolf wolf = new Wolf();
         wolf.move();
         int expected = wolf.getY();
@@ -53,7 +53,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void WolfMovesHorizontally() {
+    public void wolfMovesHorizontally() {
         Wolf wolf = new Wolf();
         wolf.move();
         int expected = wolf.getX();
@@ -62,7 +62,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void CoyoteMovesVertically() {
+    public void coyoteMovesVertically() {
         Coyote coyote = new Coyote();
         coyote.move();
         int expected = coyote.getY();
@@ -71,7 +71,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void CoyoteMovesHorizontally() {
+    public void coyoteMovesHorizontally() {
         Coyote coyote = new Coyote();
         coyote.move();
         int expected = coyote.getX();
@@ -80,7 +80,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void BearMovesVertically() {
+    public void bearMovesVertically() {
         Bear bear = new Bear();
         bear.move();
         int expected = bear.getY();
@@ -89,7 +89,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void BearMovesHorizontally() {
+    public void bearMovesHorizontally() {
         Bear bear = new Bear();
         bear.move();
         int expected = bear.getX();
@@ -98,7 +98,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void HumanMovesVertically() {
+    public void humanMovesVertically() {
         Human human = new Human();
         human.move();
         int expected = human.getY();
@@ -107,11 +107,13 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void HumanMovesHorizontally() {
+    public void humanMovesHorizontally() {
         Human human = new Human();
         human.move();
         int expected = human.getX();
         int actual = 1;
         assertEquals(expected, actual);
     }
+
+
 }
