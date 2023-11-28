@@ -13,6 +13,12 @@ import com.cs2340.armadillo.Models.PlayerT;
 public class MoveLeft implements Direction {
     MapLayout map = new MapLayout(mapNum);
     int[][] layout = map.getLayout();
+
+    /**
+     * moves player left
+     * @param player player
+     * @param enemies enemies
+     */
     public void move(Player player, Enemies enemies) {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 28; j++) {
@@ -42,7 +48,4 @@ public class MoveLeft implements Direction {
             }
         }
     }
-//    public void move(PlayerT player) {
-//        player.changePos(-20, 0);
-//    }
 }

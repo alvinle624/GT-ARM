@@ -12,6 +12,7 @@ import android.os.Looper;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cs2340.armadillo.Models.*;
@@ -23,6 +24,8 @@ public class GameActivity2 extends AppCompatActivity {
     private Button endBtn;
     private Button nxtBtn;
     private Action action;
+    private Attack attack;
+
     private GridView gridView;
     private Enemies allEnemies;
     private CountDownTimer countDown;
@@ -64,7 +67,8 @@ public class GameActivity2 extends AppCompatActivity {
         TextView playerName = (TextView) findViewById(R.id.player_name2);
         TextView difficulty = (TextView) findViewById(R.id.difficulty2);
         TextView score = (TextView) findViewById(R.id.score2);
-
+        ImageView claw = findViewById(R.id.clawSwipe2);
+        Button attackButton = findViewById(R.id.attackButton2);
 
         ImageButton up = findViewById(R.id.upButton2);
         ImageButton right = findViewById(R.id.rightButton2);
@@ -81,6 +85,9 @@ public class GameActivity2 extends AppCompatActivity {
 
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
+        attack = new Attack(player, attackButton, allEnemies, claw);
+        attack.attackListener();
+
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -119,7 +126,7 @@ public class GameActivity2 extends AppCompatActivity {
         }
     };
 
-
+    // starts timer
     private void startScoreTimer(TextView tView, Player p) {
         currentScore = (long) getIntent().getLongExtra("currentScore", 0);
         countDown = new CountDownTimer(currentScore, 1000) {
@@ -131,10 +138,12 @@ public class GameActivity2 extends AppCompatActivity {
                 if ((p.getY() > 2200 && p.getX() < 800) || (p.getHP() <= 0)) {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity2.this, GameActivity3.class);
+
                     if (p.getHP() <= 0) {
                         next = new Intent(GameActivity2.this, EndActivity.class);
                         currentScore = 0;
                     }
+
                     next.putExtra("currentScore", currentScore);
                     startActivity(next);
                     countDown.cancel();
@@ -154,6 +163,7 @@ public class GameActivity2 extends AppCompatActivity {
         }.start();
     }
 
+    // method to update score
     private void updateScore(TextView text, long num) {
         int newScore = (int) num;
         text.setText("Score: " + newScore);

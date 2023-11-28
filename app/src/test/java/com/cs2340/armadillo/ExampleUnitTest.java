@@ -5,12 +5,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.cs2340.armadillo.Models.Bear;
-import com.cs2340.armadillo.Models.Coyote;
-import com.cs2340.armadillo.Models.Enemy;
-import com.cs2340.armadillo.Models.EnemyFactory;
-import com.cs2340.armadillo.Models.Human;
-import com.cs2340.armadillo.Models.Wolf;
+import com.cs2340.armadillo.Models.Player2;
+import com.cs2340.armadillo.Models.Enemy2;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -24,94 +20,88 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void getEnemyReturnsCoyoteCorrectly() {
-        EnemyFactory factory = new EnemyFactory();
-        Enemy enemy = factory.getEnemy("COYOTE");
-        Coyote coyote = new Coyote();
-        String expected = coyote.getClass().getName();
-        String actual = enemy.getClass().getName();
-        assertTrue(expected.equals(actual));
+    public void powerup1ImpactsPlayer() {
+        Player2 player = new Player2();
+        int expected = player.getHP() + 1;
+        player.powerup(1);
+        int actual = player.getHP();
+        assertEquals(expected, actual);
     }
-
     @Test
-    public void getEnemyReturnsWolfCorrectly() {
-        EnemyFactory factory = new EnemyFactory();
-        Enemy enemy = factory.getEnemy("WOLF");
-        Wolf wolf = new Wolf();
-        String expected = wolf.getClass().getName();
-        String actual = enemy.getClass().getName(); //fixed
-        assertTrue(expected.equals(actual));
+    public void powerup2ImpactsPlayer() {
+        Player2 player = new Player2();
+        int expected = player.getSpeed() + 1;
+        player.powerup(2);
+        int actual = player.getSpeed();
+        assertEquals(expected, actual);
     }
-
     @Test
-    public void WolfMovesVertically() {
-        Wolf wolf = new Wolf();
-        wolf.move();
-        int expected = wolf.getY();
-        int actual = 1;
+    public void powerup3ImpactsPlayer() {
+        Player2 player = new Player2();
+        int expected = player.getDefense() + 1;
+        player.powerup(3);
+        int actual = player.getDefense();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void playerHpUpdatesScore() {
+        Player2 player = new Player2();
+        int expected = player.getScore() + 500;
+        int hp = player.getHP();
+        player.changeHP(hp + 1);
+        int actual = player.getScore();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void timeUpdatesScore() {
+        Player2 player = new Player2();
+        int expected = player.getScore() - 500;
+        int time = player.getTime();
+        player.setTime(time - 100);
+        int actual = player.getScore();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void enemyDestroyedAfterOneAttack() {
+        boolean expected = false;
+        Enemy2 enemy = new Enemy2();
+        Player2 player = new Player2();
+        player.attack(enemy);
+        boolean actual = enemy.getIsAlive();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void moveFacingUp() {
+        Player2 player = new Player2();
+        player.moveUp();
+        String expected = "UP";
+        String actual = player.moveFacing();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void moveFacingDown() {
+        Player2 player = new Player2();
+        player.moveDown();
+        String expected = "DOWN";
+        String actual = player.moveFacing();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void WolfMovesHorizontally() {
-        Wolf wolf = new Wolf();
-        wolf.move();
-        int expected = wolf.getX();
-        int actual = 1;
+    public void moveFacingLeft() {
+        Player2 player = new Player2();
+        player.moveLeft();
+        String expected = "LEFT";
+        String actual = player.moveFacing();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void CoyoteMovesVertically() {
-        Coyote coyote = new Coyote();
-        coyote.move();
-        int expected = coyote.getY();
-        int actual = 1;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void CoyoteMovesHorizontally() {
-        Coyote coyote = new Coyote();
-        coyote.move();
-        int expected = coyote.getX();
-        int actual = 1;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void BearMovesVertically() {
-        Bear bear = new Bear();
-        bear.move();
-        int expected = bear.getY();
-        int actual = 1;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void BearMovesHorizontally() {
-        Bear bear = new Bear();
-        bear.move();
-        int expected = bear.getX();
-        int actual = 1;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void HumanMovesVertically() {
-        Human human = new Human();
-        human.move();
-        int expected = human.getY();
-        int actual = 1;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void HumanMovesHorizontally() {
-        Human human = new Human();
-        human.move();
-        int expected = human.getX();
-        int actual = 1;
+    public void moveFacingRight() {
+        Player2 player = new Player2();
+        player.moveRight();
+        String expected = "RIGHT";
+        String actual = player.moveFacing();
         assertEquals(expected, actual);
     }
 }

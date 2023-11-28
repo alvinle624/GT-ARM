@@ -10,14 +10,26 @@ public class Coyote implements Enemy {
 
     private int yPos = 0;
 
+    /**
+     * Coyote constructor
+     */
     public Coyote() {
         hp = 5;
         dmg = 1;
     }
+
+    /**
+     * Setter for coyote HP
+     * @param hp coyote's health
+     */
     public void setHP(int hp) {
         this.hp = hp;
     }
 
+    /**
+     * Setter for coyote damage
+     * @param dmg damage in int
+     */
     public void setDmg(int dmg) {
         this.dmg = dmg;
     }
@@ -27,16 +39,29 @@ public class Coyote implements Enemy {
         return spriteID;
     }
 
+    /**
+     * increments x and y position of coyote
+     */
     public void move() {
         xPos++;
         yPos++;
     }
 
+    /**
+     * x position of coyote
+     * @return x position of coyote
+     */
     public int getX() {
         return xPos;
     }
 
+    /**
+     * y position of coyote
+     * @return y position of coyote
+     */
     public int getY() {
         return yPos;
     }
+
+
 }

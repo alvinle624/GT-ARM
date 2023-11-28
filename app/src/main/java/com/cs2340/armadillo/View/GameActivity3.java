@@ -12,6 +12,7 @@ import android.os.Looper;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cs2340.armadillo.Models.*;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 public class GameActivity3 extends AppCompatActivity {
     private Button endBtn;
     private Action action;
+    private Attack attack;
+
     private GridView gridView;
     private Enemies allEnemies;
     private CountDownTimer countDown;
@@ -64,6 +67,8 @@ public class GameActivity3 extends AppCompatActivity {
         TextView playerName = (TextView) findViewById(R.id.player_name3);
         TextView difficulty = (TextView) findViewById(R.id.difficulty3);
         TextView score = (TextView) findViewById(R.id.score3);
+        ImageView claw = findViewById(R.id.clawSwipe3);
+        Button attackButton = findViewById(R.id.attackButton3);
 
         ImageButton up = findViewById(R.id.upButton3);
         ImageButton right = findViewById(R.id.rightButton3);
@@ -81,6 +86,8 @@ public class GameActivity3 extends AppCompatActivity {
 
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
+        attack = new Attack(player, attackButton, allEnemies, claw);
+        attack.attackListener();
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -118,7 +125,7 @@ public class GameActivity3 extends AppCompatActivity {
         }
     };
 
-
+    // starts score timer for screen 3
     private void startScoreTimer(TextView tView, Player p) {
         currentScore = (long) getIntent().getLongExtra("currentScore", 0);
         countDown = new CountDownTimer(currentScore, 1000) {
@@ -155,6 +162,7 @@ public class GameActivity3 extends AppCompatActivity {
         }.start();
     }
 
+    // updates score for gamescreen 3
     private void updateScore(TextView text, long num) {
         int newScore = (int) num;
         text.setText("Score: " + newScore);

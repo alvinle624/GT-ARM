@@ -1,6 +1,12 @@
 package com.cs2340.armadillo.Models;
 
 public class EnemyFactory {
+
+    /**
+     * gets an enemy given an enemyType
+     * @param enemyType String type of enemy
+     * @return Enemy object
+     */
     public Enemy getEnemy(String enemyType){
         if (enemyType == null) {
             return null;

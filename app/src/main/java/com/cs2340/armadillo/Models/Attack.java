@@ -16,6 +16,7 @@ public class Attack {
     Enemies enemyList;
     ImageView visual;
 
+    //enumeration to store attack directions
     public enum AttackDirect {
         UP,
         DOWN,
@@ -23,12 +24,26 @@ public class Attack {
         LEFT
     }
 
+    /**
+     * This constructor takes player and a button that
+     * becomes the attack button.
+     *
+     * @param player
+     * @param button
+     * @param enemyList
+     * @param visual
+     */
     public Attack (Player player, Button button, Enemies enemyList, ImageView visual) {
         this.player = player;
         this.button = button;
         this.enemyList = enemyList;
         this.visual = visual;
     }
+
+    /**
+     * This function takes the buttons passed as
+     * parameters and sets them to the attack function.
+     */
     public void attackListener() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +70,15 @@ public class Attack {
         });
     }
 
+    /**
+     * This class creates an
+     * attack hitbox in the direction
+     * the player is facing and will remove enemies if
+     * the hitboxes overlap.
+     *
+     * @param direction
+     * @return
+     */
     public boolean enemyAttacked(AttackDirect direction) {
         int[] playerPos = new int[2];
         int[] enemyPos = new int[2];
@@ -62,12 +86,14 @@ public class Attack {
         ;
         for (int i = 0; i < enemyList.getEnemyList().size(); i++) {
 
+            // Takes current player and enemy position and creates rectangles there.
             EnemyView enemy = enemyList.findE(i);
             enemy.getLocationOnScreen(enemyPos);
             player.getLocationOnScreen(playerPos);
 
             Rect enemyRect = new Rect(enemyPos[0], enemyPos[1], enemyPos[0] + enemy.getMeasuredWidth(), enemyPos[1] + enemy.getMeasuredHeight());
 
+            // Attack visual position is changed
             switch (direction) {
                 case UP:
                     attackRect = new Rect(playerPos[0], playerPos[1] - player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1]);
@@ -90,6 +116,8 @@ public class Attack {
                     visual.setY(player.getY());
                     break;
             }
+
+            // Attack visual visibility is changed so that it briefly appears before disappearing.
             visual.setVisibility(View.VISIBLE);
             if (enemyRect.intersect(attackRect)) {
                 enemy.setDead(true);

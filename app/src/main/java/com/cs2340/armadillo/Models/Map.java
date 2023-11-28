@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import com.cs2340.armadillo.R;
 
 public class Map extends BaseAdapter {
+    //class uses all the drawables to form a map
     private Context context;
 
+    //third map
     public int[] mapThree = {
             R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1,R.drawable.plant1, R.drawable.plant1,
             R.drawable.plant1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.ground1,R.drawable.ground1, R.drawable.plant1,
@@ -43,6 +45,8 @@ public class Map extends BaseAdapter {
             R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1,R.drawable.plant1, R.drawable.plant1,
             R.drawable.ground1, R.drawable.ground1, R.drawable.ground1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1, R.drawable.plant1,R.drawable.plant1, R.drawable.plant1
     };
+
+    //second map
     public int[] mapTwo = {
             R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2,R.drawable.wall2, R.drawable.wall2,
             R.drawable.wall2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2,R.drawable.ground2, R.drawable.wall2,
@@ -72,6 +76,8 @@ public class Map extends BaseAdapter {
             R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2,R.drawable.wall2, R.drawable.wall2,
             R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2,R.drawable.wall2, R.drawable.wall2
     };
+
+    //first map
     public int[] mapOne = {
             R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2,
             R.drawable.wall2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2, R.drawable.ground2,R.drawable.ground2, R.drawable.wall2,
@@ -102,6 +108,11 @@ public class Map extends BaseAdapter {
             R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2, R.drawable.wall2,R.drawable.wall2, R.drawable.wall2
     };
 
+    /**
+     * gets tiles for all of map
+     * @param mapNum number for map
+     * @return int[] of map tiles
+     */
     public int[] getMapTiles(int mapNum) {
         switch(mapNum) {
             case 0:
