@@ -39,6 +39,8 @@ public class EndActivity extends AppCompatActivity {
 
         Button restart = (Button) findViewById(R.id.reset_button);
 
+
+        // set the original health to be used for calculating
         switch(player.getDifficulty()) {
             case ("Hard"):
                 orgHealth = 10;
@@ -69,6 +71,7 @@ public class EndActivity extends AppCompatActivity {
         String nameCol = "";
         String scoreCol = "";
         String timeCol = "";
+
         for (String name: names) {
             nameCol = nameCol + name + "\n\n";
         }
@@ -87,6 +90,7 @@ public class EndActivity extends AppCompatActivity {
         currScore.setText("" + fScore);
 
         win = getIntent().getBooleanExtra("winorlose", false);
+
         if (win) {
             player.setWinText("You Win!");
         } else {

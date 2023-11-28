@@ -150,14 +150,14 @@ public class EnemyView extends AppCompatImageView {
                 break;
         }
         return true;
-    }
-
+  
     /**
      * Moving enemy
      * @param enemyEntity EnemyView to move
      * @param player Player
      * @param layout layout of game screen
      */
+
     public void moveEnemy(EnemyView enemyEntity, Player player, int[][] layout) {
         switch (enemyEntity.enemy.getSpriteID()) {
             case 1: // left right
