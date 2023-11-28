@@ -77,9 +77,7 @@ public class GameActivity extends AppCompatActivity {
         gameLayout.addView(coyoteView2);
 
 
-        ImageView clawVisual = player;
         gameLayout.addView(player);
-
 
         currentScore = startScore;
         countDown = null;
