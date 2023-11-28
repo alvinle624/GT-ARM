@@ -123,34 +123,35 @@ public class EnemyView extends AppCompatImageView {
      * @return boolean indicating whether enemy can move
      */
     public boolean enemyCanMove(int direction, int[][] layout) {
-        switch(direction) {
+        switch (direction) {
             case 0:
-                if (layout[(int)Math.floor((enemyY-20)/100)][(int)Math.floor((enemyX/100))] > 0) {
+                if (layout[(int) Math.floor((enemyY - 20) / 100)][(int) Math.floor((enemyX / 100))] > 0) {
                     return false;
                 }
 
                 break;
             case 1:
-                if (layout[(int)Math.floor(((enemyY+enemyHeight+21)/100))][(int)Math.floor(enemyX/100)] > 0) {
+                if (layout[(int) Math.floor(((enemyY + enemyHeight + 21) / 100))][(int) Math.floor(enemyX / 100)] > 0) {
                     return false;
                 }
 
                 break;
             case 2:
-                if (layout[(int)Math.floor(enemyY/100)][(int)Math.floor((enemyX-20)/100)] > 0) {
+                if (layout[(int) Math.floor(enemyY / 100)][(int) Math.floor((enemyX - 20) / 100)] > 0) {
                     return false;
                 }
 
                 break;
             case 3:
-                if (layout[(int)Math.floor(enemyY/100)][(int)Math.floor((enemyX+enemyWidth+20)/100)] > 0) {
+                if (layout[(int) Math.floor(enemyY / 100)][(int) Math.floor((enemyX + enemyWidth + 20) / 100)] > 0) {
                     return false;
                 }
 
                 break;
         }
         return true;
-  
+    }
+
     /**
      * Moving enemy
      * @param enemyEntity EnemyView to move
