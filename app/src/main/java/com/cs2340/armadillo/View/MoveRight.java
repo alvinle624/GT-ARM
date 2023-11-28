@@ -36,7 +36,4 @@ public class MoveRight implements Direction{
             }
         }
     }
-//    public void move(PlayerT player) {
-//        player.changePos(20, 0);
-//    }
 }
