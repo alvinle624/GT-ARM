@@ -93,8 +93,11 @@ public class GameActivity2 extends AppCompatActivity {
         playerName.setText(player.getName());
         difficulty.setText("Difficulty: " + player.getDifficulty());
 
+
         gameLayout = findViewById(R.id.game_screen2);
         gameLayout.addView(player);
+        PowerUpView healthBug = new PowerUpView(this, 400, 1400, "health");
+        gameLayout.addView(healthBug);
         gameLayout.getViewById(R.id.player_hp2);
         gameLayout.addView(bearView);
         gameLayout.addView(bearView2);

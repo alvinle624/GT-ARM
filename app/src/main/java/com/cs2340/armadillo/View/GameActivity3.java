@@ -96,6 +96,9 @@ public class GameActivity3 extends AppCompatActivity {
         gameLayout = findViewById(R.id.game_screen3);
         gameLayout.addView(player);
         gameLayout.addView(humanView);
+        player.setPowerupID(3);
+        PowerUpView nukeBug = new PowerUpView(this, 200, 700, "nuke");
+        gameLayout.addView(nukeBug);
         gameLayout.addView(wolfView);
 
 

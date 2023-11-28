@@ -77,10 +77,10 @@ public class GameActivity extends AppCompatActivity {
         gameLayout.addView(coyoteView);
         gameLayout.addView(coyoteView2);
 
-        PowerUpView healthBug = new PowerUpView(this, 700, 700, "health");
-
+        PowerUpView speedBug = new PowerUpView(this, 700, 700, "speed");
+        gameLayout.addView(speedBug);
         gameLayout.addView(player);
-        gameLayout.addView(healthBug);
+
 
 
         currentScore = startScore;
