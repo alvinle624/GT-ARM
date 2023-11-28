@@ -29,6 +29,7 @@ public class Attack {
         this.enemyList = enemyList;
         this.visual = visual;
     }
+
     public void attackListener() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
