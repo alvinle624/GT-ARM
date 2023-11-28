@@ -162,6 +162,7 @@ public class GameActivity3 extends AppCompatActivity {
         }.start();
     }
 
+    // updates score for gamescreen 3
     private void updateScore(TextView text, long num) {
         int newScore = (int) num;
         text.setText("Score: " + newScore);
