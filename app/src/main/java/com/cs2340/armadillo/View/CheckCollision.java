@@ -19,6 +19,12 @@ public class CheckCollision implements EntityCollision {
         this.player = player;
     }
 
+    /**
+     * This checks if the player hitbox and enemy
+     * hitbox overlap. If enemy is already recognized as dead, does not
+     * check no matter what.
+     * @return
+     */
     public boolean checkCollide() {
         if (enemy.isDead()) {
             return false;
