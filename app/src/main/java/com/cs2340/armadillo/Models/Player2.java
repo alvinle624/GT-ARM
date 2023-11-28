@@ -50,7 +50,7 @@ public class Player2 {
     }
 
     public void changeHP(int num) {
-        score += 500;
+        score -= 500;
     }
 
     public void attack(Enemy2 enemy) {

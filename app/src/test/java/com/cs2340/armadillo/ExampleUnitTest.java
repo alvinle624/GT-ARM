@@ -46,9 +46,9 @@ public class ExampleUnitTest {
     @Test
     public void playerHpUpdatesScore() {
         Player2 player = new Player2();
-        int expected = player.getScore() + 500;
+        int expected = player.getScore() - 500;
         int hp = player.getHP();
-        player.changeHP(hp + 1);
+        player.changeHP(hp - 1);
         int actual = player.getScore();
         assertEquals(expected, actual);
     }
