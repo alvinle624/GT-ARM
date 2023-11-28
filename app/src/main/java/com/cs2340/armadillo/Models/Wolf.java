@@ -62,4 +62,8 @@ public class Wolf implements Enemy {
     public int getY() {
         return yPos;
     }
+
+    public String makeNoise() {
+        return "howl!";
+    }
 }
