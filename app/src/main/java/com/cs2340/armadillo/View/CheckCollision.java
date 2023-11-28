@@ -14,6 +14,13 @@ public class CheckCollision implements EntityCollision {
 
     Player player;
     EnemyView enemy;
+
+    /**
+     * Constructor for CheckCollision that takes Enemy and Player
+     * view.
+     * @param enemy
+     * @param player
+     */
     public CheckCollision (EnemyView enemy, Player player) {
         this.enemy = enemy;
         this.player = player;
