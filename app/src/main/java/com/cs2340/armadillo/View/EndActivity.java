@@ -84,7 +84,7 @@ public class EndActivity extends AppCompatActivity {
         boardTime.setText(timeCol);
 
         currName.setText(player.getName());
-        currScore.setText("" + currentScore);
+        currScore.setText("" + fScore);
 
         win = getIntent().getBooleanExtra("winorlose", false);
         if (win) {
