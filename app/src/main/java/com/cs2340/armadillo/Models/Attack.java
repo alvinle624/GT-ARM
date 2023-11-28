@@ -92,6 +92,7 @@ public class Attack {
 
             Rect enemyRect = new Rect(enemyPos[0], enemyPos[1], enemyPos[0] + enemy.getMeasuredWidth(), enemyPos[1] + enemy.getMeasuredHeight());
 
+            // Attack visual position is changed
             switch (direction) {
                 case UP:
                     attackRect = new Rect(playerPos[0], playerPos[1] - player.getMeasuredHeight(), playerPos[0] + player.getMeasuredWidth(), playerPos[1]);
