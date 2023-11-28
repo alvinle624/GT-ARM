@@ -163,6 +163,7 @@ public class GameActivity2 extends AppCompatActivity {
         }.start();
     }
 
+    // method to update score
     private void updateScore(TextView text, long num) {
         int newScore = (int) num;
         text.setText("Score: " + newScore);
