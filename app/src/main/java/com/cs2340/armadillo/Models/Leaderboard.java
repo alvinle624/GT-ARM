@@ -9,6 +9,9 @@ public class Leaderboard {
     private String[] dates = new String[5];
     private static Leaderboard leaderboard;
 
+    /**
+     * singleton constructor for leaderboard
+     */
     private Leaderboard() {
         for (int i = 0; i < 5; i++) {
             names[i] = "-----";
@@ -19,6 +22,9 @@ public class Leaderboard {
         size = 0;
     }
 
+    /**
+     * @return leaderboard singleton getter
+     */
     public static Leaderboard getLeaderboard() {
         if (leaderboard == null) {
             leaderboard = new Leaderboard();
@@ -38,6 +44,13 @@ public class Leaderboard {
         return dates;
     }
 
+    /**
+     * for adding score of each player to the leaderboard
+     * @param playerName name of player
+     * @param score score of player
+     * @param date date player played game
+     *
+     */
     public void addScore(String playerName, long score, String date) {
         if (size < 5) {
             scores[size] = score;
