@@ -125,7 +125,7 @@ public class GameActivity3 extends AppCompatActivity {
         }
     };
 
-
+    // starts score timer for screen 3
     private void startScoreTimer(TextView tView, Player p) {
         currentScore = (long) getIntent().getLongExtra("currentScore", 0);
         countDown = new CountDownTimer(currentScore, 1000) {
