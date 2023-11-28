@@ -22,6 +22,8 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
     private static final int playerWidth = 32;
     private static final int playerHeight = 32;
 
+    private float speed;
+
     private Direction facing;
 
     public void powerUp() {
@@ -46,6 +48,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
         this.setImageResource(R.drawable.sprite_one);
         this.setMaxHeight(40);
         this.setMaxWidth(50);
+        this.speed = 20;
     }
     public String getName() {
         return name;
@@ -67,8 +70,6 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
     }
 
     public int powerupID = 1;
-
-    public float speed = 20;
 
     public void setPowerupID(int powerupID) {
         this.powerupID = powerupID;

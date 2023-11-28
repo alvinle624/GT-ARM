@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -34,6 +35,7 @@ public class GameActivity2 extends AppCompatActivity {
     CheckCollision checkCollision;
     Player player;
     int hpLoss;
+    PowerUpView speedBug;
 
 
     @Override
@@ -83,6 +85,8 @@ public class GameActivity2 extends AppCompatActivity {
         allEnemies.addEnemy(bearView2);
         allEnemies.addEnemy(bearView);
 
+        speedBug = new PowerUpView(this, 700, 700, "speed");
+
         action = new Action(up, right, down, left, player, allEnemies);
         action.setListeners();
         attack = new Attack(player, attackButton, allEnemies, claw);
@@ -98,6 +102,7 @@ public class GameActivity2 extends AppCompatActivity {
         gameLayout.getViewById(R.id.player_hp2);
         gameLayout.addView(bearView);
         gameLayout.addView(bearView2);
+        gameLayout.addView(speedBug);
 
 
         countDown = null;
@@ -110,6 +115,11 @@ public class GameActivity2 extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
+            if (speedBug.checkCollision(player)) {
+                speedBug.setCollected(true);
+                speedBug.setVisibility(View.INVISIBLE);
+                speedBug.executePowerUp(player, allEnemies);
+            }
             for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
                 EnemyView enemy = allEnemies.findE(i);
                 if (enemy != null) {

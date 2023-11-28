@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -35,6 +36,7 @@ public class GameActivity3 extends AppCompatActivity {
     CheckCollision checkCollision;
     Player player;
     int hpLoss;
+    PowerUpView pesticide;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +81,9 @@ public class GameActivity3 extends AppCompatActivity {
         Enemy wolf = new Wolf();
         Enemy human = new Human();
 
+        pesticide = new PowerUpView(this, 700, 700, "eradicate");
+
+
         EnemyView wolfView = new EnemyView(this, wolf, 500, 700);
         EnemyView humanView = new EnemyView(this, human, 700, 700);
         allEnemies.addEnemy(wolfView);
@@ -97,6 +102,7 @@ public class GameActivity3 extends AppCompatActivity {
         gameLayout.addView(player);
         gameLayout.addView(humanView);
         gameLayout.addView(wolfView);
+        gameLayout.addView(pesticide);
 
 
         countDown = null;
@@ -109,6 +115,11 @@ public class GameActivity3 extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
+            if (pesticide.checkCollision(player)) {
+                pesticide.setCollected(true);
+                pesticide.setVisibility(View.INVISIBLE);
+                pesticide.executePowerUp(player, allEnemies);
+            }
             for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
                 EnemyView enemy = allEnemies.findE(i);
                 if (enemy != null) {

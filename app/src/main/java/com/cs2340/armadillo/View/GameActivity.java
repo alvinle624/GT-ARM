@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -24,6 +25,7 @@ public class GameActivity extends AppCompatActivity {
     private Button nxtBtn;
     private Action action;
     private Attack attack;
+    PowerUpView healthBug;
     private static final long startScore = 300000;
     private Enemies allEnemies;
     private CountDownTimer countDown;
@@ -77,7 +79,7 @@ public class GameActivity extends AppCompatActivity {
         gameLayout.addView(coyoteView);
         gameLayout.addView(coyoteView2);
 
-        PowerUpView healthBug = new PowerUpView(this, 700, 700, "health");
+        healthBug = new PowerUpView(this, 700, 700, "health");
 
         gameLayout.addView(player);
         gameLayout.addView(healthBug);
@@ -105,18 +107,25 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
+            TextView playerHP = (TextView) findViewById(R.id.player_hp);
+            if (healthBug.checkCollision(player)) {
+                healthBug.setCollected(true);
+                healthBug.setVisibility(View.INVISIBLE);
+                healthBug.executePowerUp(player, allEnemies);
+                playerHP.setText("PlayerHP: " + player.getHP());
+            }
             for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
                 EnemyView enemy = allEnemies.findE(i);
                 if (enemy != null) {
                     checkCollision = new CheckCollision(enemy, player);
                     if (checkCollision.checkCollide()) {
-                        TextView playerHP = (TextView) findViewById(R.id.player_hp);
                         player.setHP(player.getHP() - hpLoss);
                         playerHP.setText("PlayerHP: " + player.getHP());
                         delay = 1200;
                     }
                 }
             }
+
             handler.postDelayed(this, delay);
         }
     };
