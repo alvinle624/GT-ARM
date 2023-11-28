@@ -29,6 +29,11 @@ public class Attack {
         this.enemyList = enemyList;
         this.visual = visual;
     }
+
+    /**
+     * This function takes the buttons passed as
+     * parameters and sets them to the attack function.
+     */
     public void attackListener() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
