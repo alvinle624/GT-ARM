@@ -32,6 +32,11 @@ public class Action {
         this.player = player;
         this.enemies = enemies;
     }
+
+    /**
+     * Creates listeners for up, down, left, and right
+     * buttons to allow player to move.
+     */
     @SuppressLint("ClickableViewAccessibility")
     public void setListeners() {
         up.setOnTouchListener(new View.OnTouchListener() {
