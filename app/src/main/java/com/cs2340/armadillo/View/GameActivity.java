@@ -127,10 +127,12 @@ public class GameActivity extends AppCompatActivity {
                 if ((p.getY() > 2200 && p.getX() < 800) || (p.getHP() <= 0)) {
                     gameLayout.removeAllViews();
                     Intent next = new Intent(GameActivity.this, GameActivity2.class);
+
                     if (p.getHP() <= 0) {
                         next = new Intent(GameActivity.this, EndActivity.class);
                         currentScore = 0;
                     }
+
                     next.putExtra("currentScore", currentScore);
                     startActivity(next);
                     countDown.cancel();
