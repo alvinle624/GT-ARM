@@ -91,7 +91,7 @@ public class GameActivity2 extends AppCompatActivity {
         gameLayout.getViewById(R.id.player_hp2);
         gameLayout.addView(bearView);
         gameLayout.addView(bearView2);
-
+        player.setPowerupID(2);
 
         countDown = null;
         startScoreTimer(score, player);
