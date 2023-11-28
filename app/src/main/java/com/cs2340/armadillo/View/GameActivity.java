@@ -57,7 +57,8 @@ public class GameActivity extends AppCompatActivity {
         TextView score = (TextView) findViewById(R.id.score);
         Button attackButton = findViewById(R.id.attackButton);
         ImageView claw = findViewById(R.id.clawSwipe);
-        
+
+        player.setPowerupID(2);
         Enemy coyote = new Coyote();
         Enemy coyote2 = new Coyote();
         EnemyView coyoteView = new EnemyView(this, coyote, 700, 700);
@@ -76,8 +77,11 @@ public class GameActivity extends AppCompatActivity {
         gameLayout.addView(coyoteView);
         gameLayout.addView(coyoteView2);
 
+        PowerUpView healthBug = new PowerUpView(this, 700, 700, "health");
 
         gameLayout.addView(player);
+        gameLayout.addView(healthBug);
+
 
         currentScore = startScore;
         countDown = null;
@@ -93,6 +97,7 @@ public class GameActivity extends AppCompatActivity {
         attack = new Attack(player, attackButton, allEnemies, claw);
         attack.attackListener();
         handler.postDelayed(collision, 10);
+
     }
 
     Handler handler = new Handler(Looper.getMainLooper());
