@@ -9,10 +9,18 @@ public class MapLayout {
 
     private int[][] layout;
 
+    /**
+     * constructor for map layout
+     * @param mapNum number for map
+     */
     public MapLayout(int mapNum) {
         initializeMap(mapNum);
     }
 
+    /**
+     * displays layout of lap as a 2D int array
+     * @return 2D int array
+     */
     public int[][] getLayout() {
         return layout;
     }
@@ -108,6 +116,11 @@ public class MapLayout {
             {1,1,0,0,0,0,0,0,0,0,0,0,1},
             {1,1,1,1,1,1,1,1,1,1,1,1,1}
     };
+
+    /**
+     * initialize map
+     * @param mapNum map num
+     */
     private void initializeMap(int mapNum) {
         switch(mapNum) {
             case 0:
