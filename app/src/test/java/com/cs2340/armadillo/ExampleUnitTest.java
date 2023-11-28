@@ -10,6 +10,7 @@ import com.cs2340.armadillo.Models.Coyote;
 import com.cs2340.armadillo.Models.Enemy;
 import com.cs2340.armadillo.Models.EnemyFactory;
 import com.cs2340.armadillo.Models.Human;
+import com.cs2340.armadillo.Models.Player;
 import com.cs2340.armadillo.Models.Wolf;
 
 /**
@@ -114,6 +115,5 @@ public class ExampleUnitTest {
         int actual = 1;
         assertEquals(expected, actual);
     }
-
 
 }
