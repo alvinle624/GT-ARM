@@ -52,5 +52,8 @@ public class Player2 {
         score += 500;
     }
 
+    public void attack(Enemy2 enemy) {
+        enemy.setIsAlive(false);
+    }
 
 }
