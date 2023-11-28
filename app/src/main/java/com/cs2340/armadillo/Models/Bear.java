@@ -61,4 +61,8 @@ public class Bear implements Enemy {
     public int getY() {
         return yPos;
     }
+
+    public String growl() {
+        return "rawr";
+    }
 }
