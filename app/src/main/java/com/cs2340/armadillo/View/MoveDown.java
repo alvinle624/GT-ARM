@@ -20,14 +20,14 @@ public class MoveDown implements Direction{
      * @param enemies enemies
      */
     public void move(Player player, Enemies enemies, PowerUpView powerup) {
-        System.out.println(player.playerCanMove(1, layout));
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 28; j++) {
-                System.out.print(layout[j][i] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println("player coords: (" + player.getX() + ", " + player.getY() + ")");
+//        System.out.println(player.playerCanMove(1, layout));
+//        for (int i = 0; i < 13; i++) {
+//            for (int j = 0; j < 28; j++) {
+//                System.out.print(layout[j][i] + " ");
+//            }
+//            System.out.println();
+//        }
+//        System.out.println("player coords: (" + player.getX() + ", " + player.getY() + ")");
 
         if (player.playerCanMove(1, layout)) {
             player.changeYPos(0, player.getSpeed());
