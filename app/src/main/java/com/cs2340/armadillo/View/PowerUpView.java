@@ -30,7 +30,7 @@ public class PowerUpView extends AppCompatImageView {
         } else if (pName.equals("speed")) {
             this.setImageResource(R.drawable.speed_bug);
             speed = true;
-        } else if (pName.equals("eradicate")) {
+        } else if (pName.equals("nuke")) {
             this.setImageResource(R.drawable.nuke);
             nuke = true;
         }
@@ -44,4 +44,5 @@ public class PowerUpView extends AppCompatImageView {
         System.out.println("nocollision NOCOLIISION NO COLLISION");
         return false;
     }
+
 }

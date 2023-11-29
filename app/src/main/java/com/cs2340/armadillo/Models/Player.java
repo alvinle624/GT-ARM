@@ -25,7 +25,14 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
     private Direction facing;
 
     public void powerUp() {
-        return;
+        if (powerupID == 1) {
+            HP += 20;
+        } else if (powerupID == 2) {
+            speed = 50;
+        } else if (powerupID == 3) {
+            spriteID = (spriteID + 1)%3;
+
+        }
     }
 
     public enum Direction {
