@@ -34,7 +34,7 @@ public class GameActivity3 extends AppCompatActivity {
 
     CheckCollision checkCollision;
     Player player;
-    private PowerUpView powerup;
+    PowerUpView powerup;
     int hpLoss;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +85,8 @@ public class GameActivity3 extends AppCompatActivity {
         allEnemies.addEnemy(wolfView);
         allEnemies.addEnemy(humanView);
         player.setPowerupID(3);
-        powerup = new PowerUpView(this, 200, 700, "nuke");
-        action = new Action(up, right, down, left, player, allEnemies, powerup);
-        action.setListeners();
-        attack = new Attack(player, attackButton, allEnemies, claw);
-        attack.attackListener();
+        powerup = new PowerUpView(this, 300, 700, "nuke");
+
 
         playerHp.setText("PlayerHP: " + player.getHP());
         playerName.setText(player.getName());
@@ -101,7 +98,10 @@ public class GameActivity3 extends AppCompatActivity {
 
         gameLayout.addView(powerup);
         gameLayout.addView(wolfView);
-
+        action = new Action(up, right, down, left, player, allEnemies, powerup);
+        action.setListeners();
+        attack = new Attack(player, attackButton, allEnemies, claw);
+        attack.attackListener();
 
         countDown = null;
         startScoreTimer(score, player);
