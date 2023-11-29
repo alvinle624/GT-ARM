@@ -38,8 +38,10 @@ public class PowerUpView extends AppCompatImageView {
 
     public boolean checkCollision(float playerX, float playerY) {
         if ((playerX >= x && playerX < x + size) && (playerY >= y && playerY < y + size)) {
+            System.out.println("COLLIDED COLLIDED COLLIDED");
             return true;
         }
+        System.out.println("nocollision NOCOLIISION NO COLLISION");
         return false;
     }
 }
