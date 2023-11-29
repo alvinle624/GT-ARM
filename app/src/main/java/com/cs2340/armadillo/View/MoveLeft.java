@@ -19,13 +19,13 @@ public class MoveLeft implements Direction {
      * @param enemies enemies
      */
     public void move(Player player, Enemies enemies, PowerUpView powerup) {
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 28; j++) {
-                System.out.print(layout[j][i] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println("player coords: (" + player.getX() + ", " + player.getY() + ")");
+//        for (int i = 0; i < 13; i++) {
+//            for (int j = 0; j < 28; j++) {
+//                System.out.print(layout[j][i] + " ");
+//            }
+//            System.out.println();
+//        }
+//        System.out.println("player coords: (" + player.getX() + ", " + player.getY() + ")");
 
         if (player.playerCanMove(2, layout)) {
             player.changeXPos(-player.getSpeed(), 0);

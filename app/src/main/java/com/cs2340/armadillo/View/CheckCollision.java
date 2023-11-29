@@ -45,8 +45,8 @@ public class CheckCollision implements EntityCollision {
         // Creates Rect objects for enemy and player and checks if they overlap.
         Rect enemyRect = new Rect(enemyPos[0], enemyPos[1], enemyPos[0] + enemy.getMeasuredWidth(), enemyPos[1] + enemy.getMeasuredHeight());
         Rect playerRect = new Rect(playerPos[0], playerPos[1], playerPos[0] + player.getMeasuredWidth(), playerPos[1] + player.getMeasuredHeight());
-        System.out.println("Player: " + playerRect.centerX() + ", " + playerRect.centerY());
-        System.out.println("Player: " + enemyRect.centerX() + ", " + enemyRect.centerY());
+//        System.out.println("Player: " + playerRect.centerX() + ", " + playerRect.centerY());
+//        System.out.println("Player: " + enemyRect.centerX() + ", " + enemyRect.centerY());
         return enemyRect.intersect(playerRect);
     }
 }
