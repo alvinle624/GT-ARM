@@ -107,7 +107,7 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
-            TextView playerHP = (TextView) findViewById(R.id.player_hp2);
+            TextView playerHP = (TextView) findViewById(R.id.player_hp);
             playerHP.setText("PlayerHP: " + player.getHP());
             for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
                 EnemyView enemy = allEnemies.findE(i);
