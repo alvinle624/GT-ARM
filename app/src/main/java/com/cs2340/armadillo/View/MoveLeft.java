@@ -13,13 +13,12 @@ import com.cs2340.armadillo.Models.PlayerT;
 public class MoveLeft implements Direction {
     MapLayout map = new MapLayout(mapNum);
     int[][] layout = map.getLayout();
-
     /**
      * moves player left
      * @param player player
      * @param enemies enemies
      */
-    public void move(Player player, Enemies enemies) {
+    public void move(Player player, Enemies enemies, PowerUpView powerup) {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 28; j++) {
                 System.out.print(layout[j][i] + " ");
@@ -36,9 +35,7 @@ public class MoveLeft implements Direction {
                 enemy.moveEnemy(enemy, player, layout);
             }
         }
-        if ((player.getX() >= 700 && player.getX() < 732)
-                && (player.getY() >= 700 && player.getY() <= 732)
-        ) {
+        if (powerup.checkCollision(player.getX(), player.getY())) {
             if (player.getPowerupID() == 1) {
                 player.setHP(30);
             } else if (player.getPowerupID() == 2) {

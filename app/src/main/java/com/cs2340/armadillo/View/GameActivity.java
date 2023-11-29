@@ -32,6 +32,8 @@ public class GameActivity extends AppCompatActivity {
     EnemyView enemyView;
     CheckCollision checkCollision;
     Player player;
+
+    PowerUpView powerup;
     int hpLoss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +79,8 @@ public class GameActivity extends AppCompatActivity {
         gameLayout.addView(coyoteView);
         gameLayout.addView(coyoteView2);
 
-        PowerUpView speedBug = new PowerUpView(this, 700, 700, "speed");
-        gameLayout.addView(speedBug);
+        powerup = new PowerUpView(this, 700, 700, "speed");
+        gameLayout.addView(powerup);
         gameLayout.addView(player);
 
 
@@ -92,7 +94,7 @@ public class GameActivity extends AppCompatActivity {
         ImageButton down = findViewById(R.id.downButton);
         ImageButton left = findViewById(R.id.leftButton);
 
-        action = new Action(up, right, down, left, player, allEnemies);
+        action = new Action(up, right, down, left, player, allEnemies, powerup);
         action.setListeners();
         attack = new Attack(player, attackButton, allEnemies, claw);
         attack.attackListener();

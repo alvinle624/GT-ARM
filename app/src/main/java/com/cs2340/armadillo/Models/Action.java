@@ -21,16 +21,19 @@ public class Action {
     ImageButton left;
     Player player;
     Enemies enemies;
+
+    PowerUpView powerup;
     Direction direction;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    public Action(ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player, Enemies enemies) {
+    public Action(ImageButton up, ImageButton right, ImageButton down, ImageButton left, Player player, Enemies enemies, PowerUpView powerup) {
         this.up = up;
         this.right = right;
         this.down = down;
         this.left = left;
         this.player = player;
         this.enemies = enemies;
+        this.powerup = powerup;
     }
 
     /**
@@ -111,7 +114,7 @@ public class Action {
     Runnable moveAction = new Runnable() {
         @Override
         public void run() {
-            direction.move(player, enemies);
+            direction.move(player, enemies, powerup);
             mHandler.postDelayed(this, 80);
         }
     };
