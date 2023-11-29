@@ -2,6 +2,7 @@ package com.cs2340.armadillo.View;
 
 import static com.cs2340.armadillo.Models.MapLayout.mapNum;
 
+import android.view.View;
 import android.widget.ImageView;
 
 import com.cs2340.armadillo.Models.Enemies;
@@ -37,7 +38,10 @@ public class MoveRight implements Direction{
         }
         if (powerup.checkCollision(player.getX(), player.getY())
         ) {
-           player.powerUp();
+            if (powerup.getVisibility() == View.VISIBLE) {
+                player.powerUp();
+                powerup.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }
