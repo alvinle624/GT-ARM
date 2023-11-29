@@ -115,12 +115,13 @@ public class GameActivity2 extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
+            TextView playerHP = (TextView) findViewById(R.id.player_hp2);
+            playerHP.setText("PlayerHP: " + player.getHP());
             for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
                 EnemyView enemy = allEnemies.findE(i);
                 if (enemy != null) {
                     checkCollision = new CheckCollision(enemy, player);
                     if (checkCollision.checkCollide()) {
-                        TextView playerHP = (TextView) findViewById(R.id.player_hp2);
                         player.setHP(player.getHP() - hpLoss);
                         playerHP.setText("PlayerHP: " + player.getHP());
                         delay = 1200;
