@@ -14,6 +14,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
     private int sprite;
     private int HP;
     private int spriteID;
+    private int attackSize;
 
     private float x, y;
 
@@ -31,7 +32,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
             speed = 50;
         } else if (powerupID == 3) {
             spriteID = (spriteID + 1)%3;
-
+            attackSize += 32;
         }
     }
 
@@ -43,6 +44,7 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
     }
     public Player(Context context, float x, float y, int HP) {
         super(context);
+        this.attackSize = 32;
         this.x = x;
         this.y = y;
         this.setY(y);
@@ -71,6 +73,10 @@ public class Player extends androidx.appcompat.widget.AppCompatImageView impleme
     }
     public void setHP(int HP) {
         this.HP = HP;
+    }
+
+    public int getAttackSize() {
+        return attackSize;
     }
 
     public int powerupID = 1;

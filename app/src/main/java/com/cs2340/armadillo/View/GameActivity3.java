@@ -113,6 +113,11 @@ public class GameActivity3 extends AppCompatActivity {
         @Override
         public void run() {
             int delay = 100;
+            if (player.getAttackSize() > 32) {
+                ImageView bigclaw = findViewById(R.id.clawSwipe3);
+                bigclaw.setImageResource(R.drawable.bigclaw);
+                attack.setVisual(bigclaw);
+            }
             for (int i = 0; i < allEnemies.getEnemyList().size(); i++) {
                 EnemyView enemy = allEnemies.findE(i);
                 if (enemy != null) {
