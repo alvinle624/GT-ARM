@@ -60,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
         Button attackButton = findViewById(R.id.attackButton);
         ImageView claw = findViewById(R.id.clawSwipe);
 
-        player.setPowerupID(2);
+        player.setPowerupID(1);
         Enemy coyote = new Coyote();
         Enemy coyote2 = new Coyote();
         EnemyView coyoteView = new EnemyView(this, coyote, 700, 700);

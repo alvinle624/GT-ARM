@@ -41,7 +41,7 @@ public class MoveDown implements Direction{
             if (player.getPowerupID() == 1) {
                 player.setHP(30);
             } else if (player.getPowerupID() == 2) {
-                player.setSpeed(100);
+                player.setSpeed(50);
             } else if (player.getPowerupID() == 3) {
                 player.setSprite((player.getSpriteID() + 1)%3);
             }
