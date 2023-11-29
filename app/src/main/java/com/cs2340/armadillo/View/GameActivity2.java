@@ -33,6 +33,7 @@ public class GameActivity2 extends AppCompatActivity {
     ConstraintLayout gameLayout;
     CheckCollision checkCollision;
     Player player;
+    PowerUpView powerup;
     int hpLoss;
 
 
@@ -82,8 +83,9 @@ public class GameActivity2 extends AppCompatActivity {
         EnemyView bearView2 = new EnemyView(this, bear2, 700, 700);
         allEnemies.addEnemy(bearView2);
         allEnemies.addEnemy(bearView);
-
-        action = new Action(up, right, down, left, player, allEnemies);
+        player.setPowerupID(2);
+        powerup = new PowerUpView(this, 400, 1400, "health");
+        action = new Action(up, right, down, left, player, allEnemies, powerup);
         action.setListeners();
         attack = new Attack(player, attackButton, allEnemies, claw);
         attack.attackListener();
@@ -96,12 +98,12 @@ public class GameActivity2 extends AppCompatActivity {
 
         gameLayout = findViewById(R.id.game_screen2);
         gameLayout.addView(player);
-        PowerUpView healthBug = new PowerUpView(this, 400, 1400, "health");
-        gameLayout.addView(healthBug);
+
+        gameLayout.addView(powerup);
         gameLayout.getViewById(R.id.player_hp2);
         gameLayout.addView(bearView);
         gameLayout.addView(bearView2);
-        player.setPowerupID(2);
+
 
         countDown = null;
         startScoreTimer(score, player);
